@@ -24,21 +24,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG (22/6/2019)
         [HttpGet]
         [Route("documents/{pageNumber}/{pageSize}")]
-        public async Task<IEnumerable<DocumentViewModel>> GetDataPagination(int pageNumber, int pageSize)
+        public AjaxResult GetDataPagination(int pageNumber, int pageSize)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
                 {
-                    await Task.Delay(100);
-                    var documents = _documentBL.GetDocuments(pageNumber, pageSize);
-                    return documents;
+                    ajaxResult.Data = _documentBL.GetDocuments(pageNumber, pageSize);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -49,20 +51,25 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(22/6/2019)
         [HttpPost]
         [Route("documents/GetTotalPages")]
-        public int GetTotalPages(int pageSize)
+        public AjaxResult GetTotalPages(int pageSize)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL documentBL = new DocumentBL())
                 {
-                    return documentBL.GetTotalPageNumber(pageSize);
+                    ajaxResult.Data = documentBL.GetTotalPageNumber(pageSize);
+                    ajaxResult.Success = true; 
                 }
             }
             catch (Exception)
             {
-                return 1;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu tổng số trang. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
+
         /// <summary>
         /// Hàm lấy tổng số chứng từ
         /// </summary>
@@ -72,19 +79,23 @@ namespace MISA.Mshopkeeper.Controllers
 
         [HttpPost]
         [Route("documents/GetTotalDocuments")]
-        public int GetTotalDocuments()
+        public AjaxResult GetTotalDocuments()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL documentBL = new DocumentBL())
                 {
-                    return documentBL.GetTotalDocuments();
+                    ajaxResult.Data = documentBL.GetTotalDocuments();
+                    ajaxResult.Success = true; 
                 }
             }
             catch (Exception)
             {
-                return 1;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu tổng số chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -94,20 +105,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(19/6/2019)
         [HttpGet]
         [Route("documentsType")]
-        public IEnumerable<DocumentType> GetDocumentTypes()
+        public AjaxResult GetDocumentTypes()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentTypeBL _documentTypeBL = new DocumentTypeBL())
                 {
-                    var documentTypes = _documentTypeBL.GetAllDocumentType();
-                    return documentTypes;
+                    ajaxResult.Data = _documentTypeBL.GetAllDocumentType();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu loại chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -117,21 +131,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(19/6/2019)
         [HttpGet]
         [Route("people")]
-        public IEnumerable<PersonViewModel> GetPeople()
+        public AjaxResult GetPeople()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (PersonBL _personBL = new PersonBL())
                 {
-                    var people = _personBL.GetAllPeople();
-                    return people;
+                    ajaxResult.Data = _personBL.GetAllPeople();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu đối tượng. Xin vui lòng liên hệ MISA để giải quyết";
             }
-           
+            return ajaxResult;
         }
 
         /// <summary>
@@ -141,20 +157,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(19/6/2019)
         [HttpGet]
         [Route("personTypes")]
-        public IEnumerable<PersonType> GetPersonTypes()
+        public AjaxResult GetPersonTypes()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using(PersonTypeBL _personTypeBL = new PersonTypeBL())
                 {
-                    var personTypes = _personTypeBL.GetAllPersonType();
-                    return personTypes;
+                    ajaxResult.Data = _personTypeBL.GetAllPersonType();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu loại đối tượng. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -166,20 +185,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Sửa đổi bởi: NBDUONG(22/6/2019)
         [HttpGet]
         [Route("{id}")]
-        public DocumentViewModel GetDocumentById(Guid id)
+        public AjaxResult GetDocumentById(Guid id)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
                 {
-                    var document = _documentBL.GetDocumentByID(id);
-                    return document;
+                    ajaxResult.Data = _documentBL.GetDocumentByID(id);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -190,20 +212,24 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(18/5/2019)
         /// Sửa đổi bởi: NBDUONG(22/6/2019)
         [Route("documents/person/{id}")]
-        public IEnumerable<DocumentViewModel> GetDocumentsByPersonID(Guid id)
+        public AjaxResult GetDocumentsByPersonID(Guid id)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
                 {
-                    var documentVMs = _documentBL.GetDocumentsByPerson(id);
-                    return documentVMs.Where(x => x.IsPaid == false);
+                    var documentVms = _documentBL.GetDocumentsByPerson(id);
+                    ajaxResult.Data = documentVms.Where(x => x.IsPaid == false);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu chứng từ theo đối tượng. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -214,20 +240,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(19/5/2019)
         /// Sửa đổi bởi: NBDUONG(22/6/2019)
         [Route("people/{id}")]
-        public async Task<PersonViewModel> GetPersonById(Guid id)
+        public AjaxResult GetPersonById(Guid id)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (PersonBL _personBL = new PersonBL()) {
                     PersonViewModel personVM = _personBL.GetPersonByID(id);
-                    await Task.Delay(100);
-                    return personVM;
+                    ajaxResult.Data = personVM;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu đối tượng. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -238,19 +267,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(24/6/2019)
         [HttpPost]
         [Route("document/GetByDocumentCode")]
-        public Document GetDocumentByDocumentCode(string documentCode)
+        public AjaxResult GetDocumentByDocumentCode(string documentCode)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL documentBL = new DocumentBL())
                 {
-                    return documentBL.GetDocumentByDocumentCode(documentCode);
+                    ajaxResult.Data = documentBL.GetDocumentByDocumentCode(documentCode);
+                    ajaxResult.Success = true; 
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu chứng từ theo mã chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -260,19 +293,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(25/6/2019)
         [HttpGet]
         [Route("document/getAutoCollectCode")]
-        public string GetAutoRenderDocumentCollectCode()
+        public AjaxResult GetAutoRenderDocumentCollectCode()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL documentBL = new DocumentBL())
                 {
-                    return documentBL.GetAutoRenderDocumentCollectCode();
+                    ajaxResult.Data = documentBL.GetAutoRenderDocumentCollectCode();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu mã phiếu thu. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -282,19 +319,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(25/6/2019)
         [HttpGet]
         [Route("document/getAutoPayCode")]
-        public string GetAutoRenderDocumentPayCode()
+        public AjaxResult GetAutoRenderDocumentPayCode()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL documentBL = new DocumentBL())
                 {
-                    return documentBL.GetAutoRenderDocumentPayCode();
+                    ajaxResult.Data = documentBL.GetAutoRenderDocumentPayCode();
+                    ajaxResult.Success = true; 
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu mã phiếu chi. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -305,21 +346,24 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(23/5/2019)
         [HttpPost]
         [Route("documents/new")]
-        public bool CreateNewDocument(DocumentViewModel documentViewModel)
+        public AjaxResult CreateNewDocument(DocumentViewModel documentViewModel)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
                 {
                     var document = _documentBL.MapDocumentViewModelToDocument(documentViewModel);
                     _documentBL.CreateDocument(document);
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi thêm chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -330,21 +374,24 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(28/5/2019)
         [HttpPost]
         [Route("documents/edit/{id}")]
-        public bool EditDocument(DocumentViewModel documentViewModel)
+        public AjaxResult EditDocument(DocumentViewModel documentViewModel)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL()) {
                     var document = _documentBL.MapDocumentViewModelToDocument(documentViewModel);
                     document.DocumentID = documentViewModel.DocumentID;
                     _documentBL.UpdateDocument(document);
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi sửa chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -355,19 +402,22 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(30/5/2019)
         [HttpPost]
         [Route("documents/delete/{DocumentID}")]
-        public bool DeleteDocument(Guid DocumentID)
+        public AjaxResult DeleteDocument(Guid DocumentID)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL()) {
                     _documentBL.DeleteDocument(DocumentID);
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi xóa chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -378,8 +428,9 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(7/6/2019)
         [HttpPost]
         [Route("documents/delete/listDocuments")]
-        public bool DeleteMultiDocument(List<Guid> listID)
+        public AjaxResult DeleteMultiDocument(List<Guid> listID)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
@@ -388,36 +439,42 @@ namespace MISA.Mshopkeeper.Controllers
                     {
                         _documentBL.DeleteDocument(item);
                     }
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi xóa chứng từ. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
-        /// Hàm xử lý lọc dữ liệu chứng từ theo điều kiện lọc
+        /// Hàm xử lý lọc dữ liệu chứng từ theo điều kiện lọcl
         /// </summary>
         /// <param name = "documentDto" ></ param >
         /// < returns ></ returns >
         /// Tạo bởi: NBDUONG(12/6/2019)
         [HttpPost]
         [Route("documents/filterData")]
-        public IEnumerable<DocumentViewModel> FilterDocument(DocumentDto documentDto)
+        public AjaxResult FilterDocument(DocumentDto documentDto)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
                 {
-                    return _documentBL.FilterDocument(documentDto);
+                    ajaxResult.Data = _documentBL.FilterDocument(documentDto);
+                    ajaxResult.Success = true; 
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lọc dữ liệu. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -428,19 +485,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Tạo bởi: NBDUONG(13/6/2019)
         [HttpPost]
         [Route("documents/getByDate")]
-        public IEnumerable<DocumentViewModel> GetDocumentsByDate(DocumentDto documentDto)
+        public AjaxResult GetDocumentsByDate(DocumentDto documentDto)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL())
                 {
-                    return _documentBL.GetDocumentsByDate(documentDto);
+                    ajaxResult.Data = _documentBL.GetDocumentsByDate(documentDto);
+                    ajaxResult.Success = true; 
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lọc dữ liệu. Xin vui lòng liên hệ MISA để giải quyết";
             }
+            return ajaxResult;
         }
     }
 }

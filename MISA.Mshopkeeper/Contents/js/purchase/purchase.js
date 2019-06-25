@@ -9,13 +9,12 @@ class Purchase  {
         // Biến lưu con trỏ this
         thisPurchase = this;
         // Chạy các hàm cần thiết
-        this.initEvent();
-       
+        this.init();
     }
 
     // Khởi tạo các sự kiện trong trang mua hàng
     // Người tạo: NTXUAN (29/04/2019)
-    initEvent() {
+    init() {
         this.getTotalPages();
         this.getDataFromServer();
         this.setEventDefault();
@@ -65,13 +64,17 @@ class Purchase  {
         let url = "/purchase/GetTotalPages?pageSize=" + pageSize;
         // Thực hiện lấy tổng số trang
         common.callAjaxToServer("Post", url, null, function (result) {
-            dataStorage.totalPages = result;
-            if (parseInt($(".indexPagePurchase").val()) > result) {
-                $(".indexPagePurchase").val(result);
+            if (result.Success) {
+                dataStorage.totalPages = result.Data;
+                if (parseInt($(".indexPagePurchase").val()) > result.Data) {
+                    $(".indexPagePurchase").val(result.Data);
+                }
+                $(".totalPages").text(result.Data);
+                thisPurchase.renderTotalRows();
+                thisPurchase.setDisableButtonPaging();
+            } else {
+                thisPurchase.showDialogError(result.Messenger);
             }
-            $(".totalPages").text(result);
-            thisPurchase.renderTotalRows();
-            thisPurchase.setDisableButtonPaging();
         });
     }
 
@@ -82,14 +85,26 @@ class Purchase  {
         $(".header-column2 .option, .header-column3 .option, .header-column6 .option").click(function () {
             let TextFilter = $(this).next().val().trim();
             let TypeFilter = $(this).next().attr("class").trim();
-            purchase.getDataFilter(TextFilter, TypeFilter);
+            $(".list-header-table input").val("");
+            if (TextFilter !== "" && TypeFilter !== "") {
+                $(this).val(TextFilter);
+                purchase.getDataFilter(TextFilter, TypeFilter);
+            } else {
+                purchase.getDataFromServer();
+            }
         });
         // Khi nhấn enter tìm kiếm
         $(".header-column2 input, .header-column3 input, .header-column6 input").keydown(function () {
             if (event.keyCode === 13) {
                 let TextFilter = $(this).val().trim();
                 let TypeFilter = $(this).attr("class").trim();
-                purchase.getDataFilter(TextFilter, TypeFilter);
+                $(".list-header-table input").val("");
+                if (TextFilter !== "" && TypeFilter !== "") {
+                    $(this).val(TextFilter);
+                    purchase.getDataFilter(TextFilter, TypeFilter);
+                } else {
+                    purchase.getDataFromServer();
+                }
             }
         });
     }
@@ -101,13 +116,14 @@ class Purchase  {
             TextFilter: TextFilter,
             TypeFilter: TypeFilter
         };
+        $(".list-content-invoice .background-loading").show();
         // Gọi ajax post dữ liệu lên server
         common.callAjaxToServer("POST", "/purchase/getDataFilter", IvoiceDto, function (result) {
-            if (result) {
-                purchase.renderListInvoice(result);
-                thisPurchase.setDisableButtonPagingOnFilter(result.length);
+            if (result.Success) {
+                purchase.renderListInvoice(result.Data);
+                thisPurchase.setDisableButtonPagingOnFilter(result.Data.length);
             } else {
-                alert("lỗi");
+                thisPurchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -115,8 +131,12 @@ class Purchase  {
     // Hàm sắp xếp các hóa đơn theo ngày nhập
     // Người tạo: ntxuan (23/5/2019)
     sortInvoiceByImportDate() {
+     
         $(".content-right .header-column1 input").change(function () {
-            if ($(this).val() !== "") {
+            let textSearch = $(this).val();
+           // $(".list-header-table input").val("");
+            if (textSearch !== "") {
+                $(this).val(textSearch);
                 let dateChange = common.convertStringJSToStringCsharp(this);
                 let invoiceDto = {
                     FromDate: dateChange,
@@ -124,9 +144,15 @@ class Purchase  {
                 };
                 // Thực hiện load các hóa đơn có ngày tháng được chọn
                 common.callAjaxToServer("Post", "/purchase/Invoices", invoiceDto, function (result) {
-                    purchase.renderListInvoice(result);
-                    thisPurchase.setDisableButtonPagingOnFilter(result.length);
+                    if (result.Success) {
+                        purchase.renderListInvoice(result.Data);
+                        thisPurchase.setDisableButtonPagingOnFilter(result.Data.length);
+                    } else {
+                        thisPurchase.showDialogError(result.Messenger);
+                    }
                 });
+            } else {
+                purchase.getDataFromServer();
             }
         });
 
@@ -136,6 +162,7 @@ class Purchase  {
             let toDate = $(".content-right .inputDateTo");
             $(".content-right .header-column1 input").val("");
             if (fromDate.val() !== "" && toDate.val() !== "") {
+                $(".list-content-invoice .background-loading").show();
                 let fromDateString = common.convertStringJSToStringCsharp(fromDate);
                 let toDateString = common.convertStringJSToStringCsharp(toDate);
                 let invoiceDto = {
@@ -144,8 +171,12 @@ class Purchase  {
                 };
                 // Thực hiện load các hóa đơn có ngày tháng được chọn
                 common.callAjaxToServer("Post", "/purchase/Invoices", invoiceDto, function (result) {
-                    purchase.renderListInvoice(result);
-                    thisPurchase.setDisableButtonPagingOnFilter(result.length);
+                    if (result.Success) {
+                        purchase.renderListInvoice(result.Data);
+                        thisPurchase.setDisableButtonPagingOnFilter(result.Data.length);
+                    } else {
+                        thisPurchase.showDialogError(result.Messenger);
+                    }
                 });
             }
         });
@@ -154,8 +185,10 @@ class Purchase  {
     // Hủy các sự kiện click khi không có dữ liệu hóa đơn
     // Người tạo: ntxuan (20/5/2019)
     setDisableEventButtonMenubar() {
-        if ($(".content-right .list-content-invoice .row-clicked").length > 0) {
+        if ($(".content-right .list-content-invoice .row-clicked").length === 1) {
             $(".content-right .disable-button").removeClass("disable-button");
+        } else if ($(".content-right .list-content-invoice .row-clicked").length > 1) {
+            $(".list-header-top .btnDuplicate,.list-header-top .btnView,.list-header-top .btnEdit").addClass("disable-button");
         } else {
             $(".content-right .btn-toggle-show").addClass("disable-button");
         }
@@ -165,16 +198,20 @@ class Purchase  {
     //Tạo bởi: ntxuan(22/6/2019)
     renderTotalRows() {
         common.callAjaxToServer("POST", "/purchase/GetTotalRowInvoices", null, function (result) {
-            $(".totalInvoices").text(result);
-            let pageIndex = $('.indexPagePurchase').val();
-            let optionVal = $('#pagination').val();
-            let firstRowIndex = (pageIndex - 1) * optionVal + 1;
-            let lastRowIndex = pageIndex * optionVal;
-            if (pageIndex === $('.totalPages').text()) {
-                lastRowIndex = $('.totalInvoices').text();
+            if (result.Success) {
+                $(".totalInvoices").text(result.Data);
+                let pageIndex = $('.indexPagePurchase').val();
+                let optionVal = $('#pagination').val();
+                let firstRowIndex = (pageIndex - 1) * optionVal + 1;
+                let lastRowIndex = pageIndex * optionVal;
+                if (pageIndex === $('.totalPages').text()) {
+                    lastRowIndex = $('.totalInvoices').text();
+                }
+                $('.first-rowInvoice').text(firstRowIndex);
+                $('.last-rowInvoice').text(lastRowIndex);
+            } else {
+                thisPurchase.showDialogError(result.Messenger);
             }
-            $('.first-rowInvoice').text(firstRowIndex);
-            $('.last-rowInvoice').text(lastRowIndex);
         });
     }
 
@@ -212,6 +249,7 @@ class Purchase  {
     setAllEventPaging() {
         // Khi bấm vào tải lại thì sẽ tải lại toàn bộ hóa đơn
         $(".content-right .wrapp-dataTable .footer-left .reload").click(function () {
+            $(".list-header-table input").val("");
             purchase.getDataFromServer();
         });
         // Khi bấm vào trang đầu
@@ -371,7 +409,7 @@ class Purchase  {
             // Bấm mũi tên lên thì chuyển load dữ liệu các sản phẩm của hóa đơn
             if (event.keyCode === 38) {
                 if (dataStorage.allowHotKeyGrid) {
-                    let rowFocus = $(".content-right .wrapp-dataTable .row-clicked");
+                    let rowFocus = $(".content-right .wrapp-dataTable .row-clicked").eq(0);
                     purchase.loadInvoicePreviousOrNext(rowFocus, "previous");
                     purchase.autoRenderScrollTop();
                 }
@@ -380,7 +418,7 @@ class Purchase  {
             // Bấm mũi tên xuống thì chuyển load dữ liệu các sản phẩm của hóa đơn
             if (event.keyCode === 40) {
                 if (dataStorage.allowHotKeyGrid) {
-                    let rowFocus = $(".content-right .wrapp-dataTable .row-clicked");
+                    let rowFocus = $(".content-right .wrapp-dataTable .row-clicked").eq(0);
                     purchase.loadInvoicePreviousOrNext(rowFocus, "next");
                     purchase.autoRenderScrollTop();
                 }
@@ -398,10 +436,12 @@ class Purchase  {
         } else {
             $(".list-header-table").width($(".wrapp-dataTable").width());
         }
-        if ($('.content-right .list-data-bottom').hasScrollBar()) {
-            $(".content-right .detail-header").width($(".content-right .footer-content-top").width() - 16);
-        } else {
-            $(".content-right .detail-header").width($(".content-right .footer-content-top").width());
+        if ($(".content-right .footer-content-top").width() > 1900) {
+            if ($('.content-right .list-data-bottom').hasScrollBar()) {
+                $(".content-right .detail-header").width($(".content-right .footer-content-top").width() - 16);
+            } else {
+                $(".content-right .detail-header").width($(".content-right .footer-content-top").width());
+            }
         }
     }
 
@@ -420,13 +460,13 @@ class Purchase  {
     // Hàm dùng để đổ dữ liệu lấy từ server các hóa đơn
     // Người tạo: ntxuan (23/5/2019)
     renderListInvoice(result) {
-        $(".list-header-table input").val("");
         $(".list-content-invoice .row-data").remove();
         $(".item-index .check").attr("class", "check unchecked-img");
         // Xóa dữ liệu cũ
         $(".content-right .list-data-bottom .detail-data").remove();
         if (result.length === 0) {
             $(".content-right .list-data-bottom .background-loading").hide();
+            $(".list-content-invoice .background-loading").hide();
         } else {
             // Thực hiện load danh sách các sản phẩm của hóa đơn đầu tiên
             purchase.loadProductsForInvoice(result[0].InvoiceID);
@@ -457,6 +497,7 @@ class Purchase  {
             // Thiết lập hàng đầu tiên được checked
             $(".list-content-invoice .row-data:first").addClass("row-clicked");
             thisPurchase.autoRenderWidthHasScroll();
+            $(".list-content-invoice .background-loading").hide();
         }
         purchase.setDisableEventButtonMenubar();
     }
@@ -473,16 +514,16 @@ class Purchase  {
     // Hàm lấy dữ liệu các hóa đơn từ server
     // Người tạo: ntxuan (11/5/2019)
     getDataFromServer() {
+        $(".list-content-invoice .background-loading").show();
         let url = thisPurchase.getUrlDetailPagination();
         thisPurchase.getTotalPages();
-        $(".list-content-invoice .background-loading").show();
         common.callAjaxToServer("Get", url, null, function (result) {
+            if (result.Success) {
                 $(".list-content-invoice .background-loading").hide();
-                if (result) {
-                    purchase.renderListInvoice(result);
-                } else {
-                    alert("Lỗi server lấy dữ liệu các hóa đơn");
-                }
+                purchase.renderListInvoice(result.Data);
+            } else {
+                thisPurchase.showDialogError(result.Messenger);
+            }
         });
     }
 
@@ -497,10 +538,10 @@ class Purchase  {
         let url = "/purchase/GetProducs/" + invoiceId;
         // Thực hiện load các sản phẩm từ server theo id của hóa đơn truyền vào
         common.callAjaxToServer("Post", url, null, function (result) {
-            if (result) {
+            if (result.Success) {
                 $(".content-right .list-data-bottom .background-loading").hide();
                 // Vòng lặp đổ dữ liệu các sản phẩm vào body chứa danh sách sản phẩm
-                $.each(result, function (i, product) {
+                $.each(result.Data, function (i, product) {
                     $(".content-right .list-data-bottom").append($(".list-data-bottom-clone").html());
                     $(".content-right .list-data-bottom .detail-data:last span").each(function () {
                         let fieldName = $(this).attr("fieldName");
@@ -521,7 +562,7 @@ class Purchase  {
                 purchase.asyncRowTotalMoney(".content-right");
                 thisPurchase.autoRenderWidthHasScroll();
             } else {
-                alert("Lỗi server lấy dữ liệu các sản phẩm");
+                thisPurchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -533,10 +574,10 @@ class Purchase  {
         let url = "/purchase/GetProducs/" + invoiceId;
         // Thực hiện load các sản phẩm từ server theo id của hóa đơn truyền vào
         common.callAjaxToServer("Post", url, null, function (result) {
-            if (result) {
+            if (result.Success) {
                 $(".form-addNew .list-data-bottom .other-row").remove();
                 // Vòng lặp đổ dữ liệu các sản phẩm vào body chứa danh sách sản phẩm
-                $.each(result, function (i, product) {
+                $.each(result.Data, function (i, product) {
                     $(".row-dataProduct-form-clone [fieldname]").each(function () {
                         let fieldName = $(this).attr("fieldname");
                         let typeTag = $(this).attr("typeTag");
@@ -552,7 +593,7 @@ class Purchase  {
                 // Đồng bộ hóa lại dòng tổng tiền thanh toán cuối trang
                 purchase.asyncRowTotalMoney(".form-addNew .footer-content-right");
             } else {
-                alert("Lỗi server lấy dữ liệu các sản phẩm");
+                thisPurchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -593,10 +634,10 @@ class Purchase  {
             let url = "/purchase/DeleteInvoice/" + invoiceId;
             // Dùng ajax gửi id lên server để xóa
             common.callAjaxToServer("Post", url, null, function (result) {
-                if (result) {
+                if (result.Success) {
                     purchase.getDataFromServer();
                 } else {
-                    alert("lỗi");
+                    thisPurchase.showDialogError(result.Messenger);
                 }
             });
         }
@@ -644,6 +685,7 @@ class Purchase  {
 
         // Nếu bấm vào icon nạp
         $(".content-right .list-header-top .btn-refresh,.right-click-popup .btn-reload").click(function () {
+            $(".list-header-table input").val("");
             purchase.getDataFromServer();
         });
 
@@ -663,7 +705,7 @@ class Purchase  {
             invoiceId = $(rowFocus).data("InvoiceID");
         }
         if (rowFocus && invoiceId) {
-            $(".content-right .wrapp-dataTable .row-data img").attr("src", "");
+            $(".content-right .wrapp-dataTable .check").attr("class", "check unchecked-img");
             $(".content-right .wrapp-dataTable .row-clicked").removeClass("row-clicked");
             $(rowFocus).addClass("row-clicked");
             purchase.loadProductsForInvoice(invoiceId);
@@ -682,14 +724,20 @@ class Purchase  {
                 timer = setTimeout(function () {
                     if (!prevent) {
                         if (event.ctrlKey) {
-                            $(focus).parent().addClass("row-clicked");
+                            if (!$(focus).parent().hasClass("row-clicked")) {
+                                purchase.loadProductsForInvoice($(focus).parent().data("InvoiceID"));
+                                purchase.checkStatusAllRowSelected();
+                                $(focus).parent().addClass("row-clicked");
+                            }
                         } else {
-                            $(".content-right .wrapp-dataTable .check").attr("class", "check unchecked-img");
-                            $(".content-right .wrapp-dataTable .row-clicked").removeClass("row-clicked");
-                            $(focus).parent().addClass("row-clicked");
+                            if (!$(focus).parent().hasClass("row-clicked")) {
+                                purchase.loadProductsForInvoice($(focus).parent().data("InvoiceID"));
+                                purchase.checkStatusAllRowSelected();
+                                $(".content-right .wrapp-dataTable .check").attr("class", "check unchecked-img");
+                                $(".content-right .wrapp-dataTable .row-clicked").removeClass("row-clicked");
+                                $(focus).parent().addClass("row-clicked");
+                            }
                         }
-                        purchase.loadProductsForInvoice($(focus).parent().data("InvoiceID"));
-                        purchase.checkStatusAllRowSelected();
                         purchase.setDisableEventButtonMenubar();
                     }
                     prevent = false;
@@ -739,12 +787,12 @@ class Purchase  {
         $("body").on("click", ".item-index .check", function () {
             if ($(this).hasClass("unchecked-img")) {
                 $(this).attr("class", "check checked-img");
-                $(".data-index .check").attr("class", "check checked-img");
-                $(".wrapp-dataTable .row-data").addClass("row-clicked");
+                $(".list-data-table .data-index .check").attr("class", "check checked-img");
+                $(".wrapp-dataTable .list-data-table .row-data").addClass("row-clicked");
             } else {
                 $(this).attr("class", "check unchecked-img");
-                $(".data-index .check").attr("class", "check unchecked-img");
-                $(".wrapp-dataTable .row-data").removeClass("row-clicked");
+                $(".list-data-table .data-index .check").attr("class", "check unchecked-img");
+                $(".wrapp-dataTable .list-data-table .row-data").removeClass("row-clicked");
             }
             purchase.setDisableEventButtonMenubar();
         });
@@ -830,6 +878,16 @@ class Purchase  {
         });
     }
 
+    // Hàm dùng để hiển thị dia log khi có lỗi
+    // Người tạo: ntxuan (24/6/2019)
+    showDialogError(messageError) {
+        dialogError.setMessageError(messageError);
+        $(".dialog-btnError").hide();
+        $(".dialog-error .icon-errors").attr("class", "icon-errors icon-dialog-warning");
+        $(".dialog-accept").show();
+        dialogError.openDialog();
+    }
+
     // Thiết lập các sự kiện ẩn hiện cho các phần tử
     // Người tạo: NTXUAN (29/04/2019)
     setEventShowHide() {
@@ -883,6 +941,7 @@ class Purchase  {
             dateFormat: "dd/mm/yy",
             yearRange: '1950:2019'
         });
+        $(".inputDateTo, .inputDateFrom, .header-column1 input,.purchaseForm .DateInput").mask('00/00/0000', { selectOnFocus: true });
         // set timepicker cho input nhập giờ
         $('.timepicker').timepicker({
             timeFormat: 'h:mm p',

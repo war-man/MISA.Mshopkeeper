@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
 using System;
@@ -152,7 +153,7 @@ namespace MISA.BL
             var invoices = new List<Invoice>();
             foreach (var invoice in GetAllInvoice())
             {
-                if (CompareDate(formDate, invoice.ImportDate) <= 0 && CompareDate(toDate, invoice.ImportDate) >= 0)
+                if (Common.CompareDate(formDate, invoice.ImportDate) <= 0 && Common.CompareDate(toDate, invoice.ImportDate) >= 0)
                 {
                     invoices.Add(invoice);
                 }
@@ -185,7 +186,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public Invoice GetInvoiceByID(Guid invoiceID)
         {
-            var invoiceId = ConvertToNvarchar(invoiceID);
+            var invoiceId = Common.ConvertToNvarchar(invoiceID);
             return invoiceDL.GetInvoiceByID(invoiceId);
         }
 
@@ -197,7 +198,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (24/6/2019)
         public Invoice GetInvoiceByImportNumber(string importNumber)
         {
-            var importNumberNvarchar = ConvertToNvarchar(importNumber);
+            var importNumberNvarchar = Common.ConvertToNvarchar(importNumber);
             return invoiceDL.GetInvoiceByImportNumber(importNumberNvarchar);
         }
 
@@ -209,7 +210,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (24/6/2019)
         public Invoice GetInvoiceByExpenditureNumber(string expenditureNumber)
         {
-            var expenditureNumberNvarchar = ConvertToNvarchar(expenditureNumber);
+            var expenditureNumberNvarchar = Common.ConvertToNvarchar(expenditureNumber);
             return invoiceDL.GetInvoiceByExpenditureNumber(expenditureNumberNvarchar);
         }
 
@@ -243,7 +244,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public int DeleteInvoice(Guid invoiceID)
         {
-            var invoiceId = ConvertToNvarchar(invoiceID);
+            var invoiceId = Common.ConvertToNvarchar(invoiceID);
             return invoiceDL.DeleteInvoice(invoiceId);
         }
 

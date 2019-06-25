@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
 using System;
@@ -83,7 +84,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public List<InvoiceDetail> GetAllInvoiceDetailByInvoieID(Guid invoiceID)
         {
-            var invoiceDetailId = ConvertToNvarchar(invoiceID);
+            var invoiceDetailId = Common.ConvertToNvarchar(invoiceID);
             return invoiceDetailDL.GetAllInvoiceDetailByInvoieID(invoiceDetailId);
         }
 
@@ -95,7 +96,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public InvoiceDetail GetInvoiceDetailByID(Guid invoiceDetailID)
         {
-            var invoiceDetailId = ConvertToNvarchar(invoiceDetailID);
+            var invoiceDetailId = Common.ConvertToNvarchar(invoiceDetailID);
             return invoiceDetailDL.GetInvoiceDetailByID(invoiceDetailId);
         }
 
@@ -129,7 +130,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public int DeleteInvoiceDetail(Guid invoiceDetailID)
         {
-            var invoiceDetailId = ConvertToNvarchar(invoiceDetailID);
+            var invoiceDetailId = Common.ConvertToNvarchar(invoiceDetailID);
             return invoiceDetailDL.DeleteInvoiceDetail(invoiceDetailId);
         }
 

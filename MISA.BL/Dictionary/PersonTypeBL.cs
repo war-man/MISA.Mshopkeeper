@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.DL.Dictionary;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
@@ -45,7 +46,7 @@ namespace MISA.BL
         /// Người tạo: NBDUONG (20/6/2019)
         public PersonType GetPersonTypeByID(Guid personTypeID)
         {
-            var personTypeId = ConvertToNvarchar(personTypeID);
+            var personTypeId = Common.ConvertToNvarchar(personTypeID);
             return personTypeDL.GetPersonTypeByID(personTypeId);
         }
 
@@ -79,7 +80,7 @@ namespace MISA.BL
         /// Người tạo: NBDUONG (20/6/2019)
         public int DeletePersonType(Guid personTypeID)
         {
-            var personTypeId = ConvertToNvarchar(personTypeID);
+            var personTypeId = Common.ConvertToNvarchar(personTypeID);
             return personTypeDL.DeletePersonType(personTypeId);
         }
     }

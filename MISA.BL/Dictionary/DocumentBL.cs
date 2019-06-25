@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.DL.Dictionary;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
@@ -89,7 +90,7 @@ namespace MISA.BL.Dictionary
         /// Tạo bởi: NBDUONG(19/6/2019)
         public DocumentViewModel GetDocumentByID(Guid documentID)
         {
-            var documentId = ConvertToNvarchar(documentID);
+            var documentId = Common.ConvertToNvarchar(documentID);
             var document =  _documentDL.GetDocumentByID(documentId);
             var documentVM = MapDocumentToDocumentViewModel(document);
             return documentVM;
@@ -103,7 +104,7 @@ namespace MISA.BL.Dictionary
         /// <returns></returns>
         public List<Document> GetDocumentsByDocumentType(Guid Id)
         {
-            var documentTypeID = ConvertToNvarchar(Id);
+            var documentTypeID = Common.ConvertToNvarchar(Id);
             return _documentDL.GetDocumentsByDocumentType(documentTypeID);
         }
 
@@ -115,7 +116,7 @@ namespace MISA.BL.Dictionary
         /// <returns></returns>
         public List<DocumentViewModel> GetDocumentsByPerson(Guid Id)
         {
-            var personID = ConvertToNvarchar(Id);
+            var personID = Common.ConvertToNvarchar(Id);
             var listDocuments = _documentDL.GetDocumentsByPerson(personID);
             var listDocumentVMs = new List<DocumentViewModel>();
             foreach(var item in listDocuments)
@@ -134,7 +135,7 @@ namespace MISA.BL.Dictionary
         /// Tạo bởi: NBDUONG(24/6/2019)
         public Document GetDocumentByDocumentCode(string documentCode)
         {
-            var codeConvert = ConvertToNvarchar(documentCode);
+            var codeConvert = Common.ConvertToNvarchar(documentCode);
             return _documentDL.GetDocumentByDocumentCode(codeConvert);
         }
 
@@ -191,7 +192,7 @@ namespace MISA.BL.Dictionary
         /// Người tạo: NBDUONG (20/6/2019)
         public int DeleteDocument(Guid Id)
         {
-            var documentID = ConvertToNvarchar(Id);
+            var documentID = Common.ConvertToNvarchar(Id);
             return _documentDL.DeleteDocument(documentID);
         }
 
@@ -255,7 +256,7 @@ namespace MISA.BL.Dictionary
             var documents = new List<Document>();
             foreach (var item in _documentDL.GetDocumentData())
             {
-                if (CompareDate(fromDate, item.DocumentDate) <= 0 && CompareDate(toDate, item.DocumentDate) >= 0)
+                if (Common.CompareDate(fromDate, item.DocumentDate) <= 0 && Common.CompareDate(toDate, item.DocumentDate) >= 0)
                 {
                     documents.Add(item);
                 }

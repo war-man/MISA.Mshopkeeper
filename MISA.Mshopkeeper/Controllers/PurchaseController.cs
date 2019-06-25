@@ -23,19 +23,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (11/5/2019)
         [HttpGet]
         [Route("{pageNumber}/{pageSize}")]
-        public IEnumerable<InvoiceViewModel> GetDataPagination(int pageNumber, int pageSize)
+        public AjaxResult GetDataPagination(int pageNumber, int pageSize)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetAllInvoiceViewModel(pageNumber, pageSize);
+                    ajaxResult.Data = invoiceBL.GetAllInvoiceViewModel(pageNumber, pageSize);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy dữ liệu các hóa đơn. Vui lòng liên hệ MISA";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -46,19 +50,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (21/6/2019)
         [HttpPost]
         [Route("GetTotalPages")]
-        public int GetTotalPages(int pageSize)
+        public AjaxResult GetTotalPages(int pageSize)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetTotalPageNumber(pageSize);
+                    ajaxResult.Data = invoiceBL.GetTotalPageNumber(pageSize);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return 1;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy tổng số trang. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -68,19 +76,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (24/6/2019)
         [HttpGet]
         [Route("GetNumbersAuto")]
-        public List<string> GetNumberAutoRender()
+        public AjaxResult GetNumberAutoRender()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetNumberAutoRender();
+                    ajaxResult.Data = invoiceBL.GetNumberAutoRender();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy số phiếu nhập, phiếu chi tự động. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
        
         /// <summary>
@@ -91,19 +103,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (25/6/2019)
         [HttpPost]
         [Route("GetInvoiceByImportNumber")]
-        public Invoice GetInvoiceByImportNumber(string importNumber)
+        public AjaxResult GetInvoiceByImportNumber(string importNumber)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetInvoiceByImportNumber(importNumber);
+                    ajaxResult.Data = invoiceBL.GetInvoiceByImportNumber(importNumber);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy hóa đơn theo số phiếu nhập. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -114,19 +130,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (24/6/2019)
         [HttpPost]
         [Route("GetInvoiceByExpenditureNumber")]
-        public Invoice GetInvoiceByExpenditureNumber(string expenditureNumber)
+        public AjaxResult GetInvoiceByExpenditureNumber(string expenditureNumber)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetInvoiceByExpenditureNumber(expenditureNumber);
+                    ajaxResult.Data = invoiceBL.GetInvoiceByExpenditureNumber(expenditureNumber);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy hóa đơn theo số phiếu chi. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -136,19 +156,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (21/6/2019)
         [HttpPost]
         [Route("GetTotalRowInvoices")]
-        public int GetTotalRowInvoices()
+        public AjaxResult GetTotalRowInvoices()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetTotalRowInvoices();
+                    ajaxResult.Data = invoiceBL.GetTotalRowInvoices();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return 1;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy tổng số bản ghi. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -158,21 +182,24 @@ namespace MISA.Mshopkeeper.Controllers
         /// <returns>Hóa đơn chi tiết</returns>
         [HttpPost]
         [Route("Invoice/{invoiceId}")]
-        public InvoiceViewModel PostInvoice(Guid invoiceId)
+        public AjaxResult PostInvoice(Guid invoiceId)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
                     var invoice = invoiceBL.GetInvoiceByID(invoiceId);
-                    var invoiceViewModel = invoiceBL.MapInvoiceToInvoiceViewModel(invoice);
-                    return invoiceViewModel;
+                    ajaxResult.Data = invoiceBL.MapInvoiceToInvoiceViewModel(invoice);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy hóa đơn theo id. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -182,19 +209,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// <returns>Hóa đơn chi tiết</returns>
         [HttpPost]
         [Route("Invoices")]
-        public IEnumerable<InvoiceViewModel> PostInvoices(InvoiceDto invoiceDto)
+        public AjaxResult PostInvoices(InvoiceDto invoiceDto)
         {
-            //try
-            //{
+            var ajaxResult = new AjaxResult();
+            try
+            {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetAllInvoiceViewModel(invoiceDto);
+                    ajaxResult.Data = invoiceBL.GetAllInvoiceViewModel(invoiceDto);
+                    ajaxResult.Success = true;
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    return null;
-            //}
+            }
+            catch (Exception)
+            {
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy hóa đơn theo ngày tạo. Vui lòng liên hệ MISA!";
+            }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -204,20 +235,24 @@ namespace MISA.Mshopkeeper.Controllers
         /// <returns>Danh sách các sản phẩm</returns>
         /// Người tạo: ntxuan (11/5/2019)
         [Route("GetProducs/{invoiceId}")]
-        public async Task<IEnumerable<InvoiceDetailViewModel>> Post(Guid invoiceId)
+        public async Task<AjaxResult> Post(Guid invoiceId)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceDetailBL invoiceDetailBL = new InvoiceDetailBL())
                 {
                     await Task.Delay(200);
-                    return invoiceDetailBL.GetAllInvoiceDetailViewModelByInvoiceID(invoiceId);
+                    ajaxResult.Data = invoiceDetailBL.GetAllInvoiceDetailViewModelByInvoiceID(invoiceId);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy danh sách các sản phẩm theo id của hóa đơn. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -226,19 +261,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// <returns>Danh sách nhà cung cấp</returns>
         /// Người tạo: ntxuan (13/5/2019)
         [Route("GetSuppliers")]
-        public IEnumerable<SupplierViewModel> GetSuppliers()
+        public AjaxResult GetSuppliers()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (SupplierBL supplierBL = new SupplierBL())
                 {
-                    return supplierBL.GetAllSupplierViewModel();
+                    ajaxResult.Data = supplierBL.GetAllSupplierViewModel();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy danh sách các nhà cung cấp để đổ dữ liệu xuống client. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -247,19 +286,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// <returns>Danh sách nhân viên</returns>
         /// Người tạo: ntxuan (13/5/2019)
         [Route("GetEmployees")]
-        public IEnumerable<EmployeeViewModel> GetEmployees()
+        public AjaxResult GetEmployees()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (EmployeeBL employeeBL = new EmployeeBL())
                 {
-                    return employeeBL.GetAllEmployeeViewModel();
+                    ajaxResult.Data = employeeBL.GetAllEmployeeViewModel();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lấy danh sách nhân viên để trả dữ liệu cho client. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -269,14 +312,25 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (17/5/2019)
         [HttpPost]
         [Route("SaveNewInvoice")]
-        public Guid SaveNewInvoice(InvoiceViewModel invoiceViewModel)
+        public AjaxResult SaveNewInvoice(InvoiceViewModel invoiceViewModel)
         {
-            using (InvoiceBL invoiceBL = new InvoiceBL())
+            var ajaxResult = new AjaxResult();
+            try
             {
-                var invoice = invoiceBL.MapInvoiceViewModelToInvoice(invoiceViewModel);
-                invoiceBL.CreateInvoice(invoice);
-                return invoice.InvoiceID;
+                using (InvoiceBL invoiceBL = new InvoiceBL())
+                {
+                    var invoice = invoiceBL.MapInvoiceViewModelToInvoice(invoiceViewModel);
+                    invoiceBL.CreateInvoice(invoice);
+                    ajaxResult.Data = invoice.InvoiceID;
+                    ajaxResult.Success = true;
+                }
             }
+            catch (Exception)
+            {
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lưu hóa đơn lên server. Vui lòng liên hệ MISA!";
+            }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -286,8 +340,9 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (17/5/2019)
         [HttpPost]
         [Route("SaveEditInvoice")]
-        public Guid SaveEditInvoice(InvoiceViewModel invoiceViewModel)
+        public AjaxResult SaveEditInvoice(InvoiceViewModel invoiceViewModel)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
@@ -295,12 +350,16 @@ namespace MISA.Mshopkeeper.Controllers
                     var invoice = invoiceBL.MapInvoiceViewModelToInvoice(invoiceViewModel);
                     invoice.InvoiceID = invoiceViewModel.InvoiceID;
                     invoiceBL.UpdateInvoice(invoice);
+                    ajaxResult.Data = invoiceViewModel.InvoiceID;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lưu hóa đơn lên server khi sửa đổi. Vui lòng liên hệ MISA!";
             }
-            return invoiceViewModel.InvoiceID;
+            return ajaxResult;
         }
 
         /// <summary>
@@ -310,20 +369,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (17/5/2019)
         [HttpPost]
         [Route("SaveListInvoiceDetail")]
-        public bool SaveListInvoiceDetail(List<InvoiceDetailViewModel> invoiceDetailViewModels)
+        public AjaxResult SaveListInvoiceDetail(List<InvoiceDetailViewModel> invoiceDetailViewModels)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceDetailBL invoiceDetailBL = new InvoiceDetailBL())
                 {
                     invoiceDetailBL.SaveListInvoiceDetail(invoiceDetailViewModels);
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lưu các sản phẩm của hóa đơn. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -333,20 +395,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (17/5/2019)
         [HttpPost]
         [Route("DeleteInvoice/{invoiceId}")]
-        public bool DeleteInvoice(Guid invoiceId)
+        public AjaxResult DeleteInvoice(Guid invoiceId)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
                     invoiceBL.DeleteInvoice(invoiceId);
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi xóa một hóa đơn. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -356,8 +421,9 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (25/5/2019)
         [HttpPost]
         [Route("DeleteMultiInvoice")]
-        public bool DeleteMultiInvoice(List<Guid> listInvoiceID)
+        public AjaxResult DeleteMultiInvoice(List<Guid> listInvoiceID)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
@@ -366,35 +432,41 @@ namespace MISA.Mshopkeeper.Controllers
                     {
                         invoiceBL.DeleteInvoice(invoiceID);
                     }
-                    return true;
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return false;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi xóa nhiều hóa đơn. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
-        /// Hàm dùng để xóa nhiều hóa đơn
+        /// Hàm dùng để lọc dữ liệu
         /// </summary>
-        /// <returns>Trạng thái thành công</returns>
+        /// <returns>Dữ liệu lọc</returns>
         /// Người tạo: ntxuan (25/5/2019)
         [HttpPost]
         [Route("GetDataFilter")]
-        public IEnumerable<InvoiceViewModel> GetDataFilter(InvoiceDto invoiceDto)
+        public AjaxResult GetDataFilter(InvoiceDto invoiceDto)
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (InvoiceBL invoiceBL = new InvoiceBL())
                 {
-                    return invoiceBL.GetDataFilter(invoiceDto);
+                    ajaxResult.Data = invoiceBL.GetDataFilter(invoiceDto);
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lọc dữ liệu. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
 
         /// <summary>
@@ -404,19 +476,23 @@ namespace MISA.Mshopkeeper.Controllers
         /// Người tạo: ntxuan (25/5/2019)
         [HttpGet]
         [Route("GetListMerchandise")]
-        public IEnumerable<Product> GetListMerchandise()
+        public AjaxResult GetListMerchandise()
         {
+            var ajaxResult = new AjaxResult();
             try
             {
                 using (ProductBL productBL = new ProductBL())
                 {
-                    return productBL.GetAllProduct();
+                    ajaxResult.Data = productBL.GetAllProduct();
+                    ajaxResult.Success = true;
                 }
             }
             catch (Exception)
             {
-                return null;
+                ajaxResult.Success = false;
+                ajaxResult.Messenger = "Có lỗi xảy ra khi lọc dữ liệu. Vui lòng liên hệ MISA!";
             }
+            return ajaxResult;
         }
     }
 }

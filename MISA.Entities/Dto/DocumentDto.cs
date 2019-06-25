@@ -10,5 +10,6 @@ namespace MISA.Entities
         public DateTime ToDate { get; set; }
         public string TextFilter { get; set; }
         public string TypeFilter { get; set; }
+        public Guid PersonID { get; set; }
     }
 }

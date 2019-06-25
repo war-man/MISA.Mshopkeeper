@@ -17,6 +17,7 @@ namespace MISA.DL
         /// <param name="storeName">Tên store truyền vào</param>
         /// <param name="tableName"></param>
         /// <returns>Danh sách các phần tử</returns>
+        /// Người tạo: NBDUONG
         public List<T> GetAll(string storeName, string tableName)
         {
             var entities = new List<T>();
@@ -100,7 +101,7 @@ namespace MISA.DL
         /// <param name="columnName">Tên cột truyền vào</param>
         /// <param name="value">Giá trị truyền vào</param>
         /// <returns>Danh sách các thực thể</returns>
-        /// Người tạo: ntxuan (20/6/2019)
+        /// Người tạo: NBDUONG (20/6/2019)
         public List<T> GetAllByAttribute(string storeName, string tableName, string columnName, string value)
         {
             var entities = new List<T>();
@@ -183,7 +184,7 @@ namespace MISA.DL
         /// <param name="storeName"></param>
         /// <param name="tableName"></param>
         /// <returns>Tổng số bản ghi</returns>
-        /// Người tạo: ntxuan (21/6/2019)
+        /// Người tạo: NBDUONG (21/6/2019)
         public int GetTotalRecord(string storeName, string tableName)
         {
             var totalRecord = 0;

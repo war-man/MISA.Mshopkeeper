@@ -6,7 +6,7 @@ class Fund {
     constructor() {
         thisFund = this;
         this.totalPages = 1;
-        this.initEvent();
+        this.init();
         //Các nút trong form Chọn hóa đơn trả nợ
         var buttons =
             [
@@ -128,7 +128,7 @@ class Fund {
 
     //Hàm khởi tạo sự kiện
     //Tạo bởwi: NBDUONG (3/5/2019)
-    initEvent() {
+    init() {
         this.getTotalPages();
         this.getDataFundFromServer();
         this.resizeColumn();
@@ -164,6 +164,7 @@ class Fund {
         this.setAllEventPaging();
         this.getTotalRows();
         this.setEventContextMenu();
+        this.filterDocumentNotPaidDataByDate();
     }
 
     //Hàm bắt sự kiện cho các nút
@@ -276,7 +277,7 @@ class Fund {
                 };
                 // Thực hiện load các hóa đơn có ngày tháng được chọn
                 common.callAjaxToServer("Post", "/fund/documents/getByDate", documentDto, function (result) {
-                    fund.loadDocuments(result);
+                    fund.loadDocuments(result.Data);
                     fund.setDisableButtonPagingOnFilter(result.length);
                 });
             }
@@ -408,9 +409,9 @@ class Fund {
         let url = thisFund.getUrlDetailPagination();
         thisFund.getTotalPages();
         common.callAjaxToServer("GET", url, null, function (response) {
-            fund.loadDocuments(response);
+            fund.loadDocuments(response.Data);
             fund.getTotalRows();
-            fund.loadDocumentDataDefault(response[0].DocumentID);
+            fund.loadDocumentDataDefault(response.Data[0].DocumentID);
         });
     }
 
@@ -466,7 +467,7 @@ class Fund {
         let personId = $('#recipeFormDetail input[fieldName="PersonID"]').val();
         common.callAjaxToServer("GET", "/fund/documents/person/" + personId, null, function (response) {
             $('#recipeFormDetail .reciptFormDetail_tableData .detail-table-data_list-data').html("");
-            $.each(response, function (index, item) {
+            $.each(response.Data, function (index, item) {
                 $('#recipeFormDetail .document-by-person-row-clone span').each(function () {
                     var fieldData = $(this).parent().attr("fieldName");
                     var fieldName = $(this).attr("fieldName");
@@ -484,7 +485,7 @@ class Fund {
                     }
                 });
                 //Append dữ liệu vào bảng dữ liệu
-                if (response.length !== 0) {
+                if (response.Data.length !== 0) {
                     $('#recipeFormDetail .reciptFormDetail_tableData .detail-table-data_list-data').removeClass('no-data');
                     $('#recipeFormDetail .reciptFormDetail_tableData .detail-table-data_list-data').append($('.document-by-person-row-clone').html());
                     $('#recipeFormDetail .reciptFormDetail_tableData .detail-table-data_list-data .table-row:last-child').data("MoneyHasToPay", item["MoneyHasToPay"]);
@@ -495,6 +496,30 @@ class Fund {
                     $('#recipeFormDetail .reciptFormDetail_tableData .detail-table-data_list-data').addClass('no-data');
                 }
             });   
+        });
+    }
+
+    //Hàm lọc dữ liệu chứng từ của cá nhân theo ngày
+    //Tạo bởi: NBDUONG(25/6/2019)
+    filterDocumentNotPaidDataByDate() {
+        //Bắt sự kiện cho nút lấy dữ liệu
+        $('#recipeFormDetail .reciptFormDetail_getData').click(function () {
+            $('#recipeFormDetail .reciptFormDetail_tableData .detail-table-data_list-data').html("");
+            let date = $("#recipeFormDetail .select-date-pay");
+            let personId = $('#recipeFormDetail input[fieldName="PersonID"]').val();
+            if (date.val() !== "") {
+                let dateString = common.convertStringJSToStringCsharp(date);
+                let documentDto = {
+                    FromDate: dateString,
+                    ToDate: dateString,
+                    PersonID: personId
+                };
+                // Thực hiện load các hóa đơn có ngày tháng được chọn
+                common.callAjaxToServer("Post", "/fund/documents/getByDate", documentDto, function (result) {
+                    fund.loadDocumentsByPerson(result.Data);
+                    fund.setDisableButtonPagingOnFilter(result.length);
+                });
+            }
         });
     }
 
@@ -580,11 +605,11 @@ class Fund {
                 let fieldName = $(this).parent().attr("fieldName");
                 let fieldData = $(this).parent().attr("dataType");
                 if (fieldData === "number") {
-                    $(this).text(result[fieldName].formatNumber());
-                    $('.detailTotalMoney span').text(result[fieldName].formatNumber());
+                    $(this).text(result.Data[fieldName].formatNumber());
+                    $('.detailTotalMoney span').text(result.Data[fieldName].formatNumber());
                 }
                 else {  
-                     $(this).text(result[fieldName]);
+                     $(this).text(result.Data[fieldName]);
                 }
             });
             $('.MISABody-part_middle-content .footer-content_detail-table-data .detail-table-data_list-data').append($('.footer-table-row-clone').html());
@@ -597,7 +622,7 @@ class Fund {
         common.callAjaxToServer("GET", "/purchase/GetEmployees", null, function (result) {
             //Xóa trắng danh sách nhân viên trước khi cập nhật lại dữ liệu mới
             $('#formChooseStaff .reciptFormDetail_tableData .detail-table-data_list-data').html("");
-            $.each(result, function (index, item) {
+            $.each(result.Data, function (index, item) {
                 //Lấy ra các dòng có attribute fieldName
                 let listElements = $(".formChooseStaff_table-row-clone div[fieldName]");
                 $.each(listElements, function (i, element) {
@@ -636,7 +661,7 @@ class Fund {
         common.callAjaxToServer("GET", "/fund/people", null, function (result) {
             //Xóa trắng danh sách nhà cung cấp trước khi cập nhật lại dữ liệu mới
             $('#formChooseObject .reciptFormDetail_tableData .detail-table-data_list-data').html("");
-            $.each(result, function (index, item) {
+            $.each(result.Data, function (index, item) {
                 //Lấy ra các dòng có attribute fieldName
                 let listElements = $(".formChooseObject_table-row-clone div[fieldName]");
                 $.each(listElements, function (i, element) {
@@ -684,7 +709,7 @@ class Fund {
         common.callAjaxToServer("GET", "/fund/documentsType", null, function (result) {
             //Xóa trắng danh sách nhà cung cấp trước khi cập nhật lại dữ liệu mới
             $('.document-type-dropdown .detail-table-data_list-data').html("");
-            $.each(result, function (index, item) {
+            $.each(result.Data, function (index, item) {
                 //Lấy ra các dòng có attribute fieldName
                 let element = $(".document-type-row-clone div[fieldName]");
                 let fieldName = $(element).attr("fieldName");
@@ -714,8 +739,6 @@ class Fund {
                 document[fieldData] = $(this).val();
             }
         });
-
-        console.log(document);
 
         //Check nếu là edit thông tin chứng từ
         if (fund.checkEditForm) {
@@ -1477,6 +1500,8 @@ class Fund {
             $(this).parents('.recipeFormDetail_formSupplier').hide();
             $('#formDetail input[fieldName="PersonID"]').val($(this).data("PersonID"));
             $('#formDetail .receiver-name').val(supplierName);
+            $('#formDetail input[fieldName="PersonCode"]').parent().removeClass('border-red');
+            $('#formDetail input[fieldName="PersonCode"]').parent().next().hide();
         });
 
         $('body').on('mousedown', '#formDetail .recipeFormDetail_formStaff .table-row', function () {
@@ -1486,6 +1511,8 @@ class Fund {
             $('.employee-name').val(supplierName);
             $(this).parents('.recipeFormDetail_formStaff').hide();
             $('#formDetail input[fieldName="EmployeeID"]').val($(this).data("EmployeeID"));
+            $('#formDetail input[fieldName="EmployeeCode"]').parent().removeClass('border-red');
+            $('#formDetail input[fieldName="EmployeeCode"]').parent().next().hide();
         });
 
         $('body').on('mousedown', '#formChooseStaff .reciptFormDetail_tableData .detail-table-data_list-data .table-row', function () {
@@ -1631,6 +1658,7 @@ class Fund {
         $(".MISABody-part_middle-content .header-table_third-column input,.MISABody-part_middle-content .header-table_sixth-column input,.MISABody-part_middle-content .header-table_seventh-column input").keydown(function () {
             if (event.keyCode === 13) {
                 $('.middle-content_table-data .table-data_list-data').html("");
+                $('.MISABody-part_middle-content .loading').show();
                 let TextFilter = $(this).val().trim();
                 let TypeFilter = $(this).attr("fieldName").trim();
                 fund.filterDataByCondition(TextFilter, TypeFilter);
@@ -1646,11 +1674,12 @@ class Fund {
             TypeFilter: typeFilter
         };
         common.callAjaxToServer("POST", "/fund/documents/filterData", documentDto, function (result) {
-            fund.loadDocuments(result);
-            if (result.length > 0) {
-                fund.loadDocumentDataDefault(result[0].DocumentID);
+            $('.MISABody-part_middle-content .loading').hide();
+            fund.loadDocuments(result.Data);
+            if (result.Data.length > 0) {
+                fund.loadDocumentDataDefault(result.Data[0].DocumentID);
             }
-            fund.setDisableButtonPagingOnFilter(result.length);
+            fund.setDisableButtonPagingOnFilter(result.Data.length);
         });
     }
 
@@ -1666,11 +1695,11 @@ class Fund {
                 };
                 $('.middle-content_table-data .table-data_list-data').html("");
                 common.callAjaxToServer("POST", "/fund/documents/getByDate", documentDto, function (result) {
-                    fund.loadDocuments(result);
-                    if (result.length > 0) {
-                        fund.loadDocumentDataDefault(result[0].DocumentID);
+                    fund.loadDocuments(result.Data);
+                    if (result.Data.length > 0) {
+                        fund.loadDocumentDataDefault(result.Data[0].DocumentID);
                     }
-                    fund.setDisableButtonPagingOnFilter(result.length);
+                    fund.setDisableButtonPagingOnFilter(result.Data.length);
                 });
             } else {
                 fund.getDataFundFromServer();
@@ -1873,15 +1902,15 @@ class Fund {
                     let dataType = $(this).attr("dataType");
                     if (dataType === "date") {
                         //var value = response[fieldName];
-                        var value = new Date(response[fieldName]).toLocaleDateString('en-GB');
+                        var value = new Date(response.Data[fieldName]).toLocaleDateString('en-GB');
                         $(this).val(value);
                     } else if (dataType === "number") {
-                        let res = response[fieldName].formatNumber();
+                        let res = response.Data[fieldName].formatNumber();
                         $(this).val(res);
                         $('.formDetail_table-detail-data .detail-total-money-row_second-column span').text(res);
                     }
                     else {
-                        $(this).val(response[fieldName]);
+                        $(this).val(response.Data[fieldName]);
                     }
                 });
                 if (checkDuplicate) {
@@ -1901,11 +1930,11 @@ class Fund {
         let url = "/fund/documents/GetTotalPages?pageSize=" + pageSize;
         // Thực hiện lấy tổng số trang
         common.callAjaxToServer("Post", url, null, function (result) {
-            thisFund.totalPages = result;
-            if (parseInt($('.indexPageFund').val()) > result) {
-                $('.indexPageFund').val(result);
+            thisFund.totalPages = result.Data;
+            if (parseInt($('.indexPageFund').val()) > result.Data) {
+                $('.indexPageFund').val(result.Data);
             }
-            $(".totalPages").text(result);
+            $(".totalPages").text(result.Data);
             thisFund.setDisableButtonPaging();
         });
     }
@@ -1914,7 +1943,7 @@ class Fund {
     //Tạo bởi: NBDUONG(22/6/2019)
     getTotalRows() {
         common.callAjaxToServer("POST", "/fund/documents/GetTotalDocuments", null, function (result) {
-            $(".totalDocuments").text(result);
+            $(".totalDocuments").text(result.Data);
             let pageIndex = $('.indexPageFund').val();
             let optionVal = $('#pagination').val();
             let firstRowIndex = (pageIndex - 1) * optionVal + 1;
@@ -2024,12 +2053,12 @@ class Fund {
             dataType: "json",
             async: false,
             success: function (document) {
-                if (document.DocumentCode !== null) {
-                    if (documentCode !== document.DocumentCode === null && !isEdit) {
+                if (document.Data.DocumentCode !== null) {
+                    if (documentCode !== document.Data.DocumentCode === null && !isEdit) {
                         check = true;
-                    } else if (isEdit && document.DocumentID === id && documentCode === document.DocumentCode) {
+                    } else if (isEdit && document.Data.DocumentID === id && documentCode === document.Data.DocumentCode) {
                         check = true;
-                    } else if (isEdit && document.DocumentID !== id && documentCode !== document.DocumentCode) {
+                    } else if (isEdit && document.Data.DocumentID !== id && documentCode !== document.Data.DocumentCode) {
                         check = true;
                     }
                 } else {
@@ -2044,7 +2073,7 @@ class Fund {
     //Tạo bởi: NBDUONG(25/6/2019)
     getAutoDocumentCollectCode() {
         common.callAjaxToServer("GET", "/fund/document/getAutoCollectCode", null, function (result) {
-            $('#formDetail input[fieldName="DocumentCode"]').val(result);
+            $('#formDetail input[fieldName="DocumentCode"]').val(result.Data);
         });
     }
 
@@ -2052,7 +2081,7 @@ class Fund {
     //Tạo bởi: NBDUONG(25/6/2019)
     getAutoDocumentPayCode() {
         common.callAjaxToServer("GET", "/fund/document/getAutoPayCode", null, function (result) {
-            $('#formDetail input[fieldName="DocumentCode"]').val(result);
+            $('#formDetail input[fieldName="DocumentCode"]').val(result.Data);
         });
     }
 }

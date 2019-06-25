@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.Entities;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public Product GetProductByID(Guid productID)
         {
-            var productId = ConvertToNvarchar(productID);
+            var productId = Common.ConvertToNvarchar(productID);
             return productDL.GetProductByID(productId);
         }
 
@@ -77,7 +78,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public int DeleteProduct(Guid productID)
         {
-            var productId = ConvertToNvarchar(productID);
+            var productId = Common.ConvertToNvarchar(productID);
             return productDL.DeleteProduct(productId);
         }
     }

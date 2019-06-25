@@ -156,6 +156,7 @@
     <Content Include="Contents\plugins\jquery-3.3.1.min.js" />
     <Content Include="Contents\plugins\jquery-ui.min.css" />
     <Content Include="Contents\plugins\jquery-ui.min.js" />
+    <Content Include="Contents\plugins\jquery.mask.js" />
     <Content Include="Contents\plugins\jquery.masknumber.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Views\Home\fund.html" />

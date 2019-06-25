@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.DL.Dictionary;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
@@ -45,7 +46,7 @@ namespace MISA.BL
         /// Người tạo: NBDUONG (20/6/2019)
         public DocumentType GetDocumentTypeByID(Guid documentTypeID)
         {
-            var documentTypeId = ConvertToNvarchar(documentTypeID);
+            var documentTypeId = Common.ConvertToNvarchar(documentTypeID);
             return documentTypeDL.GetDocumentTypeByID(documentTypeId);
         }
 
@@ -79,7 +80,7 @@ namespace MISA.BL
         /// Người tạo: NBDUONG (20/6/2019)
         public int DeleteDocumentType(Guid documentTypeID)
         {
-            var documentTypeId = ConvertToNvarchar(documentTypeID);
+            var documentTypeId = Common.ConvertToNvarchar(documentTypeID);
             return documentTypeDL.DeleteDocumentType(documentTypeId);
         }
     }

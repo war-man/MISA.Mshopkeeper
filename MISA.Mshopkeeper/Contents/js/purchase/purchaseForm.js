@@ -7,12 +7,12 @@ class PurchaseFormDialog {
     // Người tạo: NTXUAN (28/04/2019)
     constructor() {
         // Chạy các hàm khởi tạo
-        this.initEvent();
+        this.init();
     }
 
     // Khởi tạo các sự kiện
     // Người tạo: NTXUAN (28/04/2019)
-    initEvent() {
+    init() {
         this.setExspectAndCollasp();
         this.setResizeAble();
         this.setValueDefault();
@@ -48,9 +48,9 @@ class PurchaseFormDialog {
     loadMerchandise() {
         dataStorage.listSKU = [];
         common.callAjaxToServer("Get", "/purchase/getListMerchandise", null, function (result) {
-            if (result) {
+            if (result.Success) {
                 $(".table-sku_body").html("");
-                $.each(result, function (index, product) {
+                $.each(result.Data, function (index, product) {
                     dataStorage.listSKU.push(product.SKU);
                     $(".table-sku_row-clone .row-left").text(product.SKU);
                     $(".table-sku_row-clone .row-center").text(product.Barcode);
@@ -60,7 +60,7 @@ class PurchaseFormDialog {
                     $(".table-sku_body").append($(".table-sku_row-clone .table-sku_body_row").clone(true));
                 });
             } else {
-                alert("lỗi");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -76,17 +76,21 @@ class PurchaseFormDialog {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             async: false,
-            success: function (invoice) {
-                if (invoice.ImportNumber !== null) {
-                    if (importNumber !== invoice.ImportNumber && !isEdit) {
-                        check = true;
-                    } else if (isEdit && invoice.InvoiceID === id && importNumber === invoice.ImportNumber) {
-                        check = true;
-                    } else if (isEdit && invoice.InvoiceID !== id && importNumber !== invoice.ImportNumber ) {
+            success: function (result) {
+                if (result.Success) {
+                    if (result.Data.ImportNumber !== null) {
+                        if (importNumber !== result.Data.ImportNumber && !isEdit) {
+                            check = true;
+                        } else if (isEdit && result.Data.InvoiceID === id && importNumber === result.Data.ImportNumber) {
+                            check = true;
+                        } else if (isEdit && result.Data.InvoiceID !== id && importNumber !== result.Data.ImportNumber) {
+                            check = true;
+                        }
+                    } else {
                         check = true;
                     }
                 } else {
-                    check = true;
+                    purchase.showDialogError(result.Messenger);
                 }
             }
         });
@@ -104,17 +108,21 @@ class PurchaseFormDialog {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             async: false,
-            success: function (invoice) {
-                if (invoice.ImportNumber !== null) {
-                    if (expenditureNumber !== invoice.ExpenditureNumber && !isEdit) {
-                        check = true;
-                    } else if (isEdit && invoice.InvoiceID === id && expenditureNumber === invoice.ExpenditureNumber) {
-                        check = true;
-                    } else if (isEdit && invoice.InvoiceID !== id && expenditureNumber !== invoice.ExpenditureNumber) {
+            success: function (result) {
+                if (result.Success) {
+                    if (result.Data.ImportNumber !== null) {
+                        if (expenditureNumber !== result.Data.ExpenditureNumber && !isEdit) {
+                            check = true;
+                        } else if (isEdit && result.Data.InvoiceID === id && expenditureNumber === result.Data.ExpenditureNumber) {
+                            check = true;
+                        } else if (isEdit && result.Data.InvoiceID !== id && expenditureNumber !== result.Data.ExpenditureNumber) {
+                            check = true;
+                        }
+                    } else {
                         check = true;
                     }
                 } else {
-                    check = true;
+                    purchase.showDialogError(result.Messenger);
                 }
             }
         });
@@ -154,11 +162,12 @@ class PurchaseFormDialog {
         $(".content-right .wrapp-dataTable .row-clicked").each(function () {
             listInvoiceID.push($(this).data("InvoiceID"));
         });
+        $(".item-index .check").attr("class", "check unchecked-img");
         common.callAjaxToServer("Post", "/purchase/DeleteMultiInvoice", listInvoiceID, function (result) {
-            if (result) {
+            if (result.Success) {
                 purchase.getDataFromServer();
             } else {
-                alert("lỗi");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -167,7 +176,7 @@ class PurchaseFormDialog {
     // Người tạo: ntxuan (20/5/2019)
     setEventTabIndex() {
         // Khi bấm shift tab vào ô mã nhà cung cấp
-        $('input[fieldname="SupplierCode"]').keyup(function (event) {
+        $('input[fieldname="SupplierCode"]').keydown(function (event) {
             if (event.shiftKey && event.which === 9) {
                 $('.row-empty [fieldname="TaxPercentage"]').focus();
                 event.preventDefault();
@@ -178,7 +187,7 @@ class PurchaseFormDialog {
             $('.row-empty [fieldname="TaxPercentage"]').focus();
         });
 
-        $('.invoicePress input[fieldname="ImportTime"]').keyup(function (event) {
+        $('.invoicePress input[fieldname="ImportTime"]').keydown(function (event) {
             if (!event.shiftKey && event.which === 9) {
                 $(".tabindex-row:first").focus();
                 event.preventDefault();
@@ -194,17 +203,17 @@ class PurchaseFormDialog {
     loadSuppliersFromServer() {
         // Thực hiện ajax gọi các nhà cung cấp từ server
         common.callAjaxToServer("Get", "/purchase/GetSuppliers", null, function (result) {
-            if (result) {
+            if (result.Success) {
                 dataStorage.supplierCodes = [];
                 dataStorage.supplierNames = [];
                 // Xóa trắng nội dung của bảng dữ liệu để đổ dữ liệu mới
                 $(".purchaseForm .form-choose-supplier.supplier .form-choose-supplier_tables-body").html("");
                 $(".purchaseForm .supplier-table.table1 .supplier-table_body").html("");
                 // Thực hiện vòng lặp đổ dữ liệu từ mảng dữ liệu lấy từ server
-                $.each(result, function (i, supplier) {
+                $.each(result.Data, function (i, supplier) {
                     // Đổ dữ liệu cho mảng
-                    dataStorage.supplierCodes.push(supplier["SupplierCode"]);
-                    dataStorage.supplierNames.push(supplier["SupplierName"]);
+                    dataStorage.supplierCodes.push(supplier["SupplierCode"].trim());
+                    dataStorage.supplierNames.push(supplier["SupplierName"].trim());
 
                     // Đổ dữ liệu cho chọn nhà cung cấp theo form
                     $(".supplier-row-clone div[fieldName]").each(function () {
@@ -232,7 +241,7 @@ class PurchaseFormDialog {
                 // Check vào button radio đầu tiên
                 $(".form-choose-supplier.supplier .form-choose-supplier_tables-body .row-supplier-item:first-child input").prop("checked", true);
             } else {
-                alert("lỗi server lấy dữ liệu nhà cung cấp");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -242,17 +251,17 @@ class PurchaseFormDialog {
     loadEmployeesFromServer() {
         // Thực hiện ajax gọi tới server lấy các nhân viên về
         common.callAjaxToServer("Get", "/purchase/GetEmployees", null, function (result) {
-            if (result) {
+            if (result.Success) {
                 dataStorage.employeeCodes = [];
                 dataStorage.employeeNames = [];
                 // Xóa trắng nội dung của body để đổ dữ liệu mới
                 $(".purchaseForm .form-choose-supplier.employee .form-choose-supplier_tables-body").html("");
                 $(".purchaseForm .supplier-table.table2 .supplier-table_body").html("");
                 // Thực hiện vòng lặp đổ mảng dữ liệu nhân viên lấy từ server vào một div clone
-                $.each(result, function (i, employee) {
+                $.each(result.Data, function (i, employee) {
                     // Đổ dữ liệu cho mảng
-                    dataStorage.employeeCodes.push(employee["EmployeeCode"]);
-                    dataStorage.employeeNames.push(employee["EmployeeName"]);
+                    dataStorage.employeeCodes.push(employee["EmployeeCode"].trim());
+                    dataStorage.employeeNames.push(employee["EmployeeName"].trim());
 
                     let listElements = $(".employee-row-clone div[fieldName]");
                     $.each(listElements, function (i, element) {
@@ -280,9 +289,8 @@ class PurchaseFormDialog {
                 $(".form-choose-supplier.employee .form-choose-supplier_tables-body .row-supplier-item:first-child").addClass("row-checked");
                 // Xét trạng thái checked cho input radio đầu tiên
                 $(".form-choose-supplier.employee .form-choose-supplier_tables-body .row-supplier-item:first-child input").prop("checked", true);
-
             } else {
-                alert("Lỗi server lấy dữ liệu nhân viên");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -294,10 +302,14 @@ class PurchaseFormDialog {
         invoice["InvoiceID"] = invoiceId;
         // Gọi ajax post dữ liệu lên server
         common.callAjaxToServer("Post", "/purchase/SaveEditInvoice", invoice, function (result) {
-            for (var i = 0; i < invoicesDetails.length; i++) {
-                invoicesDetails[i].invoiceId = result;
+            if (result.Success) {
+                for (var i = 0; i < invoicesDetails.length; i++) {
+                    invoicesDetails[i].invoiceId = result.Data;
+                }
+                purchaseFormDialog.pushListInvoiceDetailToServer(invoicesDetails);
+            } else {
+                purchase.showDialogError(result.Messenger);
             }
-            purchaseFormDialog.pushListInvoiceDetailToServer(invoicesDetails);
         });
     }
 
@@ -306,7 +318,7 @@ class PurchaseFormDialog {
     checkValidSupplierAndEmployeeInput() {
        
         // Khi nhập một từ nếu tồn tại từ đó trong tên hoặc mã thì hiển thị thì hiển thị
-        $('input[fieldname="SupplierCode"]').keyup(function () {
+        $('input[fieldname="SupplierCode"]').keydown(function () {
             // Bấm enter thì chọn nhà cung cấp
             if (event.keyCode === 13) {
                 let supplierCode = $(".row-hover").find(".supplier-table_body-row-left").text().trim();
@@ -323,6 +335,7 @@ class PurchaseFormDialog {
                 } else {
                     $(".supplier-table.table1").show();
                     $(".supplier-table.table1 .supplier-table_body-row").show();
+                    $(".row-hover").removeClass("row-hover");
                     $(".supplier-table.table1 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
                     $(".table1 .supplier-table_body").scrollTop(0);
                 }
@@ -431,83 +444,86 @@ class PurchaseFormDialog {
         });
 
         // Khi nhập một từ nếu tồn tại từ đó trong tên hoặc mã thì hiển thị thì hiển thị
-        $('input[fieldname="SKU"]').keyup(function () {
-            $(".row-current").removeClass("row-curent");
-            $(this).closest(".detail-data").addClass("row-current");
-            // Bấm enter thì chọn nhà cung cấp
-            if (event.keyCode === 13) {
-                let product = $(".row-hover").data("product");
-                let rowCurrent = $(".detail-data.row-current");
-                if (rowCurrent.hasClass("row-empty")) {
-                    $(".form-addNew .list-data-bottom").append(rowCurrent.clone(true));
-                    rowCurrent.removeClass("row-empty").addClass("other-row");
-                    $('.row-empty input[fieldname="SKU"]').val("");
-                }
-                rowCurrent.find('[fieldname="Quantity"]').val(1);
-                rowCurrent.find('[fieldname="ProductName"]').text(product.ProductName).data("value", product.ProductName);
-                rowCurrent.find('[fieldname="SKU"]').val(product.SKU).data("value", product.SKU);
-                rowCurrent.find('[fieldname="Storage"]').text(product.Storage).data("value", product.Storage);
-                rowCurrent.find('[fieldname="Unit"]').text(product.Unit).data("value", product.Unit);
-                rowCurrent.find('[fieldname="UnitPrice"]').val(product.UnitPrice.formatNumber()).data("value", product.UnitPrice);
+        $('input[fieldname="SKU"]').keydown(function () {
+            if (event.keyCode !== 9) {
+                $(".row-current").removeClass("row-curent");
+                $(this).closest(".detail-data").addClass("row-current");
+                // Bấm enter thì chọn nhà cung cấp
+                if (event.keyCode === 13) {
+                    let product = $(".row-hover").data("product");
+                    let rowCurrent = $(".detail-data.row-current");
+                    if (rowCurrent.hasClass("row-empty")) {
+                        $(".form-addNew .list-data-bottom").append(rowCurrent.clone(true));
+                        rowCurrent.removeClass("row-empty").addClass("other-row");
+                        $('.row-empty input[fieldname="SKU"]').val("");
+                    }
+                    rowCurrent.find('[fieldname="Quantity"]').val(1);
+                    rowCurrent.find('[fieldname="ProductName"]').text(product.ProductName).data("value", product.ProductName);
+                    rowCurrent.find('[fieldname="SKU"]').val(product.SKU).data("value", product.SKU);
+                    rowCurrent.find('[fieldname="Storage"]').text(product.Storage).data("value", product.Storage);
+                    rowCurrent.find('[fieldname="Unit"]').text(product.Unit).data("value", product.Unit);
+                    rowCurrent.find('[fieldname="UnitPrice"]').val(product.UnitPrice.formatNumber()).data("value", product.UnitPrice);
 
-                let valueChange = rowCurrent.find(".detailData6 input").data("value") * rowCurrent.find(".detailData5 input").data("value");
-                rowCurrent.find(".detailData7 input").val(valueChange.formatNumber()).data("value", valueChange);
-                purchaseFormDialog.validateDataRow(rowCurrent);
-                // Đồng bộ hóa lại dòng tổng tiền thanh toán cuối trang
-                purchase.asyncRowTotalMoney(".form-addNew .footer-content-right");
-                $(".row-current").removeClass("row-current");
-                $(".table-sku").hide();
-                $(".row-hover").removeClass("row-hover");
-            } else if (event.keyCode === 40) {
-                if ($(".table-sku:visible").length > 0) {
-                    if ($(".row-hover").nextAll(".table-sku_body_row:visible").first().hasClass("table-sku_body_row")) {
-                        $(".row-hover").removeClass("row-hover").nextAll(".table-sku_body_row:visible").first().addClass("row-hover");
-                    }
-                } else {
-                    $(".table-sku").show();
-                    $(".table-sku .table-sku_body_row").show();
-                    $(".table-sku .table-sku_body_row:visible").eq(0).addClass("row-hover");
-                    $(".table-sku .table-sku_body").scrollTop(0);
-                }
-            } else if (event.keyCode === 38) {
-                if ($(".table-sku:visible").length > 0) {
-                    if ($(".row-hover").prevAll(".table-sku_body_row:visible").first().hasClass("table-sku_body_row")) {
-                        $(".row-hover").removeClass("row-hover").prevAll(".table-sku_body_row:visible").first().addClass("row-hover");
-                    }
-                }
-            }
-            else {
-                let value = $(this).val().toLowerCase();
-                $(".row-hover").removeClass("row-hover");
-                let checkHasValue = false;
-                $(".table-sku .table-sku_body_row").hide();
-                $(".table-sku .table-sku_body_row").each(function () {
-                    let sku = $(this).find('.row-left').text().trim().toLowerCase();
-                    let productName = $(this).find('.row-right').text().trim().toLowerCase();
-                    if (sku.includes(value) || productName.includes(value)) {
-                        $(this).show();
-                        checkHasValue = true;
-                    } else {
-                        $(this).hide();
-                    }
-                });
-                if (checkHasValue) {
-                    $(".table-sku").show();
-                    $(".table-sku .table-sku_body_row:visible").eq(0).addClass("row-hover");
-                    $(".table-sku .table-sku_body").scrollTop(0);
-                } else {
+                    let valueChange = rowCurrent.find(".detailData6 input").data("value") * rowCurrent.find(".detailData5 input").data("value");
+                    rowCurrent.find(".detailData7 input").val(valueChange.formatNumber()).data("value", valueChange);
+                    purchaseFormDialog.validateDataRow(rowCurrent);
+                    // Đồng bộ hóa lại dòng tổng tiền thanh toán cuối trang
+                    purchase.asyncRowTotalMoney(".form-addNew .footer-content-right");
+                    $(".row-current").removeClass("row-current");
                     $(".table-sku").hide();
+                    $(".row-hover").removeClass("row-hover");
+                } else if (event.keyCode === 40) {
+                    if ($(".table-sku:visible").length > 0) {
+                        if ($(".row-hover").nextAll(".table-sku_body_row:visible").first().hasClass("table-sku_body_row")) {
+                            $(".row-hover").removeClass("row-hover").nextAll(".table-sku_body_row:visible").first().addClass("row-hover");
+                        }
+                    } else {
+                        $(".table-sku").show();
+                        $(".table-sku .table-sku_body_row").show();
+                        $(".table-sku .table-sku_body_row:visible").eq(0).addClass("row-hover");
+                        $(".table-sku .table-sku_body").scrollTop(0);
+                    }
+                } else if (event.keyCode === 38) {
+                    if ($(".table-sku:visible").length > 0) {
+                        if ($(".row-hover").prevAll(".table-sku_body_row:visible").first().hasClass("table-sku_body_row")) {
+                            $(".row-hover").removeClass("row-hover").prevAll(".table-sku_body_row:visible").first().addClass("row-hover");
+                        }
+                    }
                 }
-            }
+                else {
+                    let value = $(this).val().toLowerCase();
+                    $(".row-hover").removeClass("row-hover");
+                    let checkHasValue = false;
+                    $(".table-sku .table-sku_body_row").hide();
+                    $(".table-sku .table-sku_body_row").each(function () {
+                        let sku = $(this).find('.row-left').text().trim().toLowerCase();
+                        let productName = $(this).find('.row-right').text().trim().toLowerCase();
+                        if (sku.includes(value) || productName.includes(value)) {
+                            $(this).show();
+                            checkHasValue = true;
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    if (checkHasValue) {
+                        $(".table-sku").show();
+                        $(".table-sku .table-sku_body_row:visible").eq(0).addClass("row-hover");
+                        $(".table-sku .table-sku_body").scrollTop(0);
+                    } else {
+                        $(".table-sku").hide();
+                    }
+                }
 
-            let scrollTop = $(".table-sku_body .row-hover").offset().top - 385;
-            let heightTableData = $(".table-sku_body").height();
-            if (scrollTop > heightTableData) {
-                $(".table-sku_body").scrollTop($(".table-sku_body").scrollTop() + heightTableData);
-            } else if (scrollTop < 0) {
-                $(".table-sku_body").scrollTop($(".table-sku_body").scrollTop() - heightTableData + 35);
-            }
+                let scrollTop = $(".table-sku_body .row-hover").offset().top - 385;
+                let heightTableData = $(".table-sku_body").height();
+                if (scrollTop > heightTableData) {
+                    $(".table-sku_body").scrollTop($(".table-sku_body").scrollTop() + heightTableData);
+                } else if (scrollTop < 0) {
+                    $(".table-sku_body").scrollTop($(".table-sku_body").scrollTop() - heightTableData + 35);
+                }
 
+            }
+           
         });
 
         // Kiểm tra mã nhà cung cấp hợp lệ
@@ -680,10 +696,14 @@ class PurchaseFormDialog {
         } else {
             // Gọi ajax post dữ liệu lên server
             common.callAjaxToServer("Post", "/purchase/SaveNewInvoice", invoice, function (result) {
-                for (var i = 0; i < invoicesDetails.length; i++) {
-                    invoicesDetails[i].invoiceId = result;
+                if (result.Success) {
+                    for (var i = 0; i < invoicesDetails.length; i++) {
+                        invoicesDetails[i].invoiceId = result.Data;
+                    }
+                    purchaseFormDialog.pushListInvoiceDetailToServer(invoicesDetails);
+                } else {
+                    purchase.showDialogError(result.Messenger);
                 }
-                purchaseFormDialog.pushListInvoiceDetailToServer(invoicesDetails);
             });
         }
     }
@@ -692,10 +712,10 @@ class PurchaseFormDialog {
     // Người tạo: ntxuan (28/5/2019)
     pushListInvoiceDetailToServer(invoicesDetails) {
         common.callAjaxToServer("Post", "/purchase/SaveListInvoiceDetail", invoicesDetails, function (result) {
-            if (result) {
+            if (result.Success) {
                 purchase.getDataFromServer();
             } else {
-                alert("lỗi");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -729,6 +749,7 @@ class PurchaseFormDialog {
         if (checkValid) {
             $(".purchaseForm").hide();
             $(".wrapper-background-gray").hide();
+            $(".list-content-invoice .background-loading").show();
             purchase.setResizeAble();
             purchaseFormDialog.saveNewInvoice();
         } else {
@@ -755,7 +776,7 @@ class PurchaseFormDialog {
         $(".dialog-error .icon-errors").attr("class", "icon-errors icon-dialog-question");
         dialogError.openDialog();
     }
-
+   
     // Thực hiện các chức năng khi click vào các button trên menu form như lưu, tiện ích, ...
     // Người tạo: ntxuan(8/5/2019)
     setEventClickButtonMenu() {
@@ -1225,13 +1246,13 @@ class PurchaseFormDialog {
     // Người tạo: ntxuan (24/6/2019)
     initValueToForm() {
         common.callAjaxToServer("Get", "/purchase/GetNumbersAuto", null, function (result) {
-            if (result) {
-                let invoiceNumber = result[0];
-                let expenditureNumber = result[1];
+            if (result.Success) {
+                let invoiceNumber = result.Data[0];
+                let expenditureNumber = result.Data[1];
                 $('.purchaseForm input[fieldname="ImportNumber"]').val(invoiceNumber).attr("data-previous", invoiceNumber);
                 $('.purchaseForm input[fieldname="ExpenditureNumber"]').val(expenditureNumber).attr("data-previous", expenditureNumber);
             } else {
-                alert("Lỗi server lấy số phiếu tự tăng");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }
@@ -1242,17 +1263,17 @@ class PurchaseFormDialog {
         let invoiceId = $(".content-right .wrapp-dataTable .row-clicked").data("InvoiceID");
         let url = "/purchase/Invoice/" + invoiceId;
         // Thực hiện load các sản phẩm từ server theo id của hóa đơn truyền vào
-        common.callAjaxToServer("Post", url, null, function (invoice) {
-            if (invoice) {
+        common.callAjaxToServer("Post", url, null, function (result) {
+            if (result.Success) {
                 $(".purchaseForm .Invoice input[fieldname]").each(function () {
                     let fieldName = $(this).attr("fieldName");
                     let fieldData = $(this).attr("fieldData");
                     // Nếu ở dạng ngày tháng thì format lại dạng dd/MM/yyyy
                     if (fieldData === "Date") {
-                        let value = new Date(invoice[fieldName]).toLocaleDateString('en-GB');
+                        let value = new Date(result.Data[fieldName]).toLocaleDateString('en-GB');
                         $(this).val(value);
                     } else {
-                        $(this).val(invoice[fieldName]);
+                        $(this).val(result.Data[fieldName]);
                     }
                 });
                 if (checkDuplicate) {
@@ -1260,7 +1281,7 @@ class PurchaseFormDialog {
                     purchaseFormDialog.setValueDefault();
                 }
             } else {
-                alert("Lỗi server lấy dữ liệu hóa đơn theo id");
+                purchase.showDialogError(result.Messenger);
             }
         });
     }

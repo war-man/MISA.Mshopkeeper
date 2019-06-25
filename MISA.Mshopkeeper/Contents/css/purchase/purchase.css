@@ -653,12 +653,24 @@ select.select {
     box-sizing: border-box;
 }
 
-    .header-column2.ui-resizable input {
-        width: calc(100% - 50px) !important;
+    .header-column4 input {
+        width: calc(100% - 34px) !important;
     }
 
-    .header-column4.ui-resizable input {
-        width: calc(100% - 67px) !important;
+    .header-column1 input {
+        width: 78% !important;
+    }
+
+    .header-column2 input {
+        width: calc(100% - 30px) !important;
+    }
+
+    .header-column2.ui-resizable input {
+        width: calc(100% - 34px) !important;
+    }
+
+    .header-column4.ui-resizable .wrapper-content input {
+        width: calc(100% - 56px) !important;
     }
 
     .header-column4.ui-resizable input {
@@ -689,6 +701,10 @@ input#dp1556802722719 {
     }
 
     .header-column3.ui-resizable {
+    }
+
+    .header-column3 input {
+        width: calc(100% - 33px) !important;
     }
 
     .header-column3 input, .header-column6 input {
@@ -821,6 +837,7 @@ input#dp1556802722719 {
     height: calc(100% - 50px);
     overflow-y: auto;
     cursor: default;
+    overflow-x: hidden;
 }
 
     .list-data-table.ui-resizable {
@@ -1020,7 +1037,7 @@ span.text9 {
 }
 
     .wrapper-content.flex input {
-        padding-left: 15%;
+        padding-left: 8px !important;
     }
 
 .operator {
@@ -1095,6 +1112,10 @@ span.text9 {
         height: 203px;
         width: 100%;
         overflow-x: auto;
+    }
+
+    .content-right .list-data-bottom::-webkit-scrollbar {
+        width: 0px;
     }
 }
 
@@ -1279,7 +1300,7 @@ span.text.format-right {
 }
 
 .popup-item:hover .popup-item-icon.icon-view {
-    background-position: -1601px -130px;
+    background-position: -1601px -127px;
 }
 
 .popup-item:hover .popup-item-icon.duplicate-icon {
@@ -1287,15 +1308,15 @@ span.text.format-right {
 }
 
 .popup-item:hover .popup-item-icon.reload-icon {
-    background-position: -129px -202px;
+    background-position: -126px -200px;
 }
 
 .popup-item:hover .popup-item-icon.edit-icon {
     height: 14px;
     width: 14px;
-    background-position: -77px -203px
+    background-position: -79px -203px;
 }
 
 .popup-item:hover .popup-item-icon.delete-icon {
-    background-position: -1076px -127px;
+    background-position: -1080px -127px;
 }

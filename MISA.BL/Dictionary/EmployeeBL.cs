@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
 using System;
@@ -60,7 +61,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public Employee GetEmployeeByID(Guid employeeID)
         {
-            var employeeId = ConvertToNvarchar(employeeID);
+            var employeeId = Common.ConvertToNvarchar(employeeID);
             return employeeDL.GetEmployeeByID(employeeId);
         }
 
@@ -94,7 +95,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public int DeleteEmployee(Guid employeeID)
         {
-            var employeeId = ConvertToNvarchar(employeeID);
+            var employeeId = Common.ConvertToNvarchar(employeeID);
             return employeeDL.DeleteEmployee(employeeId);
         }
 

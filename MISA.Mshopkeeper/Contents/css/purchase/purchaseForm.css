@@ -376,7 +376,7 @@ input.tabindex-row {
     color: black;
     width: 31.6%;
     padding: 7px;
-    border-right: 1px solid #969292;
+    /*border-right: 1px solid #969292;*/
 }
 
 .Invoice {
@@ -1201,6 +1201,11 @@ body {
     color: #f7f5f5;
 }
 
+button.dialog-accept.dialog-btnError.ui-button.ui-corner-all.ui-widget {
+    margin-right: -7px;
+    margin-bottom: 0;
+}
+
 button.dialog-Save.dialog-btnError.ui-button.ui-corner-all.ui-widget i {
     margin-right: 4px;
     font-size: 12px;
@@ -1213,12 +1218,26 @@ button.dialog-UnSave.ui-button.ui-corner-all.ui-widget {
     border-color: #026b97;
     padding-left: 24px;
     padding-right: 8px;
+    margin-bottom: 0;
 }
 
 button.dialog-cancel.ui-button.ui-corner-all.ui-widget {
     background: white;
     color: #026b97;
     font-weight: bold;
+}
+
+button.dialog-cancel.dialog-btnError.ui-button.ui-corner-all.ui-widget {
+    margin-right: -6px;
+    margin-bottom: 0;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+    /* margin-bottom: 0; */
+}
+
+button.dialog-Save.dialog-btnError.ui-button.ui-corner-all.ui-widget {
+    margin-bottom: 0;
 }
 
 button.dialog-cancel.dialog-btnError.ui-button.ui-corner-all.ui-widget i {
@@ -1232,6 +1251,7 @@ button.dialog-deleteAccept.ui-button.ui-corner-all.ui-widget {
     color: red;
     font-weight: bold;
     border-color: #337793;
+    margin-bottom: 0;
 }
 
 button.dialog-deleteAccept.dialog-btnError.ui-button.ui-corner-all.ui-widget i {
@@ -1767,6 +1787,7 @@ span.error.error-keyup-1 {
     width: 125px;
     box-shadow: -1px 1px 7px 2px #e20c0c;
 }
+
 span.error.error-keyup-2 {
     BACKGROUND: #ef0808;
     position: absolute;

@@ -1,4 +1,5 @@
-﻿using MISA.DL;
+﻿using MISA.Commons;
+using MISA.DL;
 using MISA.Entities;
 using MISA.Mshopkeeper.Models.ViewModels;
 using System;
@@ -60,7 +61,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public Supplier GetSupplierByID(Guid supplierID)
         {
-            var supplierId = ConvertToNvarchar(supplierID);
+            var supplierId = Common.ConvertToNvarchar(supplierID);
             return supplierDL.GetSupplierByID(supplierId);
         }
 
@@ -94,7 +95,7 @@ namespace MISA.BL
         /// Người tạo: ntxuan (20/6/2019)
         public int DeleteSupplier(Guid supplierID)
         {
-            var supplierId = ConvertToNvarchar(supplierID);
+            var supplierId = Common.ConvertToNvarchar(supplierID);
             return supplierDL.DeleteSupplier(supplierId);
         }
 
