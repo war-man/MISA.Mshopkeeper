@@ -26,7 +26,7 @@ namespace MISA.DL
         /// Người tạo: ntxuan (20/6/2019)
         public DataAccess()
         {
-            // _connectionString = @"Data Source=.;Initial Catalog=MISA.Mshopkeeper01_Development;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+             //_connectionString = @"Data Source=.;Initial Catalog=MISA.Mshopkeeper01_Development;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             _connectionString = @"Data Source=DESKTOP-5H9SI49;Initial Catalog=MISA.MSHOPKEEPER01;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             //_connectionString = @"Data Source=DATABASE\SQL2014;Initial Catalog=MISA.MSHOPKEEPER01;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True";
 

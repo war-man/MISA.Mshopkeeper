@@ -38,5 +38,30 @@ namespace MISA.Commons
             int value = DateTime.Compare(date1Compare, date2Compare);
             return value;
         }
+
+        /// <summary>
+        /// Hàm validate dữ liệu nhập vào input
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="maxLength"></param>
+        /// <returns></returns>
+        /// Tạo bởi: NBDUONG(25/6/2019)
+        public static bool IsValid(string input, int maxLength)
+        {
+            var flag = true;
+            if (String.IsNullOrEmpty(input))
+            {
+                flag = false;
+            }
+            else if(input.Length > maxLength || input.Length < 0)
+            {
+                flag = false;
+            }
+            else
+            {
+                flag = true;    
+            }
+            return flag;
+        }
     }
 }

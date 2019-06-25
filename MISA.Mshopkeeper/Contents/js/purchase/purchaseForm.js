@@ -727,6 +727,7 @@ class PurchaseFormDialog {
     // Người tạo: ntxuan (19/5/2019)
     btnSaveInvoice() {
         let checkValid = true;
+        let checkBill = $(".form-menuPayment .check").hasClass("checked-img");
         let importNumber = $('input[fieldname="ImportNumber"]').val().trim();
         let expenditureNumber = $('input[fieldname="ExpenditureNumber"]').val().trim();
         let invoiceID = dataStorage.checkEditForm ? $(".content-right .wrapp-dataTable .row-clicked").data("InvoiceID") : "";
@@ -739,6 +740,9 @@ class PurchaseFormDialog {
             checkValid = false;
         } else if ($(".form-addNew .list-data-bottom .other-row").length === 0) {
             dialogError.setMessageError("Bạn phải nhập ít nhất một hàng hóa. Vui lòng kiểm tra lại.");
+            checkValid = false;
+        } else if (checkBill && $('[fieldname="InvoiceNumber"]').val() === "") {
+            dialogError.setMessageError("Số hóa đơn không được bỏ trống. Vui lòng kiểm tra lại.");
             checkValid = false;
         } else if (!purchaseFormDialog.checkDuplicateImportNumber(dataStorage.checkEditForm, importNumber, invoiceID)) {
             dialogError.setMessageError("Số phiếu nhập đã tồn tại trong hệ thống. Vui lòng kiểm tra lại.");
@@ -1077,13 +1081,11 @@ class PurchaseFormDialog {
         $(".infor-common").hide();
         $(".invoicePress").show();
 
-        if ($(".form-menuPayment .check").hasClass("checked-img")) {
-            $(".bill").show();
-        }
         $('.form-menuPayment select').val("0");
+        $(".focus-first").focus();
     }
 
-    showFormEditByInvoiceType(invoiceType) {
+    showFormEditByInvoiceType(invoiceType, invoiceNumber) {
         if (invoiceType === 1) {
             $(".form-menuPayment label").eq(0).click();
             $('.purchaseForm input[fieldName="TypeInvoice"]').val(1);
@@ -1097,9 +1099,6 @@ class PurchaseFormDialog {
             $(".infor-common").hide();
             $(".invoicePress").show();
 
-            if ($(".form-menuPayment .check").hasClass("checked-img")) {
-                $(".bill").show();
-            }
             $('.form-menuPayment select').val("0");
         } else if (invoiceType === 2) {
             $(".form-menuPayment label").eq(1).click();
@@ -1115,9 +1114,6 @@ class PurchaseFormDialog {
             $(".infor-common").hide();
             $(".invoicePress").show();
 
-            if ($(".form-menuPayment .check").hasClass("checked-img")) {
-                $(".bill").show();
-            }
             $('.purchaseForm input[fieldName="TypeInvoice"]').val(2);
         } else if (invoiceType === 3) {
             $(".form-menuPayment label").eq(1).click();
@@ -1132,17 +1128,19 @@ class PurchaseFormDialog {
 
             $(".infor-common").hide();
             $(".invoicePress").show();
-            if ($(".form-menuPayment .check").hasClass("checked-img")) {
-                $(".bill").show();
-            }
-
+           
             $('.purchaseForm input[fieldName="TypeInvoice"]').val(3);
+        }
+        $(".focus-first").focus();
+        if (invoiceNumber !== "") {
+            $(".bill").show();
+            $(".form-menuPayment .check").attr("class", "check checked-img");
         }
     }
 
     // Hiển thị form theo loại hóa đơn
     // Người tạo: ntxuan (24/6/2019)
-    showFormViewByInvoiceType(invoiceType) {
+    showFormViewByInvoiceType(invoiceType, invoiceNumber) {
         if (invoiceType === 1) {
             $(".form-menuPayment label").eq(0).trigger("click");
             $('.purchaseForm input[fieldName="TypeInvoice"]').val(1);
@@ -1152,9 +1150,6 @@ class PurchaseFormDialog {
             $(".infor-common").hide();
             $(".invoice-in").show().addClass("tab-focus");
             $(".invoicePress").show();
-            if ($(".form-menuPayment .check").hasClass("checked-img")) {
-                $(".bill").show();
-            }
             $('.form-menuPayment select').val("0");
         } else if (invoiceType === 2) {
             $(".form-menuPayment label").eq(1).trigger("click");
@@ -1166,9 +1161,6 @@ class PurchaseFormDialog {
             $(".infor-common").hide();
             $(".invoicePress").show();
 
-            if ($(".form-menuPayment .check").hasClass("checked-img")) {
-                $(".bill").show();
-            }
             $('.form-menuPayment select').val("0");
             $('.purchaseForm input[fieldName="TypeInvoice"]').val(2);
             $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
@@ -1183,11 +1175,13 @@ class PurchaseFormDialog {
 
             $(".infor-common").hide();
             $(".invoicePress").show();
-            if ($(".form-menuPayment .check").hasClass("checked-img")) {
-                $(".bill").show();
-            }
+          
             $('.purchaseForm input[fieldName="TypeInvoice"]').val(3);
             $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
+        }
+        if (invoiceNumber !== "") {
+            $(".bill").show();
+            $(".form-menuPayment .check").attr("class", "check checked-img");
         }
         $(".purchaseForm").addClass("purchaseViewForm");
         $(".purchaseForm input").prop('disabled', true);
@@ -1416,10 +1410,10 @@ class PurchaseFormDialog {
                     purchaseFormDialog.setValueDefault();
                 }
                 if (checkView) {
-                    purchaseFormDialog.showFormViewByInvoiceType(result.Data["TypeInvoice"]);
+                    purchaseFormDialog.showFormViewByInvoiceType(result.Data["TypeInvoice"], result.Data["InvoiceNumber"]);
                   
                 } else {
-                    purchaseFormDialog.showFormEditByInvoiceType(result.Data["TypeInvoice"]);
+                    purchaseFormDialog.showFormEditByInvoiceType(result.Data["TypeInvoice"], result.Data["InvoiceNumber"]);
                 }
             } else {
                 purchase.showDialogError(result.Messenger);
@@ -1432,7 +1426,6 @@ class PurchaseFormDialog {
     openPurchaseViewForm() {
         purchaseFormDialog.openPurchaseForm();
         $(".purchaseFormTitle").text("Xem Phiếu nhập hàng");
-        
         purchaseFormDialog.loadDataToPurchaseForm(false,true);
         dataStorage.checkViewForm = true;
         dataStorage.checkEditForm = true;
@@ -1580,6 +1573,9 @@ class PurchaseFormDialog {
                 $(".invoicePress").show();
                 $(".navigate-invoice div").removeClass("tab-focus");
                 $(".invoice-in").addClass("tab-focus");
+            }
+            if ($(this).hasClass("checked-img")) {
+                $('input[fieldname="InvoiceNumber"]').val("");
             }
         });
 
@@ -1779,7 +1775,6 @@ class PurchaseFormDialog {
     // Hàm dùng để kiểm tra đầu vào hợp lệ của các ô input
     // Người tạo: ntxuan (19/5/2019)
     validateAllInputText() {
-
         this.validateInput('input[fieldname="SupplierCode"]', 50);
         this.validateInput('input[fieldname="SupplierName"]', 100);
         this.validateInput('input[fieldname="EmployeeCode"]', 50);

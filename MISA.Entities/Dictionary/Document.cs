@@ -13,21 +13,21 @@ namespace MISA.Entities
         //Id
         public Guid DocumentID { get; set; }
         //Mã chứng từ
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền mã chứng từ")]
         [MaxLength(20)]
         public string DocumentCode { get; set; }
         //Ngày chứng từ
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền ngày chứng từ")]
         public DateTime DocumentDate { get; set; }
         //Tổng tiền
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền tổng tiền")]
         public decimal TotalMoney { get; set; }
         //Số tiền phải trả
         public decimal MoneyHasToPay { get; set; }
         //Số tiền chưa trả
         public decimal MoneyHasNotPaid { get; set; }
         //Số tiền đã trả
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền số tiền trả")]
         public decimal AmountPaid { get; set; }
         //Người nộp/nhận
         [MaxLength(100)]

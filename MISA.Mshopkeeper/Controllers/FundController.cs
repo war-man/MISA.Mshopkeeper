@@ -380,6 +380,7 @@ namespace MISA.Mshopkeeper.Controllers
             try
             {
                 using (DocumentBL _documentBL = new DocumentBL()) {
+                   
                     var document = _documentBL.MapDocumentViewModelToDocument(documentViewModel);
                     document.DocumentID = documentViewModel.DocumentID;
                     _documentBL.UpdateDocument(document);
