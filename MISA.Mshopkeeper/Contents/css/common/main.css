@@ -1,0 +1,25 @@
+﻿body {
+    font-family: Arial !important;
+    font-size:13px;
+}
+[data-title] {
+    position: relative;
+}
+
+    [data-title]:hover::before {
+        content: attr(data-title);
+        position: absolute;
+        bottom: -38px;
+        display: inline-block;
+        padding:0 10px;
+        border-radius: 5px;
+        background: #000;
+        color: #fff;
+        font-size: 12px;
+        font-family: sans-serif;
+        white-space: nowrap;
+        z-index:999999;
+        height:32px;
+        line-height:32px;
+    }
+

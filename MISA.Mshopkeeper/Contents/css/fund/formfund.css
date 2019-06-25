@@ -1,0 +1,987 @@
+﻿/*Css cho form (Thêm phiếu thu, Thêm phiếu chi)*/
+/*Tạo bởi: NBDUONG (3/5/2019)*/
+.formDetail_navigation-menu {
+    width: 100%;
+    height: 36px;
+    background: #006189;
+    color: #e0d6d6d6;
+}
+
+.formDetail-list-button {
+    pointer-events: none;
+    height: 36px;
+    background: #006189;
+}
+
+    .formDetail-list-button .list-button_item span, .formDetail-list-button div.icon {
+        cursor: pointer;
+        color: #fff;
+        opacity: 0.4;
+    }
+
+
+    /*Css cho danh sách các nút*/
+    /*Tạo bởi: NBDUONG (4/5/2019)*/
+    .formDetail-list-button .list-button_item .icon {
+        background: url('/Contents/images/common-icon.png') no-repeat;
+        width: 12px;
+        height: 18px;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+    .formDetail-list-button .list-button_item:hover {
+        background: none;
+        cursor: default;
+    }
+
+    .formDetail-list-button .list-button_item.button-display, .view-document #add-formDetail, .view-document #delete-formDetail,
+    .view-document #edit-formDetail, .view-document #print-formDetail, .view-document .document-after, .edit-document #postpone-formDetail, .view-document .document-before {
+        color: #fff;
+        cursor: pointer;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+        .formDetail-list-button .list-button_item.button-display span, .view-document #add-formDetail span, .view-document #delete-formDetail span,
+        .view-document #edit-formDetail span, .view-document #print-formDetail span, .view-document .document-after span, .view-document .document-after div,
+        .view-document .document-before div, .view-document .document-before span, .edit-document #postpone-formDetail span {
+            opacity: 1;
+        }
+
+    .formDetail-list-button .list-button_item .icon-previous {
+        margin-left: 10px;
+        background-position: -479px -129px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-caret-down {
+        background-position: -1256px -136.5px;
+        margin-top: 9px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-next {
+        background-position: -430px -129px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-add {
+        background-position: -4px -130px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-edit {
+        background-position: -1454px -129px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-save {
+        background-position: -330px -129px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-delete {
+        background-position: -1082px -130px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-postpone {
+        background-position: -1403px -129px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-print {
+        background-position: -228px -131px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-help {
+        background-position: -179px -204px;
+        margin-top: 4px;
+    }
+
+    .formDetail-list-button .list-button_item .icon-close {
+        background-position: -280px -130px;
+    }
+/*Kết thúc CSS cho danh sách các nút*/
+
+/*Css cho phần nội dung của form*/
+/*Tạo bởi: NBDUONG (5/5/2019)*/
+.formDetail_main-form {
+    margin: 8px;
+    width: calc(100% - 20px);
+    height: calc(100% - 58px);
+}
+
+/*Css cho thanh điều hướng*/
+.formDetail_navigation-bar {
+    height: 36px;
+    color: #666;
+}
+
+    .formDetail_navigation-bar span {
+        padding: 10px;
+        margin-right: 50px;
+    }
+
+    .formDetail_navigation-bar label {
+        padding-left: 5px;
+    }
+
+    .formDetail_navigation-bar input {
+        margin-top: 20px;
+    }
+
+.navigation-bar_item.choose-pay-recipt {
+    border: 1px solid #026b97;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 4px;
+    justify-content: center;
+    color: #026b97;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+    .navigation-bar_item.choose-pay-recipt span.text {
+        margin-right: 0;
+    }
+
+    .navigation-bar_item.choose-pay-recipt.flex:hover {
+        color: #0088c2;
+    }
+/*Kết thúc CSS cho thanh điều hướng*/
+
+/*CSS cho chi tiết thông tin trong form*/
+/*Bao gồm danh sách input bên trái và cột liên quan tới Chứng từ ở bên phải*/
+/*Tạo bởi: NBDUONG (5/5/2019)*/
+
+.formDetail-info {
+    height: calc(100% - 42px);
+}
+
+.formDetail_general-info {
+    height: 45%;
+    margin-top: 20px;
+}
+
+.formDetail_general-info_left-item {
+    width: 72%;
+    height: 100%;
+}
+
+.formDetail_general-info_left-item_intro,
+.formDetail_general-info_right-item_intro,
+.formDetail_detail-info_intro {
+    text-transform: uppercase;
+    padding: 10px;
+    color: #757575;
+    font-size: 15px !important;
+    font-weight: bold;
+}
+
+.formDetail_general-info_left-item_list-info {
+    padding: 0px 10px 10px 10px;
+    color: #404040;
+}
+
+.formDetail_general-info_left-item_list-input {
+    width: calc(100% - 160px);
+}
+
+.left-item-info,
+.right-item-info {
+    padding: 13.5px;
+}
+
+.right-item-info {
+    margin-left: 20px;
+}
+
+.left-item-input {
+    position: relative;
+}
+
+    .left-item-input input,
+    .right-item-input input, .nav_objectComboBox input, .formChooseObject_navigation-input {
+        padding: 7px 1px 6px 8px;
+        border: 1px solid #d0d0d0;
+        border-radius: 4px;
+        width: 60%;
+        margin-top: 8px;
+        margin-left: 5px;
+    }
+
+.left-item-input-with-icon,
+.right-item-input-with-icon {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    width: 40%;
+    margin-top: 8px;
+}
+
+    .left-item-input .left-item-input-with-icon input,
+    .right-item-input-with-icon input, .nav_objectComboBox input {
+        border: none;
+        width: calc(100% - 50px);
+        border-radius: 4px;
+        margin: 0px;
+    }
+
+.left-item-input.left-item-without-icon {
+    margin-top: 3px;
+}
+
+    .left-item-input.left-item-without-icon input,
+    .right-item-input {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+.input-dropdown-icon, .input-arrow-down {
+    width: 20px;
+    height: 30px;
+    background: url('/Contents/images/arrow-down-line.png') no-repeat;
+    background-color: #fff;
+    background-position: 5px 12px;
+    cursor: pointer;
+}
+
+.input-search-icon {
+    width: 20px;
+    height: 30px;
+    background: url('/Contents/images/Quick-search.png') no-repeat;
+    background-color: #fff;
+    background-position: 0px 9px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.formDetail_general-info_right-item {
+    width: 254px;
+}
+
+.formDetail_general-info_right-item_list-input {
+    width: calc(100% - 120px);
+}
+
+    .formDetail_general-info_right-item_list-input input,
+    #recipeFormDetail .left-item-input-with-icon {
+        width: 100%;
+    }
+
+.right-item-input-with-icon {
+    width: 95%;
+    margin-left: 5px;
+}
+
+.input-calendar-icon {
+    height: 26px;
+    margin-top: 1px;
+}
+
+.formDetail_detail-info {
+    height: calc(60% - 115px);
+}
+
+.choosePaidType {
+    margin-top: 12px;
+    position: relative;
+}
+
+.formDetail-info-paydebt .left-item-input-with-icon-disabled, .formDetail-info-paydebt .dropdown-supplier, .formDetail-info-paydebt .search-icon-supplier {
+    display: none;
+}
+/*Kết thúc CSS cho phần thông tin của form*/
+/*Css cho bảng dữ liệu trong form*/
+/*Tạo bởi: NBDUONG (5/5/2019)*/
+.formDetail_table-detail-data,
+.formDetail_table-document-data {
+    height: 100%;
+}
+
+.formDetail_detail-tabs,
+.formDetail_detail-content,
+#formDetail .footer-content_detail-table-data,
+#formDetail .footer-table_detail-total-money-row {
+    width: 98.6%;
+    margin-left: 8px;
+    border: 1px solid #d0d0d0;
+}
+
+.formDetail_detail-tabs,
+.formDetail_detail-content {
+    border-bottom: none;
+}
+
+.formDetail_intro-detail {
+    border-right: 1px solid #cfcfcf;
+}
+
+.formDetail_intro .formDetail_intro-document {
+    border-bottom: none;
+    color: #757575;
+}
+
+.formDetail_detail-content {
+    height: 14%;
+}
+
+#formDetail .footer-table_detail-total-money-row {
+    margin-top: 0px;
+    background: #fddcb3 !important;
+}
+
+#formDetail .formDetail_detail-content {
+    margin-top: 0px;
+}
+
+.formDetail_detail-info_first-column,
+.formDetail_detail-info_third-column,
+#formDetail .detail-data-item_first-column,
+#formDetail .formDetail_table-detail-data .detail-total-money-row_first-column,
+.formDetail_table-document-data .formDetail_detail-info_second-column,
+.formDetail_table-document-data .document-data-item_second-column,
+.formDetail_table-document-data .detail-total-money-row_second-column {
+    width: 40%;
+}
+
+.formDetail_detail-info_second-column,
+#formDetail .detail-data-item_second-column,
+#formDetail .formDetail_table-detail-data .detail-total-money-row_second-column {
+    width: 20%;
+}
+
+#formDetail .footer-content_detail-table-data {
+    height: 69%;
+}
+
+#formDetail .formDetail-info.formDetail-info-other .footer-content_detail-table-data {
+    height: 83%;
+}
+
+#formDetail .detail-data-item_first-column {
+    border-left: none;
+}
+
+.formDetail_table-document-data .formDetail_detail-info_first-column,
+.formDetail_table-document-data .document-data-item_first-column,
+.formDetail_table-document-data .detail-total-money-row_first-column {
+    width: 15%;
+}
+
+.left-item-input-with-icon-disabled {
+    width: 41px;
+    height: 29px;
+    left: 160px;
+    position: absolute;
+    top: 9px;
+    background-color: rgb(235, 235, 228);
+    z-index: 999999;
+    border: 1px solid #d0d0d0;
+    opacity: 0.5;
+}
+/*Kết thúc CSS cho form Thêm phiếu thu, thêm phiếu chi*/
+
+/*Css cho form Chọn hóa đơn trả nợ*/
+/*Tạo bởi: NBDUONG (6/5/2019)*/
+#recipeFormDetail .formDetail_general-info_left-item {
+    width: 50%;
+    height: 20%;
+}
+
+/*Css cho bảng dữ liệu trong form Chọn hóa đơn trả nợ*/
+.reciptFormDetail_tableData {
+    width: calc(100% - 30px);
+    height: 325px;
+    margin-left: 15px;
+    border: 1px solid #d0d0d0;
+    box-sizing: border-box;
+}
+
+    .reciptFormDetail_tableData .detail-data-item {
+        box-sizing: border-box;
+    }
+
+.formDetail-info formDetail-info-other .footer-content_detail-table-data {
+    height: 83%;
+}
+
+#recipeFormDetail .left-item-input-with-icon input {
+    width: calc(100% - 31px);
+}
+
+.reciptFormDetail_getData {
+    margin: 7px 0px 10px 10px;
+    height: 30px;
+    line-height: 29px;
+    position: relative;
+}
+
+#recipeFormDetail .middle-content_header-table {
+    height: 36px;
+    width: calc(100% - 30px) !important;
+    margin-left: 15px;
+    border-left: 1px solid #cec7c7;
+    border-right: 1px solid #cec7c7;
+    border-bottom: 1px solid #cec7c7;
+}
+
+#recipeFormDetail .header-table_first-column {
+    border-left: none;
+}
+
+#recipeFormDetail .header-table_first-column,
+#recipeFormDetail .detail-data-item_first-column,
+#recipeFormDetail .detail-total-money-row_first-column {
+    width: 5.5%;
+    height: 35px;
+}
+
+#recipeFormDetail .detail-data-item_first-column {
+    border-left: none;
+}
+
+    #recipeFormDetail .header-table_first-column .choose-all-receiptForm,
+    #recipeFormDetail .detail-data-item_first-column .choose-row-receiptForm {
+        margin: 7px 0px 0px 10px;
+        width: 20px;
+        height: 20px;
+    }
+
+#recipeFormDetail .header-table_second-column,
+#recipeFormDetail .detail-data-item_second-column,
+#recipeFormDetail .detail-total-money-row_second-column {
+    width: 19%;
+    height: 35px;
+}
+
+.header-table_second-column.header-table-column.header-table-column6.ui-resizable {
+    border: none;
+    padding-right: 14px;
+    /* width: 19.5% !important; */
+}
+
+    .header-table_second-column.header-table-column.header-table-column6.ui-resizable span {
+        margin-left: 16px;
+    }
+
+#recipeFormDetail .header-table_second-column span {
+    line-height: 20px;
+}
+
+span.column-text {
+}
+
+#recipeFormDetail .detail-table-data_list-data {
+    height: 88.4%;
+}
+/*CSS cho danh sách các nút trong form Chọn hóa đơn trả nợ*/
+
+/*Các nút thay thế ở cuối form (thay thế cho các nút mặc định của JqueryUI Dialog)*/
+/*Tạo bởi: NBDUONG (7/5/2019)*/
+.receiptFormDetail-list-button {
+    height: 40px;
+    padding: 10px;
+    border-top: 1px solid #cecec7;
+}
+
+.receiptFormDetail-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/*nút Giúp đỡ*/
+.receiptFormDetail-btnHelp {
+    padding: 9px;
+    border-radius: 4px;
+    left: -471px;
+    border: 1px solid #fff;
+    background: #fff;
+}
+
+    .receiptFormDetail-btnHelp:hover {
+        color: #5fa2dd;
+        border: 1px solid #026b97;
+        background: #fff;
+    }
+
+.receiptFormDetail-btnHelp-icon {
+    background: url('/Contents/images/icon_help_18.png') no-repeat;
+    background-size: 16px;
+}
+
+.receiptFormDetail-text {
+    font-weight: bold;
+    margin-left: 7px;
+}
+
+.receiptFormDetail-btnHelp span {
+    color: #026b97;
+    margin-left: 7px;
+    line-height: 17px;
+}
+
+/*nút Trả nợ*/
+button.receiptFormDetail-btnPayDebt.ui-button, button.alertDialog_btnAccept, .alertDialog_btnSave, .alertDialog_btnDelete {
+    padding: 0 15px 0 0;
+    background-color: #026b97;
+    border-radius: 4px;
+}
+
+    .receiptFormDetail-btnPayDebt:hover, button.alertDialog_btnAccept:hover, .alertDialog_btnSave:hover {
+        background-color: #5fa2dd;
+    }
+
+.receiptFormDetail-btnPayDebt-icon {
+    background: url('/Contents/images/common-icon.png') no-repeat -377px -127px;
+    margin: 9px 0px 0px 12px;
+}
+
+.receiptFormDetail-btnPayDebt span, .alertDialog_btnAccept span, .alertDialog_btnSave span {
+    color: #fff;
+    line-height: 35px;
+}
+
+/*nút Hủy bỏ*/
+.receiptFormDetail-btnCancel, .nav_searchBtn, .alertDialog_btnCancel {
+    padding: 0 15px 0 0;
+    height: 35px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #fff;
+}
+
+    .receiptFormDetail-btnCancel:hover, .alertDialog_btnCancel:hover {
+        border: 1px solid #026b97;
+        background: #fff;
+    }
+
+.receiptFormDetail-btnCancel-icon {
+    background: url('/Contents/images/common-icon.png') no-repeat -252px -127px;
+    margin: 9px 0px 0px 12px;
+}
+
+.receiptFormDetail-btnCancel span, .nav_searchBtn span, .alertDialog_btnCancel span, .alertDialog_btnNotSave span {
+    color: #026b97;
+    line-height: 35px;
+}
+
+/*Css cho phần danh sách nhà cung cấp*/
+/*Tạo bởi: NBDUONG (7/5/2019)*/
+.recipeFormDetail_formSupplier, .recipeFormDetail_formStaff {
+    height: 217px;
+    overflow-y: auto;
+    border: 1px solid #b9b1b1;
+    z-index: 9999999999;
+    width: 300px;
+    position: absolute;
+    top: 40px;
+    background: #fff;
+    left: -1px;
+    display: none;
+}
+
+    .recipeFormDetail_formSupplier .formDetail_detail-content, .recipeFormDetail_formStaff .formDetail_detail-content {
+        margin: 0;
+        width: 100%;
+        border: none;
+    }
+
+    .recipeFormDetail_formSupplier .table-row, .recipeFormDetail_formStaff .table-row, .document-type-dropdown .table-row {
+        cursor: pointer;
+    }
+
+    .recipeFormDetail_formSupplier .formDetail_detail-content .column-text, .recipeFormDetail_formStaff .formDetail_detail-content .column-text {
+        margin-top: 4px;
+    }
+
+    .recipeFormDetail_formStaff .detail-table-data_list-data, .recipeFormDetail_formSupplier .detail-table-data_list-data {
+        height: 86%;
+    }
+
+#recipeFormDetail .totalAmountPaid {
+    padding-right: 6px;
+}
+
+    #recipeFormDetail .totalAmountPaid span {
+        margin-right: 3px;
+    }
+
+.no-data {
+    background: url('/Contents/images/No_data_No_info_Missing-512.png') no-repeat center;
+}
+
+.recipeForm_disablePayDate {
+    width: 128px;
+    left: 5px;
+    height: 27px;
+    border-radius: 4px;
+}
+
+.recipeForm_disableGetData {
+    left: -2px;
+    width: 122px;
+    top: -1px;
+    cursor: default;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.recipeForm_disableMoneyPaid {
+    width: 238px;
+    left: -2px;
+    top: 43px;
+    height: 28px;
+    border-radius: 4px;
+}
+/*Kết thúc CSS cho form Chọn hóa đơn trả nợ*/
+
+#formDetail .right-item-info.background-uncheck span {
+    margin-left: 17px;
+}
+
+/*CSS cho form Thêm phiếu chi khi chọn nút Khác trong form (chọn trong input radio)*/
+/*Tạo bởi: NBDUONG (9/5/2019)*/
+#formDetail .formDetail-info.formDetail-info-other .recipeFormDetail_formSupplier .formDetail_detail-info_first-column,
+#formDetail .formDetail-info.formDetail-info-other .recipeFormDetail_formSupplier .detail-data-item_first-column {
+    width: 20%;
+}
+
+#formDetail .formDetail-info.formDetail-info-other .recipeFormDetail_formSupplier .formDetail_detail-info_second-column,
+#formDetail .formDetail-info.formDetail-info-other .recipeFormDetail_formSupplier .detail-data-item_second-column {
+    width: 50%;
+}
+
+#formDetail .formDetail-info.formDetail-info-other .recipeFormDetail_formSupplier .formDetail_detail-info_third-column,
+#formDetail .formDetail-info.formDetail-info-other .recipeFormDetail_formSupplier .detail-data-item_third-column {
+    width: 30%;
+}
+
+#formDetail .formDetail_general-info_right-item .right-item-input-with-icon .input-dropdown-icon {
+    border-radius: 4px;
+    background-position: 4px 12px;
+}
+
+#formDetail .input-dropdown-icon_disable {
+    position: absolute;
+    background: rgb(235, 235, 235);
+    width: 20px;
+    left: 108px;
+    top: 0px;
+    height: 30px;
+    border-radius: 4px;
+    opacity: 0.7;
+}
+
+/*CSS cho form Chọn đối tượng*/
+/*Tạo bởi: NBDUONG (9/5/2019)*/
+#formChooseObject .formChooseObject_navigation, #formChooseStaff .formChooseObject_navigation {
+    height: 50px;
+}
+
+.navigation-label {
+    margin: 20px 20px 0px 12px;
+}
+
+.nav_objectComboBox {
+    width: 22.8%;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    margin-top: 11px;
+}
+
+    .nav_objectComboBox input {
+        width: calc(100% - 26px);
+        padding-top: 10px;
+    }
+
+    .nav_objectComboBox .icon-arrow-down {
+        margin-top: 15px;
+        cursor: pointer;
+    }
+
+.formChooseObject_navigation-input {
+    width: 47%;
+    padding-top: 10px;
+    margin-top: 11px;
+}
+
+.nav_searchBtn {
+    margin: 10px 0px 0px 15px;
+    border: 1px solid #026b97;
+    padding: 0 10px;
+    height: 32px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.searchBtn_icon-search.icon {
+    width: 16px;
+    height: 16px;
+    background: url('/Contents/images/Search-blue.png') no-repeat;
+    margin-top: 10px;
+}
+
+.formChooseObject_main-content {
+    height: calc(100% - 55px);
+    width: calc(100% - 24px);
+    margin-left: 12px;
+    margin-top: 5px;
+}
+
+    .formChooseObject_main-content .middle-content_header-table .header-table-column {
+        height: 35px;
+    }
+
+    .formChooseObject_main-content .header-table_first-column, .formChooseObject_main-content .detail-data-item_first-column {
+        width: 3.5%;
+    }
+
+    .formChooseObject_main-content .header-table_second-column, .formChooseObject_main-content .detail-data-item_second-column {
+        width: 15%;
+    }
+
+    .formChooseObject_main-content .header-table_third-column, .formChooseObject_main-content .detail-data-item_third-column {
+        width: 25%;
+    }
+
+    .formChooseObject_main-content .header-table_fourth-column, .formChooseObject_main-content .detail-data-item_fourth-column {
+        width: 41.5% !important;
+    }
+
+    .formChooseObject_main-content .reciptFormDetail_tableData {
+        height: 70%;
+        margin-left: 0;
+        width: 100%;
+    }
+
+.formChooseObject_main-content .middle-content_header-table {
+    width: 100% !important;
+    border-left: 1px solid #cec7c7;
+}
+
+.formChooseObject_main-content .header-table_first-column {
+    border-left: none;
+}
+
+#formChooseObject .middle-table_pagination-option, #formChooseStaff .middle-table_pagination-option {
+    border: 1px solid #d0d0d0;
+    width: 100%;
+    margin-left: -1px;
+}
+
+#formChooseObject .objectComboBox_dropdown-menu, .checkPaidType-dropdown-menu, .document-type-dropdown {
+    position: absolute;
+    background: #f7f8f9;
+    top: 45px;
+    z-index: 99999999;
+    box-shadow: 1px 1px 9px 2px grey;
+    box-shadow: 2px;
+    display: none;
+    width: 180px;
+    height: 140px;
+}
+
+    #formChooseObject .objectComboBox_dropdown-menu .option-row, .checkPaidType-dropdown-menu .option-row {
+        padding: 10px;
+    }
+
+        #formChooseObject .objectComboBox_dropdown-menu .option-row:hover, .checkPaidType-dropdown-menu .option-row:hover {
+            background: #026b97;
+            color: #fff !important;
+            cursor: pointer;
+        }
+
+    #formChooseObject .objectComboBox_dropdown-menu span.option-content, .checkPaidType-dropdown-menu span {
+        padding-left: 10px;
+    }
+
+#formChooseObject .detail-data-item_fourth-column, #formChooseStaff .detail-data-item_fourth-column {
+    overflow: hidden;
+}
+
+.checkPaidType-dropdown-menu {
+    top: 35px;
+    width: 140px;
+    height: 70px;
+}
+
+.reciptFormDetail_tableData [type="radio"]:checked, .reciptFormDetail_tableData [type="radio"]:not(:checked) {
+    left: 0;
+    position: static;
+    margin: 13px 13px 13px 8px;
+}
+
+/*CSS cho form tìm kiếm nhân viên*/
+/*Tạo bởi: NBDUONG (13/5/2019)*/
+.nav_objectComboBox_disable {
+    position: absolute;
+    width: 290px;
+    height: 35px;
+    background: #f1eaea;
+    top: 10px;
+    left: 10px;
+    opacity: 0.3;
+}
+
+/*Css cho form thông báo message*/
+.alertDialog-icon {
+    width: 50px;
+    height: 50px;
+    margin: 12px 0 0 7px;
+}
+
+.alert-icon-warning {
+    background: url('/Contents/images/icon-popup.png') no-repeat -56px -2px;
+}
+
+.alert-icon-question {
+    background: url('/Contents/images/icon-popup.png') no-repeat -161px -2px;
+}
+
+.alertDialog-text {
+    line-height: 20px;
+    max-width: 300px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+button.alertDialog_btnAccept, button.alertDialog_btnCancel, button.alertDialog_btnSave, button.alertDialog_btnNotSave, button.alertDialog_btnDelete {
+    padding: 0px 7px;
+}
+
+    button.alertDialog_btnAccept:focus, .alertDialog_btnSave:focus {
+        background-color: #026b97;
+    }
+
+.alertDialog_btnAccept span, .alertDialog_btnCancel span, .alertDialog_btnSave span, .alertDialog_btnNotSave span, .alertDialog_btnDelete span {
+    line-height: 30px;
+    margin-left: 0px;
+    font-size: 12px;
+}
+
+.alertDialog_btnDelete {
+    background-color: #df4646;
+}
+
+    .alertDialog_btnDelete:hover, .alertDialog_btnDelete:focus {
+        background-color: #df4646;
+    }
+
+    .alertDialog_btnDelete span {
+        color: #fff;
+    }
+
+.alertDialog_btnNotSave {
+    border: 1px solid #026b97;
+    background: #fff;
+}
+
+    .alertDialog_btnNotSave:hover {
+        background: #fff;
+        border: 1px solid #026b97;
+    }
+
+.receiptFormDetail-btnNotSave-icon {
+    background: url('/Contents/images/not-save.png') no-repeat;
+}
+
+.receiptFormDetail-btnSave-icon {
+    background: url('/Contents/images/save-white.png') no-repeat 0px 2px;
+}
+
+.receiptFormDetail-btnDelete-icon {
+    background: url('/Contents/images/delete-white.png') no-repeat 0px 1px;
+}
+
+.alertDialog_btn .receiptFormDetail-btnCancel-icon {
+    margin: 0;
+}
+
+button.alertDialog_btnCancel, .delete-form-message {
+    height: auto;
+}
+
+.alertDialog_btn .receiptFormDetail-icon {
+    margin-top: 7px;
+}
+
+.alertDialog_btn {
+    min-width: 60px;
+}
+/*Css cho loading*/
+.loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url('/Contents/images/ajax-loading.gif') no-repeat center;
+    background-color: #ccc;
+    opacity: 0.4;
+    background-size: 150px;
+}
+
+.footer-content_detail-table-data .loading {
+    top: 0px;
+    background-size: 80px;
+    height: 100%;
+}
+
+/*Css cho biểu tượng danger thông báo khi validate dữ liệu*/
+/*Tạo bởi: NBDUONG(28/5/2019)*/
+.exclamation {
+    width: 16px;
+    height: 16px;
+    background: url('/Contents/images/exclamation.png') no-repeat;
+    background-size: 16px;
+    margin-top: 15px;
+    display: none;
+}
+
+.border-red {
+    border-color: red !important;
+}
+
+.document-type-dropdown {
+    height: 108px;
+    width: 250px;
+    overflow-y: auto;
+}
+
+.document-type-input {
+    margin-top: 0px;
+    width: 100%;
+    border: none;
+}
+
+.document-type-arrow {
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/*Các hàm xử lý css trong form Xem*/
+/*Tạo bởi: NBDUONG(28/5/2019)*/
+.view-document .choose-pay-recipt {
+    display: none;
+    line-height: 34px;
+}
+
+    .view-document .choose-pay-recipt span {
+        margin-left: 30px;
+    }
+
+.view-document #save-formDetail {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.view-document span.input-dropdown-icon, .view-document span.input-search-icon, .view-document span.input-calendar-icon, .view-document .left-item-input-with-icon-disabled, .view-document .icon-arrow-down,
+.edit-document span.input-dropdown-icon.dropdown-supplier, .edit-document span.input-search-icon.search-icon-supplier, .edit-document .left-item-input-with-icon-disabled,
+.duplicate-document .choose-pay-recipt, .duplicate-document .formDetail-info-paydebt, .enable-input-paydebt .search-icon-employee, .enable-input-paydebt .dropdown-employee {
+    display: none;
+}
+
+.view-document input[fieldName="PersonCode"], .view-document input[fieldName="EmployeeCode"], .view-document input[fieldName="DocumentTypeName"],
+.edit-document .formDetail-info-paydebt input[fieldName="PersonCode"], .formDetail-info-paydebt input[fieldName="PersonCode"],
+.enable-input-paydebt input[fieldName="EmployeeCode"] {
+    width: 100%;
+}
+
+.row-focus {
+    background: #006189;
+    color: white;
+}

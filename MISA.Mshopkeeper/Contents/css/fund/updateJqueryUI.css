@@ -1,0 +1,18 @@
+﻿/*CSS để ẩn các nút mặc định của JQueryUI Dialog*/
+/*Tạo bởi: NBDUONG (4/5/2019)*/
+.ui-dialog .ui-dialog-content,
+.ui-widget.ui-widget-content {
+    padding: 0px;
+}
+
+.ui-dialog .ui-resizable-w {
+    width: 0;
+}
+
+.ui-widget-header {
+    background: #f0f0f0;
+}
+
+.ui-button-icon.ui-icon.ui-icon-closethick {
+    background: url(/Contents/images/common-icon.png) no-repeat -1127px -127px;
+}

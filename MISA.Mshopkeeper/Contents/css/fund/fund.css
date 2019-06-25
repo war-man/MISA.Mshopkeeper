@@ -1,0 +1,1294 @@
+﻿/*Các hàm CSS dùng chung ở nhiều nơi trong file*/
+/*Tạo bởi: NBDUONG (28/4/2019)*/
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-width: 1024px;
+}
+
+.wrapper,
+.detail-table-data_list-data {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.table-data_list-data::-webkit-scrollbar,
+    .detail-table-data_list-data::-webkit-scrollbar,
+    .recipeFormDetail_formSupplier::-webkit-scrollbar,
+    .recipeFormDetail_formStaff::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+        /* make scrollbar transparent */
+}
+
+.document-type-dropdown .detail-table-data_list-data::-webkit-scrollbar {
+    width: 16px;
+    background: #f0f1f2;
+}
+
+.document-type-dropdown .detail-table-data_list-data::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.document-type-dropdown .detail-table-data_list-data::-webkit-scrollbar-thumb {
+    background-color: #cacccf;
+    outline: 1px solid slategrey;
+}
+
+.MISABody-part_middle-content .table-data_list-data::-webkit-scrollbar {
+    width: 16px;
+    background: #f0f1f2;
+}
+
+.MISABody-part_middle-content .table-data_list-data::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.MISABody-part_middle-content .table-data_list-data::-webkit-scrollbar-thumb {
+    background-color: #cacccf;
+    outline: 1px solid slategrey;
+}
+
+.left-float {
+    float: left;
+}
+
+.flex {
+    display: flex;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #A6C8FF;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+    [type="radio"]:checked + label,
+    [type="radio"]:not(:checked) + label {
+        position: relative;
+        padding-left: 25px;
+        cursor: pointer;
+        line-height: 20px;
+        margin-right: 50px;
+        display: inline-block;
+        color: #666;
+        margin-top: 8px;
+    }
+
+        [type="radio"]:checked + label:before,
+        [type="radio"]:not(:checked) + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #006189;
+            border-radius: 100%;
+            background: #fff;
+        }
+
+        [type="radio"]:not(:checked) + label:before {
+            border: 2px solid gray;
+        }
+
+        [type="radio"]:checked + label:after,
+        [type="radio"]:not(:checked) + label:after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #006189;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border-radius: 100%;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+        [type="radio"]:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        [type="radio"]:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+div[dataType="number"],
+input[dataType="number"] {
+    text-align: right;
+}
+
+    div[dataType="number"] span {
+        margin-right: 10px;
+    }
+
+div[dataType="date"],
+input[dataType="date"] {
+    text-align: center;
+}
+
+/*Css cho phần header*/
+/*Tạo bởi: NBDUONG (28/4/2019)*/
+.MISATop-header {
+    height: 52px;
+}
+
+.header-left-item {
+    width: 100px;
+    background: #006189;
+    height: 52px;
+    cursor: pointer;
+    position: fixed;
+    background-color: #006189;
+    background-image: url('/Contents/images/bag.PNG');
+    background-size: 55px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header-middle-item {
+    margin-left: 100px;
+    width: calc(100% - 100px);
+}
+
+.header-middle-item_summary-text {
+    height: 52px;
+}
+
+    .header-middle-item_summary-text p {
+        color: #212121;
+        padding-left: 20px;
+        font-size: 18px !important;
+        font-weight: bold;
+        line-height: 17px;
+    }
+
+.header-middle-item_main-content {
+    width: calc(100% - 272px);
+    height: 52px;
+    border-right: 1px solid #d0d0d0;
+}
+
+.header-middle-item_main-content_start-link {
+    width: 200px;
+    height: 36px;
+    margin: 15px 0px 0px 20px;
+    line-height: 24px;
+}
+
+    .header-middle-item_main-content_start-link a {
+        text-decoration: none;
+        color: #026b97;
+        font-weight: 600;
+    }
+
+        .header-middle-item_main-content_start-link a:hover {
+            color: #0088c2;
+            font-weight: bold;
+        }
+
+.start-link-icon {
+    width: 30px;
+    height: 20px;
+    background: url('/Contents/images/icon_help_18.png') no-repeat 10px 5px;
+    background-size: 12px;
+}
+
+.header-middle-item_main-content_comboBox {
+    min-width: 162px;
+    border: 1px solid #c3c3c3;
+    height: 26px;
+    margin-top: 11px;
+    background-color: #fff;
+    padding-top: 4px;
+    cursor: pointer;
+}
+
+    .header-middle-item_main-content_comboBox span {
+        margin-left: 10px;
+        line-height: 24.5px;
+        font-weight: 500;
+    }
+
+.header-middle-item_main-content_comboBox-icon,
+.column-input_input-arrow-icon, .nav_objectComboBox .icon-arrow-down, .document-type-arrow {
+    width: 12px;
+    height: 12px;
+    color: #fff;
+    background: url('/Contents/images/arrow-down-line.png') no-repeat;
+    margin: 10px 5px 0px 0px;
+}
+
+.header-middle-item_main-content_user {
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    margin: 13px 0px 0px 20px;
+}
+
+.user-name {
+    padding: 20px 11px 0px 10px;
+    color: #212121 !important;
+    font-size: 13px !important;
+    font-weight: 700;
+}
+
+.user-name_dropdown-icon {
+    width: 20px;
+    height: 10px;
+    background: url('https://demoquanao.mshopkeeper.vn/g2/resources/images/arrow-down-line.png') no-repeat;
+    margin-top: 25px;
+    color: #fff;
+}
+
+.user-name_dropdown-menu,
+.comboBox_dropdown-menu {
+    height: 90px;
+    width: 194px;
+    right: 100px;
+    background: white;
+    top: 53px;
+    z-index: 9999999;
+    position: absolute;
+    box-shadow: 1px 1px 9px 2px grey;
+    box-shadow: 2px;
+    display: none;
+}
+
+    .user-name_dropdown-menu .option-row {
+        height: 30px;
+        font-size: 10px;
+        border-bottom: 1px solid #ccc5c5;
+    }
+
+.option-row.flex .option-content {
+    width: 161px;
+    line-height: 30px;
+    color: #212121;
+    font-weight: 500;
+}
+
+    .option-row.flex .option-content:hover {
+        color: #026b97 !important;
+    }
+
+.option-row span.icon {
+    width: 30px;
+    height: auto;
+    margin: 5px 0px 0px 10px;
+}
+
+.option-row span.icon_change-psw {
+    background: url('/Contents/images/icon-change-password16.png') no-repeat;
+}
+
+.option-row span.icon_feedback {
+    background: url('/Contents/images/icon-feedback.png') no-repeat 0px 2px;
+}
+
+.option-row span.icon_logout {
+    background: url('/Contents/images/icon-logout16.png') no-repeat;
+}
+
+.comboBox_dropdown-menu {
+    height: 30px;
+    width: 180px;
+    right: 282px;
+    top: 47px;
+}
+
+    .comboBox_dropdown-menu .option-row:hover {
+        cursor: pointer;
+    }
+
+    .comboBox_dropdown-menu .option-content {
+        padding-left: 10px;
+    }
+
+.header-right-item {
+    height: 52px;
+    width: 100px;
+}
+
+.header-right-item_icon-notification {
+    background: url('/Contents/images/notify-18.png') no-repeat;
+    width: 16px;
+    height: 52px;
+    border-right: 1px solid #d0d0d0;
+    padding-right: 33px;
+    background-position: 16px 18px;
+}
+
+.header-right-item_icon-help {
+    background: url('/Contents/images/icon_help_18.png') no-repeat;
+    width: 16px;
+    height: 52px;
+    padding-left: 20px;
+    background-position: 16px 18px;
+}
+/*Kết thúc CSS cho phần header*/
+
+.MISABody-part {
+    background: #F0F0F0;
+    clear: both;
+    height: calc(100% - 52px);
+}
+
+/*Css cho phần menu phía bên trái*/
+/*Tạo bởi: NBDUONG (28/4/2019)*/
+.MISABody-part_aside-menu {
+    position: fixed;
+    height: 100%;
+    width: 100px;
+    background: #10759e;
+    color: white;
+}
+
+.aside-menu_upper-list-item {
+    max-height: calc(100% - 93px);
+    background: #026b97 !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-bottom: 1px solid #00577b !important;
+}
+
+    .aside-menu_upper-list-item a, .aside-menu_lower-list-item a {
+        flex-direction: column;
+        height: 45px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .aside-menu_upper-list-item a,
+    .aside-menu_lower-list-item a {
+        text-decoration: none;
+        color: #fff;
+        height: 73px;
+        line-height: 40px;
+    }
+
+        .aside-menu_upper-list-item a:hover,
+        .aside-menu_lower-list-item a:hover,
+        .choose-option-add a:hover {
+            background: #00577b !important;
+        }
+
+.menu-item_icon {
+    background: url('/Contents/images/slibarmenu.png') no-repeat;
+    width: 30px;
+    height: 40px;
+}
+
+    .menu-item_icon.icon-home {
+        background-position: 2px 7px;
+    }
+
+.menu-item_icon {
+    margin-bottom: -15px;
+}
+
+.menu-item_icon {
+    margin: auto;
+}
+
+    .menu-item_icon.icon-report {
+        background-position: 2px -271px;
+    }
+
+    .menu-item_icon.icon-notebook {
+        background: url('/Contents/images/ic_sogiaohang.png') no-repeat;
+        background-position: 5px 7px;
+    }
+
+    .menu-item_icon.icon-buy {
+        background-position: 1px -33px;
+    }
+
+    .menu-item_icon.icon-storage {
+        background-position: 3px -72px;
+    }
+
+    .menu-item_icon.icon-fund {
+        background-position: 2px -113px;
+    }
+
+    .menu-item_icon.icon-cost {
+        background-position: 1px -153px;
+    }
+
+    .menu-item_icon.icon-sale {
+        background-position: 2px -193px;
+    }
+
+    .menu-item_icon.icon-menu {
+        background-position: 2px -231px;
+    }
+
+    .menu-item_icon.icon-meInvoice {
+        background-position: 2px -272px;
+    }
+
+    .menu-item_icon.icon-setting {
+        background-position: 2px -313px;
+    }
+
+    .menu-item_icon.icon-help {
+        background-position: 2px -382px;
+    }
+
+    .menu-item_icon.icon-goods {
+        background-position: 2px -346px;
+    }
+
+.menu-item_text {
+    height: 70px;
+}
+/*Kết thúc phần CSS cho menu phía bên trái*/
+
+/*Css cho phần giữa trang (phần thân)*/
+/*Tạo bởi: NBDUONG (30/4/2019)*/
+.MISABody-part_middle-content {
+    margin-left: 100px;
+    width: calc(100% - 100px);
+    height: 93%;
+    position: relative;
+}
+
+.middle-content_upper-part {
+    position: absolute;
+    width: 98.95%;
+    background: #e2e2e2;
+    height: 100%;
+    left: 10px;
+    top: 10px;
+}
+
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/*Css cho phần button*/
+/*Tạo bởi: NBDUONG (30/4/2019)*/
+.middle-content_header-list-button {
+    height: 36px;
+    background: #006189;
+    color: #fff;
+    top: 10px;
+    left: 10px;
+}
+
+.list-button_item {
+    height: 51%;
+    padding: 8px;
+    border-left: 1px solid #928c8cb8;
+}
+
+    .list-button_item.flex .text {
+        margin-right: 5px;
+        margin-top: 3px;
+    }
+
+    .list-button_item.flex:hover {
+        background: #10759e;
+        cursor: pointer;
+    }
+
+    .list-button_item span.icon, .list-button_item div.icon {
+        color: #fff;
+        background: url('/Contents/images/common-icon.png') no-repeat;
+        width: 16px;
+        margin-right: 8px;
+    }
+
+    .list-button_item span.icon-plus {
+        background-position: -4px -125px;
+    }
+
+    .list-button_item span.icon-duplicate {
+        background-position: -978px -125px;
+    }
+
+    .list-button_item span.icon-view {
+        background-position: -1602px -125px;
+    }
+
+    .list-button_item span.icon-edit {
+        background-position: -77px -201px;
+    }
+
+    .list-button_item span.icon-delete {
+        background-position: -1076px -125px;
+    }
+
+    .list-button_item span.icon-refresh {
+        background-position: -876px -125px;
+    }
+
+    .list-button_item i {
+        font-size: 11px;
+        margin: 5px 8px 0px 15px;
+        color: #fff;
+    }
+/*Kết thúc CSS cho button*/
+
+/*Css cho thanh navigation phía dưới danh sách các button*/
+/*Tạo bởi: NBDUONG (30/4/2019)*/
+.middle-content_nav-list-button {
+    padding-top: 10px;
+    left: 10px;
+    height: 43px;
+    width: 100%;
+    background: #fff;
+}
+
+.select-month {
+    margin-left: 10px;
+}
+
+    .select-month select {
+        padding: 6px;
+        border-radius: 3px;
+        border-color: #cec7c7;
+    }
+
+.from-date {
+    line-height: 33px;
+    margin-left: 5px;
+}
+
+.select-date-from,
+.select-date-to {
+    border: 1px solid #cec7c7;
+    margin-left: 15px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+    .select-date-from input,
+    .select-date-to input {
+        padding: 7px;
+        width: 75px;
+        color: #443c3c;
+        border: none;
+    }
+
+    .select-date-from .icon-calendar,
+    .select-date-to .icon-calendar-to,
+    .column-input_input-date-icon,
+    .input-calendar-icon,
+    .recipeFormDetail_input-calendar-icon {
+        background: url('/Contents/images/common-icon.png') no-repeat -4px -171px;
+        width: 20px;
+        height: 29px;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+.button_get-data,
+.reciptFormDetail_getData {
+    width: 120px;
+    height: 33px;
+    border: 1px solid #026b97;
+    border-radius: 3px;
+    margin-top: -2px;
+    color: #026b97;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .button_get-data:hover,
+    .reciptFormDetail_getData:hover {
+        color: #0088c2;
+    }
+
+    .button_get-data .icon.icon-get-data {
+        background: url('/Contents/images/common-icon.png') no-repeat -601px -118px;
+        margin-left: 10px;
+        width: 16px;
+        height: 34px;
+    }
+
+.getData-text {
+    margin: 10px 0px 0px 10px;
+}
+/*Kết thúc phần CSS cho thanh navigation*/
+
+/*CSS cho phần thanh header của bảng dữ liệu*/
+/*Tạo bởi: NBDUONG (1/5/2019)*/
+.mid-content-table {
+    width: 100%;
+    background: #ccc;
+    height: 65%;
+}
+
+.middle-content_header-table {
+    border-bottom: 1px solid #cec7c7;
+    border-top: 1px solid #cec7c7;
+    box-sizing: border-box;
+}
+
+.middle-content_upper-part .middle-content_header-table {
+    width: calc(100% - 16px);
+}
+
+.header-table_first-column,
+.data-item_first-column {
+    width: 3%;
+    height: 64px;
+    border-right: 1px solid #cec7c7;
+    border-left: 1px solid #cec7c7;
+    box-sizing: border-box;
+}
+
+.header-table_first-column {
+    background: #F0F0F0;
+}
+
+.choose-all,
+.choose-row, .choose-row-receiptForm {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+}
+
+.choose-all {
+    margin-top: 22px;
+}
+
+.choose-row, .choose-row-receiptForm {
+    margin-top: 7px;
+}
+
+.background-uncheck {
+    background: url('/Contents/images/uncheck.png') no-repeat;
+}
+
+.non-background {
+    background: none;
+}
+
+.background-checked {
+    background: url('/Contents/images/check.png') no-repeat;
+}
+
+.choose-background {
+    background: #C3ECFF !important;
+}
+
+.row-even {
+    background: #F0F0F0;
+}
+
+.row-odd {
+    background: #fff;
+}
+
+.header-table-column {
+    height: 64px;
+    width: 10%;
+    border-right: 1px solid #cec7c7;
+    background: #F0F0F0;
+    box-sizing: border-box;
+}
+
+span.column-text {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.column-input {
+    position: relative;
+    margin-top: 10px;
+    height: 35px;
+}
+
+.input-option {
+    background: #fff;
+    width: 34px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 31px;
+}
+
+.input-option-star {
+    line-height: 36px;
+}
+
+.column-input_input-date {
+    margin-left: 3px;
+    height: 31px;
+    background: #fff;
+    width: calc(100% - 40px);
+}
+
+.column-input_input-date-fourth {
+    width: calc(100% - 7px);
+}
+
+.column-input input {
+    height: 28px;
+    width: calc(100% - 20px);
+    border: none;
+}
+
+.header-table_fourth-column, .data-item_fourth-column, .header-table_seventh-column, .data-item_seventh-column,
+.total-money-row_fourth-column, .total-money-row_seventh-column {
+    width: 24% !important;
+}
+
+.header-table_sixth-column, .total-money-row_sixth-column,
+.data-item_sixth-column {
+    width: 19%;
+}
+
+.header-table_fourth-column input {
+    width: calc(100% - 26px);
+    padding-left: 10px;
+}
+
+.header-table_fifth-column input,
+.header-table_seventh-column input,
+.header-table_third-column input,
+.header-table_sixth-column input {
+    width: 84%;
+    /* padding: 0px 10px; */
+}
+
+.column-input_input-arrow-icon {
+    width: 11px;
+    margin-top: 12px;
+    height: 19px;
+    cursor: pointer;
+}
+
+.select-option-menu {
+    position: absolute;
+    height: 175px;
+    z-index: 9999;
+    top: 110%;
+    background: white;
+    width: 165px;
+    top: 100%;
+    box-shadow: 0px 1px 13px 2px #615a5a;
+    display: none;
+}
+
+    .select-option-menu span {
+        display: block;
+        padding: 10px;
+        padding-left: 21px;
+    }
+
+        .select-option-menu span:hover {
+            background: #006189;
+            color: white;
+            cursor: pointer;
+        }
+
+.header-table_fourth-column .select-option-menu {
+    width: 242px;
+    height: 280px;
+}
+/*Kết thúc phần CSS cho thanh header của bảng dữ liệu*/
+
+/*Css cho bảng dữ liệu*/
+/*Tạo bởi: NBDUONG (1/5/2019)*/
+.middle-content_table-data {
+    height: 50%;
+}
+
+.table-data_list-data {
+    line-height: 20px;
+    color: #313030;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.table-row {
+    border-bottom: 1px solid #cec7c7;
+    height: 35px;
+}
+
+    .table-row:hover {
+        background: #EAEFF4;
+    }
+
+.data-item_first-column .choose-all {
+    margin-top: 8px;
+}
+
+.data-item {
+    line-height: 40px;
+    border-right: 1px solid #cec7c7;
+    height: 35px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.data-item_second-column, .total-money-row_second-column,
+.total-money-row_third-column,
+.total-money-row_fifth-column,
+.data-item_third-column,
+.data-item_fifth-column {
+    width: 10%;
+}
+
+    .table-data_list-data span,
+    .total-money-row_fifth-column span {
+        margin-left: 11px;
+        color: #4c4343;
+    }
+
+    .data-item_third-column span {
+        color: #007abc;
+    }
+
+        .data-item_third-column span:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+/*Kết thúc phần CSS cho bảng dữ liệu*/
+
+/*Css cho phần cuối của bảng bao gồm phần tính tổng tiền tương ứng ở trên bảng dữ liệu và phần phân trang (pagination) */
+/*Tạo bởi: NBDUONG (2/5/2019)*/
+.middle-table_total-money-row,
+.footer-table_detail-total-money-row {
+    height: 35px;
+    background: #e2e2e2 !important;
+    margin-top: 3px;
+    width: 100%;
+}
+
+.middle-table_total-money-row {
+    width: calc(100% - 16px);
+    border-left: 1px solid #cec7c7;
+    border-top: 1px solid #cec7c7;
+}
+
+.total-money-column {
+    border-right: 1px solid #cec7c7;
+    height: 35px;
+    line-height: 35px;
+    box-sizing: border-box;
+}
+
+.total-money-row_first-column {
+    width: calc(3% - 1px);
+}
+
+.total-money-row_fifth-column span,
+.detail-total-money-row_second-column span {
+    color: #4c4343;
+    font-weight: bold;
+}
+
+.middle-table_pagination-option {
+    height: 53px;
+    background: #fff;
+    border-bottom: 1px solid #cec7c7;
+}
+
+.pagination-option_left {
+    width: calc(100% - 260px);
+    height: inherit;
+    line-height: 55px;
+    padding-left: 10px;
+}
+
+    .pagination-option_left input {
+        height: 22px;
+        width: 48px;
+        text-align: center;
+        margin-top: 14px;
+        border: 1px solid #cec7c7;
+        border-radius: 3px;
+    }
+
+    .pagination-option_left select {
+        height: 28px;
+        width: 46px;
+        margin-top: 13px;
+        border: 1px solid #cec7c7;
+        border-radius: 3px;
+    }
+
+span.back-to-first-page,
+span.back-page,
+span.next-page,
+span.forward-to-last-page,
+span.reload-page {
+    background: url('/Contents/images/common-icon.png') no-repeat -648px -124px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #91BDCF;
+    padding: 2px;
+    border-radius: 3px;
+    margin: 14px 3px 0px 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+span.back-page {
+    background: url('/Contents/images/common-icon.png') no-repeat -698px -124px;
+}
+
+span.page,
+span.total-page {
+    color: #4b4c4c;
+    margin: 0px 15px 0px 5px;
+}
+
+span.next-page {
+    background: url('/Contents/images/common-icon.png') no-repeat -748px -124px;
+}
+
+span.forward-to-last-page {
+    background: url('/Contents/images/common-icon.png') no-repeat -798px -124px;
+}
+
+span.reload-page {
+    background: url('/Contents/images/common-icon.png') no-repeat -848px -124px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    span.reload-page:hover {
+        border: 1px solid #026b97;
+    }
+
+span.display-pageNumber {
+    padding: 20px;
+    color: #4b4c4c;
+}
+/*Kết thúc phần cuối của bảng*/
+
+/*Css cho phần chi tiết dữ liệu*/
+/*Tạo bởi: NBDUONG (2/5/2019)*/
+.middle-content_data-detail {
+    height: 48px;
+}
+
+.middle-content_data-detail_blank-space,
+formDetail_tab_blank-space {
+    height: 10px;
+    background: #fff;
+}
+
+.middle-content_data-detail_intro,
+.formDetail_intro {
+    height: 38px;
+    background: #f6f6f6;
+}
+
+    .middle-content_data-detail_intro span,
+    .formDetail_intro span {
+        padding: 10px;
+        font-weight: bold;
+        line-height: 38px;
+        color: #026b97;
+        border-bottom: 2px solid #026b97;
+        cursor: pointer;
+    }
+
+/*Css cho menu mở ra lựa chọn link vào các trang khác khi click vào phần Quỹ tiền trong menu bên trái*/
+/*Tạo bởi: NBDUONG (30/4/2019)*/
+.fund-menu {
+    position: absolute;
+    display: none;
+    top: 52px;
+    left: 100px;
+    width: 235px;
+    height: 92.1%;
+    overflow-y: auto;
+    background-color: #00577b;
+    z-index: 9999999;
+}
+
+    .fund-menu ul {
+        padding: 10px 20px;
+        list-style-type: none;
+    }
+
+.list-item_intro {
+    background-color: #004e6e !important;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    text-transform: uppercase;
+    padding-left: 16px;
+    font-weight: 700;
+    cursor: default;
+    margin-bottom: 10px;
+}
+
+.fund-menu_list-item {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+}
+
+.fund-menu-item {
+    color: #b2d5e3;
+    text-decoration: none;
+    padding: 10px 10px 10px 20px;
+}
+
+    .fund-menu-item:hover {
+        color: #fff;
+    }
+/*Kết thúc CSS cho thanh menu mở ra*/
+/*Tạo bởi: NBDUONG (2/5/2019)*/
+
+/*Menu sổ xuống khi click vào nút Thêm mới*/
+/*Tạo bởi: NBDUONG (2/5/2019)*/
+#btnAdd {
+    position: relative;
+}
+
+.choose-option-add {
+    position: absolute;
+    width: 120px;
+    height: 70px;
+    background: #fff;
+    top: 38px;
+    left: 0px;
+    z-index: 9999999;
+    box-shadow: 1px 1px 9px 2px grey;
+    display: none;
+}
+
+    .choose-option-add a {
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+        color: #212121;
+    }
+
+        .choose-option-add a:hover {
+            color: #fff;
+        }
+/*Kết thúc CSS của menu sổ xuống khi bấm nút Thêm mới*/
+/*Tạo bởi: NBDUONG (2/5/2019)*/
+
+/*Css cho phần cuối của trang chi tiết dữ liệu*/
+/*Tạo bởi: NBDUONG (2/5/2019)*/
+.footer-content_detail-info,
+.formDetail_detail-content {
+    margin-top: 3px;
+    height: 9%;
+    background: #F0F0F0;
+}
+
+.footer-content_detail-table-data {
+    height: 21%;
+}
+
+    .footer-content_detail-table-data .detail-table-data_list-data .table-row:hover {
+        background: #edeff2;
+    }
+
+#formDetail .footer-content_detail-table-data .detail-table-data_list-data .table-row.flex input {
+    height: 33px;
+    width: 97%;
+    border-radius: 4px;
+    border: none;
+    padding-left: 11px;
+    background: none;
+}
+
+    #formDetail .footer-content_detail-table-data .detail-table-data_list-data .table-row.flex input:focus {
+        background: #fff;
+        border: 1px solid #A6C8FF;
+    }
+
+
+.detail-info-column,
+.detail-data-item {
+    height: 100%;
+    border-right: 1px solid #d0d0d0;
+    line-height: 24px;
+}
+
+.detail-data-item {
+    line-height: 37px;
+}
+
+    .detail-data-item span {
+        padding-left: 10px;
+    }
+
+.detail-info_first-column,
+.detail-data-item_first-column,
+.detail-total-money-row_first-column {
+    border-left: 1px solid #e1e1e1;
+    width: 67%;
+}
+
+.detail-total-money-row_first-column {
+    border-left: none;
+}
+
+.detail-info_second-column,
+.detail-info_third-column,
+.detail-data-item_second-column,
+.detail-data-item_third-column,
+.detail-total-money-row_second-column,
+.detail-total-money-row_third-column {
+    width: 16.48%;
+}
+
+.detail-table-data_list-data {
+    overflow-y: auto;
+}
+
+.detail-total-money-row_second-column span {
+    padding-left: 10px;
+}
+
+.disable-buttonPaging {
+    pointer-events: none;
+    opacity: 0.4;
+}
+/*right  click popup*/
+.right-click-popup {
+    background: #fff;
+    height: auto;
+    width: 120px;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.popup-item > div {
+    display: inline-block;
+}
+
+.right-click-popup .popup-item {
+    padding: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.popup-item.btn-view {
+    height: 16px;
+}
+
+    .popup-item.btn-view .popup-item-text {
+        margin-left: 2px;
+    }
+
+.right-click-popup .popup-item:hover {
+    background: #026b97;
+    color: #fff;
+}
+
+.popup-item-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('/Contents/images/common-icon.png');
+    background-repeat: no-repeat;
+    margin-right: 8px;
+}
+
+
+    .popup-item-icon.add-icon {
+        background-position: -153px -178px;
+    }
+
+    .popup-item-icon.duplicate-icon {
+        background-position: -52px -178px;
+    }
+
+    .popup-item-icon.edit-icon {
+        background-position: -79px -178px;
+    }
+
+    .popup-item-icon.delete-icon {
+        background-position: -104px -178px;
+    }
+
+    .popup-item-icon.icon-view {
+        background-position: -1651px -127px;
+        display: inline-block;
+        margin-left: -2px;
+    }
+
+    .popup-item-icon.reload-icon {
+        background-position: -129px -177px;
+    }
+
+.popup-item:hover .popup-item-icon.add-icon {
+    background-position: -1px -127px;
+}
+
+.popup-item:hover .popup-item-icon.icon-view {
+    background-position: -1601px -130px;
+}
+
+.popup-item:hover .popup-item-icon.duplicate-icon {
+    background-position: -978px -127px;
+}
+
+.popup-item:hover .popup-item-icon.reload-icon {
+    background-position: -129px -202px;
+}
+
+.popup-item:hover .popup-item-icon.edit-icon {
+    height: 14px;
+    width: 14px;
+    background-position: -77px -203px
+}
+
+.popup-item:hover .popup-item-icon.delete-icon {
+    background-position: -1076px -127px;
+}
+
+@media only screen and (max-height: 780px) {
+    .middle-content_table-data {
+        height: 180px;
+        max-height: 300px;
+    }
+
+    .footer-content_detail-info, .formDetail_detail-content {
+        height: 19%;
+    }
+}
+
+@media only screen and (min-height: 780px) {
+    .middle-content_table-data {
+        height: 430px;
+        max-height: 600px;
+    }
+}
+
+/*Kết thúc phần CSS cho phần cuối của bảng dữ liệu chi tiết*/
+/*Kết thúc CSS cho phần nội dung giữa trang*/
+

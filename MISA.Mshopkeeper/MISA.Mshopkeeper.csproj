@@ -1,0 +1,244 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{126FF9D4-3E7A-46ED-B8B7-CFE36A08663F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MISA.Mshopkeeper</RootNamespace>
+    <AssemblyName>MISA.Mshopkeeper</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Contents\css\common\main.css" />
+    <Content Include="Contents\css\fund\formfund.css" />
+    <Content Include="Contents\css\fund\fund.css" />
+    <Content Include="Contents\css\fund\jquerydatepicker.css" />
+    <Content Include="Contents\css\fund\updateJqueryUI.css" />
+    <Content Include="Contents\css\purchase\purchase.css" />
+    <Content Include="Contents\css\purchase\purchaseForm.css" />
+    <Content Include="Contents\images\ajax-loading.gif" />
+    <Content Include="Contents\images\arrow-down-line.png" />
+    <Content Include="Contents\images\bag.PNG" />
+    <Content Include="Contents\images\bookmark.png" />
+    <Content Include="Contents\images\check.png" />
+    <Content Include="Contents\images\common-icon.png" />
+    <Content Include="Contents\images\delete-white.png" />
+    <Content Include="Contents\images\exclamation.png" />
+    <Content Include="Contents\images\extention.PNG" />
+    <Content Include="Contents\images\favicon.ico" />
+    <Content Include="Contents\images\icon-change-password16.png" />
+    <Content Include="Contents\images\icon-delete-red-16.png" />
+    <Content Include="Contents\images\icon-feedback.png" />
+    <Content Include="Contents\images\icon-file-gray-32.png" />
+    <Content Include="Contents\images\icon-help.png" />
+    <Content Include="Contents\images\icon-logout16.png" />
+    <Content Include="Contents\images\icon-notify.png" />
+    <Content Include="Contents\images\icon-popup.png" />
+    <Content Include="Contents\images\icon-shopkeeper.PNG" />
+    <Content Include="Contents\images\icon-tick-fill-white-16.png" />
+    <Content Include="Contents\images\icon-tick-green-16.png" />
+    <Content Include="Contents\images\iconfinder_icon-111-search_314478 %281%29.png" />
+    <Content Include="Contents\images\iconfinder_icon-111-search_314478.png" />
+    <Content Include="Contents\images\icon_5shop_white_24_1.png" />
+    <Content Include="Contents\images\icon_chon.jpg" />
+    <Content Include="Contents\images\icon_help_18.png" />
+    <Content Include="Contents\images\icon_sme_20_white.png" />
+    <Content Include="Contents\images\icon_tim.png" />
+    <Content Include="Contents\images\ic_ocm_logo.png" />
+    <Content Include="Contents\images\ic_sogiaohang.png" />
+    <Content Include="Contents\images\Image.jpg" />
+    <Content Include="Contents\images\importsuccess.PNG" />
+    <Content Include="Contents\images\index.png" />
+    <Content Include="Contents\images\link.gif" />
+    <Content Include="Contents\images\logo-mshopkeeper.png" />
+    <Content Include="Contents\images\logo-sidebar.png" />
+    <Content Include="Contents\images\Logo.MShop.png" />
+    <Content Include="Contents\images\Logo.new_doc-02.png" />
+    <Content Include="Contents\images\logo.png" />
+    <Content Include="Contents\images\Logo_meInvoice.svg" />
+    <Content Include="Contents\images\Maximize.png" />
+    <Content Include="Contents\images\not-save.png" />
+    <Content Include="Contents\images\notify-18.png" />
+    <Content Include="Contents\images\No_data_No_info_Missing-512.png" />
+    <Content Include="Contents\images\pagelist_icon.gif" />
+    <Content Include="Contents\images\print.png" />
+    <Content Include="Contents\images\quick-add.png" />
+    <Content Include="Contents\images\Quick-search.png" />
+    <Content Include="Contents\images\save-white.png" />
+    <Content Include="Contents\images\Search-blue.png" />
+    <Content Include="Contents\images\searchbutton.png" />
+    <Content Include="Contents\images\slibarmenu.png" />
+    <Content Include="Contents\images\uncheck.png" />
+    <Content Include="Contents\images\user-photo.png" />
+    <Content Include="Contents\js\Common\Common.js" />
+    <Content Include="Contents\js\fund\dialogFund.js" />
+    <Content Include="Contents\js\fund\formfund.js" />
+    <Content Include="Contents\js\fund\fund.js" />
+    <Content Include="Contents\js\purchase\dataStorage.js" />
+    <Content Include="Contents\js\purchase\dialogError.js" />
+    <Content Include="Contents\js\purchase\purchase.js" />
+    <Content Include="Contents\js\purchase\purchaseForm.js" />
+    <Content Include="Contents\plugins\bootstrap.min.css" />
+    <Content Include="Contents\plugins\bootstrap.min.js" />
+    <Content Include="Contents\plugins\jquery-3.3.1.min.js" />
+    <Content Include="Contents\plugins\jquery-ui.min.css" />
+    <Content Include="Contents\plugins\jquery-ui.min.js" />
+    <Content Include="Contents\plugins\jquery.masknumber.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Views\Home\fund.html" />
+    <Content Include="Views\Home\purchase.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FundController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Contents\plugins\bootstrap.min.css.map" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Contents\plugins\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MISA.BL\MISA.BL.csproj">
+      <Project>{88e34625-7218-4d94-aa15-6008e5140c63}</Project>
+      <Name>MISA.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MISA.Commons\MISA.Commons.csproj">
+      <Project>{4c137695-c476-4455-9a95-d587b4534cd4}</Project>
+      <Name>MISA.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MISA.DL\MISA.DL.csproj">
+      <Project>{f47668ea-6eb0-4a31-8839-2d93fbf5e6fe}</Project>
+      <Name>MISA.DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MISA.Entities\MISA.Entities.csproj">
+      <Project>{28b4639e-0ade-4957-b39c-8006d8c2ba5b}</Project>
+      <Name>MISA.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65033</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:65033/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,1340 @@
+﻿<!--HTML cho trang Quỹ tiền-->
+<!--Tạo bởi: NBDUONG (28/4/2019)-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Quỹ tiền</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/Contents/images/favicon.ico" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="/Contents/plugins/jquery-ui.min.css" rel="stylesheet" />
+    <link href="/Contents/css/fund/fund.css" rel="stylesheet" />
+    <link href="/Contents/css/fund/updateJqueryUI.css" rel="stylesheet" />
+    <link href="/Contents/css/fund/formfund.css" rel="stylesheet" />
+    <link href="/Contents/css/common/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <!--Header-->
+        <!--Tạo bởi: NBDUONG (28/4/2019)-->
+        <div class="MISATop-header">
+            <!--Logo bên trái-->
+            <!--Tạo bởi: NBDUONG (28/4/2019)-->
+            <div class="header-left-item left-float">
+                <div class="header-left-item_menu-icon no-repeat"></div>
+            </div>
+            <!--Phần bên phải-->
+            <!--Tạo bởi: NBDUONG (28/4/2019)-->
+            <div class="header-middle-item left-float">
+                <div class="header-middle-item_summary-text left-float">
+                    <p>Thu, chi tiền mặt</p>
+                </div>
+                <div class="header-middle-item_main-content left-float">
+                    <div class="header-middle-item_main-content_start-link left-float">
+                        <a href="#">
+                            <span class="start-link-icon left-float"></span>
+                            <span>Trợ giúp</span>
+                        </a>
+                    </div>
+
+                    <!-- Tùy chỉnh user -->
+                    <div class="header-middle-item_main-content_user" style="float: right">
+                        <img src="/Contents/images/Image.jpg" class="user-avatar left-float" />
+                        <div class="user-name left-float">Nguyễn Huy Thông</div>
+                        <div class="user-name_dropdown-icon left-float"></div>
+                        <div class="user-name_dropdown-menu">
+                            <div class="option-row flex">
+                                <span class="icon icon_change-psw"></span>
+                                <span class="option-content">Thay đổi mật khẩu</span>
+                            </div>
+                            <div class="option-row flex">
+                                <span class="icon icon_feedback"></span>
+                                <span class="option-content">Góp ý với nhà phát triển</span>
+                            </div>
+                            <div class="option-row flex">
+                                <span class="icon icon_logout"></span>
+                                <span class="option-content">Đăng xuất</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Combobox -->
+                    <div class="header-middle-item_main-content_comboBox left-float" style="float: right">
+                        <span class="header-middle-item_main-content_comboBox-content left-float">Thời trang MM Thành Công</span>
+                        <span class="header-middle-item_main-content_comboBox-icon left-float"></span>
+                    </div>
+
+                    <div class="comboBox_dropdown-menu">
+                        <div class="option-row flex">
+                            <span class="option-content">Thời trang MM Thành Công</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right-item left-float">
+                    <div class="header-right-item_icon-notification left-float" data-title="Thông báo" data-toggle="tooltip" data-placement="bottom"></div>
+                    <div class="header-right-item_icon-help left-float" data-title="Trợ giúp" data-toggle="tooltip" data-placement="bottom"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--Phần thân trang-->
+        <!--Tạo bởi: NBDUONG (28/4/2019)-->
+        <div class="MISABody-part">
+            <!--Menu bên trái-->
+            <!--Tạo bởi: NBDUONG (29/4/2019)-->
+            <div class="MISABody-part_aside-menu">
+                <div class="aside-menu_upper-list-item">
+                    <a href="#" class="flex">
+                        <div class="menu-item_icon icon-home left-float"></div>
+                        <div class="menu-item_text left-float">Tổng quan</div>
+                    </a>
+                    <a href="purchase.html" class="flex">
+                        <div class="menu-item_icon icon-buy left-float"></div>
+                        <div class="menu-item_text left-float">Mua hàng</div>
+                    </a>
+                    <a href="warehouse.html" class="flex">
+                        <div class="menu-item_icon icon-storage left-float"></div>
+                        <div class="menu-item_text left-float">Kho</div>
+                    </a>
+                    <a href="#" class="flex" id="getFund">
+                        <div class="menu-item_icon icon-fund left-float"></div>
+                        <div class="menu-item_text left-float">Quỹ tiền</div>
+                    </a>
+                    <a href="#" class="flex">
+                        <div class="menu-item_icon icon-cost left-float"></div>
+                        <div class="menu-item_text left-float">Chi phí</div>
+                    </a>
+                    <a href="#" class="flex">
+                        <div class="menu-item_icon icon-sale left-float"></div>
+                        <div class="menu-item_text left-float">Khuyến mại</div>
+                    </a>
+                    <a href="#" class="flex">
+                        <div class="menu-item_icon icon-menu left-float"></div>
+                        <div class="menu-item_text left-float">Danh mục</div>
+                    </a>
+                    <a href="#" class="flex">
+                        <span class="menu-item_icon icon-meInvoice left-float"></span>
+                        <span class="menu-item_text left-float">Báo cáo</span>
+                    </a>
+                    <a href="#" class="flex">
+                        <div class="menu-item_icon icon-setting left-float"></div>
+                        <div class="menu-item_text left-float">Thiết lập</div>
+                    </a>
+                </div>
+                <div class="aside-menu_lower-list-item">
+                    <a href="#" class="flex">
+                        <div class="menu-item_icon icon-goods left-float"></div>
+                        <div class="menu-item_text left-float">Hàng hóa</div>
+                    </a>
+                </div>
+            </div>
+
+            <!--Nội dung bên phải-->
+            <!--Tạo bởi: NBDUONG (29/4/2019)-->
+            <div class="MISABody-part_middle-content">
+                <div class="middle-content_upper-part">
+                    <!--Danh sách các nút-->
+                    <!--Tạo bởi: NBDUONG (30/4/2019)-->
+                    <div class="middle-content_header-list-button flex">
+                        <div class="list-button_item flex left-float" id="btnAdd" data-title="Ctrl + 1" data-toggle="tooltip" data-placement="bottom">
+                            <span class="icon icon-plus"></span>
+                            <span class="text">Thêm mới</span>
+                            <i class="fas fa-caret-down"></i>
+                            <div class="choose-option-add">
+                                <a href="#" id="btnCollectMoney">Phiếu thu tiền</a>
+                                <a href="#" id="btnPayMoney">Phiếu chi tiền</a>
+                            </div>
+                        </div>
+                        <div class="list-button_item flex left-float btnCanBeDisabled" id="btnDuplicate" data-title="Ctrl + 2" data-toggle="tooltip" data-placement="bottom">
+                            <span class="icon icon-duplicate"></span>
+                            <span class="text">Nhân bản</span>
+                        </div>
+                        <div class="list-button_item flex left-float btnCanBeDisabled" id="btnView" data-title="Ctrl + 3" data-toggle="tooltip" data-placement="bottom">
+                            <span class="icon icon-view"></span>
+                            <span class="text">Xem</span>
+                        </div>
+                        <div class="list-button_item flex left-float btnCanBeDisabled" data-title="Ctrl + E" id="btnEdit" data-toggle="tooltip" data-placement="bottom">
+                            <span class="icon icon-edit"></span>
+                            <span class="text">Sửa</span>
+                        </div>
+                        <div class="list-button_item flex left-float btnCanBeDisabled" data-title="Ctrl + D" id="btnDelete" data-toggle="tooltip" data-placement="bottom">
+                            <span class="icon icon-delete"></span>
+                            <span class="text">Xóa</span>
+                        </div>
+                        <div class="list-button_item flex left-float" id="btnRefresh">
+                            <span class="icon icon-refresh"></span>
+                            <span class="text">Nạp</span>
+                        </div>
+                    </div>
+
+                    <!--Thanh điều hướng (có chứa các input chọn ngày và khoảng thời gian)-->
+                    <!--Tạo bởi: NBDUONG (30/4/2019)-->
+                    <div class="middle-content_nav-list-button flex">
+                        <div class="select-month left-float">
+                            <select tabindex="0" autofocus>
+                                <option value="1">Hôm nay</option>
+                                <option value="2">Hôm qua</option>
+                                <option value="3">Tuần này</option>
+                                <option value="4">Tuần trước</option>
+                                <option value="5" selected>Tháng này</option>
+                                <option value="6">Tháng trước</option>
+                                <option value="7">Quý này</option>
+                                <option value="8">Quý trước</option>
+                                <option value="9">6 tháng trước</option>
+                                <option value="10">Năm nay</option>
+                                <option value="11">Năm trước</option>
+                                <option value="12">Khác</option>
+                            </select>
+                        </div>
+                        <span class="from-date left-float">Từ ngày</span>
+                        <div class="select-date-from left-float">
+                            <input type="text" name="name" value="01/06/2019" tabindex="0" class="select-from-date left-float" dataType="date" />
+                            <div class="icon icon-calendar left-float"></div>
+                        </div>
+                        <span class="from-date left-float">Đến ngày</span>
+                        <div class="select-date-to left-float">
+                            <input type="text" name="name" value="25/06/2019" tabindex="0" class="select-to-date left-float" dataType="date" />
+                            <div class="icon icon-calendar-to left-float"></div>
+                        </div>
+                        <div class="button_get-data left-float">
+                            <div class="icon icon-get-data left-float"></div>
+                            <div class="getData-text left-float">Lấy dữ liệu</div>
+                        </div>
+                    </div>
+                    <!--Kết thúc thanh điều hướng-->
+                    <!--Nội dung của bảng dữ liệu-->
+                    <!-- Nội dung phần header của bảng -->
+                    <!--Tạo bởi: NBDUONG (30/4/2019)-->
+                    <div class="middle-content_header-table flex">
+                        <div class="header-table_first-column header-table-column1">
+                            <div class="choose-all background-uncheck"><img src="" /></div>
+                        </div>
+                        <div class="header-table_second-column header-table-column header-table-column2">
+                            <span class="column-text">Ngày</span>
+                            <div class="column-input">
+                                <div class="input-option left-float">=</div>
+                                <div class="select-option-menu left-float">
+                                    <span><b>=</b> : Bằng</span>
+                                    <span><b>< </b> : Nhỏ hơn</span>
+                                    <span><b>&le;</b> :Nhỏ hơn hoặc bằng</span>
+                                    <span><b>> </b>: Lớn hơn</span>
+                                    <span><b>&ge;</b> : Lớn hơn hoặc bằng</span>
+                                </div>
+                                <div class="column-input_input-date left-float">
+                                    <input type="text" name="name" value="" tabindex="0" class="left-float input-pickdate" dataType="date" />
+                                    <div class="column-input_input-date-icon left-float"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-table_third-column header-table-column header-table-column3">
+                            <span class="column-text">Số chứng từ</span>
+                            <div class="column-input">
+                                <div class="input-option input-option-star left-float">*</div>
+                                <div class="select-option-menu left-float" style="display:none;">
+                                    <span><b>*</b> : Chứa</span>
+                                    <span><b>= </b> : Bằng</span>
+                                    <span><b>+</b> : Bắt đầu bằng</span>
+                                    <span><b>- </b>: Kết thúc bằng</span>
+                                    <span><b>!</b> : Không chứa</span>
+                                </div>
+                                <div class="column-input_input-date left-float">
+                                    <input type="text" name="name" tabindex="0" value="" class="left-float" fieldName="search-documentCode" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-table_fourth-column header-table-column header-table-column4">
+                            <span class="column-text">Loại chứng từ</span>
+                            <div class="column-input">
+                                <div class="select-option-menu select-option-menu-docType left-float" style="display:none;">
+                                    <span>Tất cả</span>
+                                    <span>Phiếu thu tiền mặt</span>
+                                    <span>Phiếu thu nợ - Tiền mặt</span>
+                                    <span>Phiếu thu đặt cọc - Tiền mặt</span>
+                                    <span>Phiếu chi tiền mặt</span>
+                                    <span>Phiếu trả nợ - Tiền mặt</span>
+                                    <span>Phiếu nhập hàng - Tiền mặt</span>
+                                    <span>Phiếu trả lại hàng mua - Tiền mặt</span>
+                                </div>
+                                <div class="column-input_input-date column-input_input-date-fourth left-float">
+                                    <input type="text" name="name" tabindex="0" value="Tất cả" class="left-float input-documentType" fieldName="search-documentType" />
+                                    <div class="column-input_input-arrow-icon left-float"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-table_fifth-column header-table-column header-table-column5">
+                            <span class="column-text">Tổng tiền</span>
+                            <div class="column-input">
+                                <div class="input-option left-float">&le;</div>
+                                <div class="select-option-menu left-float" style="display:none;">
+                                    <span><b>=</b> : Bằng</span>
+                                    <span><b>< </b> : Nhỏ hơn</span>
+                                    <span><b>&le;</b> :Nhỏ hơn hoặc bằng</span>
+                                    <span><b>> </b>: Lớn hơn</span>
+                                    <span><b>&ge;</b> : Lớn hơn hoặc bằng</span>
+                                </div>
+                                <div class="column-input_input-date column-input_input-date-fifth left-float">
+                                    <input type="text" name="name" tabindex="0" value="" class="left-float" dataType="number" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-table_sixth-column header-table-column header-table-column6">
+                            <span class="column-text">Đối tượng nộp/nhận</span>
+                            <div class="column-input">
+                                <div class="input-option input-option-star left-float">*</div>
+                                <div class="select-option-menu left-float" style="display:none;">
+                                    <span><b>*</b> : Chứa</span>
+                                    <span><b>= </b> : Bằng</span>
+                                    <span><b>+</b> : Bắt đầu bằng</span>
+                                    <span><b>- </b>: Kết thúc bằng</span>
+                                    <span><b>!</b> : Không chứa</span>
+                                </div>
+                                <div class="column-input_input-date left-float">
+                                    <input type="text" name="name" tabindex="0" value="" class="left-float" fieldName="search-personName" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-table_seventh-column header-table-column header-table-column7">
+                            <span class="column-text">Lý do</span>
+                            <div class="column-input">
+                                <div class="input-option input-option-star left-float">*</div>
+                                <div class="select-option-menu left-float" style="display:none;">
+                                    <span><b>*</b> : Chứa</span>
+                                    <span><b>= </b> : Bằng</span>
+                                    <span><b>+</b> : Bắt đầu bằng</span>
+                                    <span><b>- </b>: Kết thúc bằng</span>
+                                    <span><b>!</b> : Không chứa</span>
+                                </div>
+                                <div class="column-input_input-date column-input_input-date-seventh left-float">
+                                    <input type="text" name="name" tabindex="0" value="" class="left-float" fieldName="search-reason" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kết thúc phần đầu bảng dữ liệu -->
+                    <!-- Phần thân dữ liệu của bảng -->
+                    <div class="middle-content_table-data" style="position:relative;">
+                        <!-- Xuất hiện loading khi load dữ liệu trong trang -->
+                        <!-- Tạo bởi: NBDUONG(15/5/2019) -->
+                        <div class="loading"></div>
+                        <div class="table-data_list-data">
+
+                        </div>
+                        <div class="row-clone" style="display:none">
+                            <div class="table-row flex">
+                                <div class="data-item_first-column data-item left-float data-item1">
+                                    <div class="data-item_first-column_button-check" style="height:35px">
+                                        <div class="choose-row background-uncheck" style="line-height: 17px"><img src="" /></div>
+                                    </div>
+                                </div>
+                                <div class="data-item_second-column data-item data-clickable left-float data-item2" dataType="date" fieldName="DocumentDate">
+                                    <span></span>
+                                </div>
+                                <div class="data-item_third-column data-item data-clickable left-float data-item3" fieldName="DocumentCode">
+                                    <span></span>
+                                </div>
+                                <div class="data-item_fourth-column data-item data-clickable left-float data-item4" fieldName="DocumentTypeName">
+                                    <span></span>
+                                </div>
+                                <div class="data-item_fifth-column data-item data-clickable left-float data-item5" dataType="number" fieldName="TotalMoney">
+                                    <span></span>
+                                </div>
+                                <div class="data-item_sixth-column data-item data-clickable left-float data-item6" fieldName="PersonName">
+                                    <span></span>
+                                </div>
+                                <div class="data-item_seventh-column data-item data-clickable left-float data-item7" fieldName="Reason">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Kết thúc phần thân dữ liệu của bảng -->
+                        <!--Phần chân bảng (có chứa tổng tiền)-->
+                        <!-- Tạo bởi: NBDUONG(1/5/2019) -->
+                        <div class="middle-table_total-money-row flex">
+                            <div class="total-money-row_first-column total-money-column left-float"></div>
+                            <div class="total-money-row_second-column total-money-column left-float"></div>
+                            <div class="total-money-row_third-column total-money-column left-float"></div>
+                            <div class="total-money-row_fourth-column total-money-column left-float"></div>
+                            <div class="total-money-row_fifth-column total-money-column left-float" dataType="number">
+                                <span>0</span>
+                            </div>
+                            <div class="total-money-row_sixth-column total-money-column left-float"></div>
+                            <div class="total-money-row_seventh-column total-money-column left-float"></div>
+                        </div>
+                        <!--Kết thúc phần chân bảng-->
+                        <!-- Các lựa chọn phân trang và chuyển trang kế tiếp  -->
+                        <!-- Tạo bởi: NBDUONG(1/5/2019) -->
+                        <div class="middle-table_pagination-option">
+                            <div class="pagination-option_left flex left-float">
+                                <span class="back-to-first-page back-to-first-pageFund"></span>
+                                <span class="back-page back-pageFund"></span>
+                                <span class="page pageFund">Trang</span>
+                                <input type="text" name="name" value="1" tabindex="0" class="page-index indexPageFund" />
+                                <span class="total-page total-pageFund">trên <span class="totalPages"></span></span>
+                                <span class="next-page next-pageFund"></span>
+                                <span class="forward-to-last-page forward-to-last-pageFund"></span>
+                                <span class="reload-page reload-pageFund"></span>
+                                <select class="number-of-items left-float" id="pagination" tabindex="0">
+                                    <option class="option-number-of-items" selected value="15">15</option>
+                                    <option class="option-number-of-items" value="25">25</option>
+                                    <option class="option-number-of-items" value="50">50</option>
+                                    <option class="option-number-of-items" value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="pagination-option_right flex left-float" tabindex="0">
+                                <span class="display-pageNumber">
+                                    Hiển thị <span class="first-rowFund">1</span> - <span class="last-rowFund">11</span> trên <span class="totalDocuments">11</span> kết quả
+                                </span>
+                            </div>
+                        </div>
+                        <!--Kết thúc phần lựa chọn phân trang-->
+                        <!--Chi tiết dữ liệu-->
+                        <!-- Tạo bởi: NBDUONG(1/5/2019) -->
+                        <div class="middle-content_data-detail">
+                            <div class="middle-content_data-detail_blank-space"></div>
+                            <div class="middle-content_data-detail_intro">
+                                <span>Chi tiết</span>
+                            </div>
+                        </div>
+
+                        <!--Phần nội dung của bảng chi tiết dữ liệu-->
+                        <!-- Tạo bởi: NBDUONG(1/5/2019) -->
+                        <div class="footer-content_detail-info flex">
+                            <div class="detail-info_first-column detail-info-column left-float">
+                                <div class="detail-info_first-column_label">
+                                    <span class="column-text">Diễn giải</span>
+                                </div>
+                            </div>
+                            <div class="detail-info_second-column detail-info-column left-float">
+                                <div class="detail-info_first-column_label">
+                                    <span class="column-text">Số tiền</span>
+                                </div>
+                            </div>
+                            <div class="detail-info_third-column detail-info-column left-float">
+                                <div class="detail-info_first-column_label">
+                                    <span class="column-text">Mục thu/chi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Dữ liệu trong bảng-->
+                        <!-- Tạo bởi: NBDUONG(2/5/2019) -->
+                        <div class="footer-content_detail-table-data" style="position: relative; background: #fff">
+                            <div class="loading"></div>
+                            <div class="detail-table-data_list-data"></div>
+                            <!-- Xuất hiện loading khi load dữ liệu trong trang -->
+                            <!-- Tạo bởi: NBDUONG(15/5/2019) -->
+                            <div class="footer-table-row-clone" style="display: none">
+                                <div class="table-row flex">
+                                    <div class="detail-data-item_first-column detail-data-item left-float" fieldName="Reason">
+                                        <span></span>
+                                    </div>
+                                    <div class="detail-data-item_second-column detail-data-item left-float" dataType="number" fieldName="TotalMoney">
+                                        <span></span>
+                                    </div>
+                                    <div class="detail-data-item_third-column detail-data-item left-float" fieldName="DocumentTypeName">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-table_detail-total-money-row flex">
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_second-column total-money-column left-float detailTotalMoney" dataType="number"><span>0</span></div>
+                                <div class="detail-total-money-row_second-column total-money-column left-float"></div>
+                            </div>
+                            <!--Kết thúc phần dữ liệu của bảng-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Menu mở ra khi bấm vào Quỹ tiền ở menu bên trái-->
+        <!-- Tạo bởi: NBDUONG(1/5/2019) -->
+        <div class="fund-menu">
+            <ul style="margin-bottom: 0px">
+                <li class="list-item_intro">Tiền mặt</li>
+                <li class="fund-menu_list-item"><a href="fund.html" class="fund-menu-item">Thu, chi tiền mặt</a></li>
+                <li class="fund-menu_list-item"><a href="cashStatistics.html" class="fund-menu-item">Kiểm kê tiền mặt</a></li>
+                <li class="fund-menu_list-item"><a href="" class="fund-menu-item">Sổ chi tiết tiền mặt</a></li>
+            </ul>
+            <ul style="margin-top: -10px">
+                <li class="list-item_intro">Tiền gửi</li>
+                <li class="fund-menu_list-item"><a href="#" class="fund-menu-item">Thu, chi tiền gửi</a></li>
+                <li class="fund-menu_list-item"><a href="#" class="fund-menu-item">Đối chiếu tiền gửi</a></li>
+                <li class="fund-menu_list-item"><a href="#" class="fund-menu-item">Sổ chi tiết tiền gửi</a></li>
+            </ul>
+        </div>
+
+        <!--Form Thêm phiếu thu, Thêm phiếu chi-->
+        <!-- Tạo bởi: NBDUONG(2/5/2019) -->
+        <div id="formDetail">
+            <!-- Danh sách nút trong form -->
+            <!-- Tạo bởi: NBDUONG(3/5/2019) -->
+            <div class="formDetail-list-button flex">
+                <div class="list-button_item flex left-float">
+                    <div class="document-before left-float" style="margin-right: 10px;" id="before-formDetail" data-title="F7" data-toggle="tooltip" data-placement="bottom">
+                        <div class="icon icon-previous left-float"></div>
+                        <span class="text left-float" style="line-height: 16px;">Trước</span>
+                        <div class="icon icon-caret-down left-float"></div>
+                    </div>
+                    <div class="document-after left-float" id="after-formDetail" data-title="F8" data-toggle="tooltip" data-placement="bottom">
+                        <span class="text left-float" style="line-height: 16px;">Sau</span>
+                        <div class="icon icon-next left-float"></div>
+                        <div class="icon icon-caret-down left-float"></div>
+                    </div>
+                </div>
+                <div class="list-button_item flex left-float" id="add-formDetail">
+                    <span class="icon icon-add"></span>
+                    <span class="text">Thêm mới</span>
+                </div>
+                <div class="list-button_item flex left-float" id="edit-formDetail">
+                    <span class="icon icon-edit"></span>
+                    <span class="text">Sửa</span>
+                </div>
+                <div class="list-button_item button-display flex left-float" id="save-formDetail" data-title="Ctrl + S" data-toggle="tooltip" data-placement="bottom">
+                    <span class="icon icon-save"></span>
+                    <span class="text">Lưu</span>
+                </div>
+                <div class="list-button_item flex left-float" id="delete-formDetail">
+                    <span class="icon icon-delete"></span>
+                    <span class="text">Xóa</span>
+                </div>
+                <div class="list-button_item flex left-float" id="postpone-formDetail">
+                    <span class="icon icon-postpone"></span>
+                    <span class="text">Hoãn</span>
+                </div>
+                <div class="list-button_item flex left-float" id="print-formDetail">
+                    <span class="icon icon-print"></span>
+                    <span class="text">In</span>
+                    <span class="icon icon-caret-down"></span>
+                </div>
+                <div class="list-button_item button-display flex left-float" data-title="F1" id="btnHelpFormDialog" data-toggle="tooltip" data-placement="bottom">
+                    <span class="icon icon-help"></span>
+                    <span class="text">Trợ giúp</span>
+                </div>
+                <div class="list-button_item button-display flex left-float" data-title="Ctrl + Q" id="btnCloseFormDialog" data-toggle="tooltip" data-placement="bottom">
+                    <span class="icon icon-close"></span>
+                    <span class="text">Đóng</span>
+                </div>
+            </div>
+            <!-- Kết thúc danh sách nút trong form -->
+            <!-- Chi tiết form -->
+            <!-- Tạo bởi: NBDUONG(3/5/2019) -->
+            <div class="formDetail_main-form">
+                <!--Thanh điều hướng với các radio trong form-->
+                <div class="formDetail_navigation-bar flex">
+                    <span class="text first-text">Mục đích chi</span>
+                    <input type="radio" value="" id="radio1" name="radio-group" />
+                    <label for="radio1">Khác</label>
+                    <input type="radio" value="" id="radio2" name="radio-group" checked="checked" />
+                    <label for="radio2">Trả nợ</label>
+                    <div class="navigation-bar_item choose-pay-recipt flex">
+                        <span class="text">Chọn hóa đơn trả nợ</span>
+                    </div>
+                </div>
+
+                <!-- Khi lựa chọn nút Trả nợ trong form Thêm phiếu thu hoặc Thêm phiếu chi -->
+                <!-- Tạo bởi: NBDUONG(4/5/2019) -->
+                <div class="formDetail-info formDetail-info-paydebt enable-input-paydebt">
+                    <div class="formDetail_general-info">
+                        <!--Thông tin chung-->
+                        <!-- Tạo bởi: NBDUONG(4/5/2019) -->
+                        <div class="field-data-hidden" style="display:none">
+                            <input type="text" name="name" fieldName="PersonID" value="" hidden />
+                            <input type="text" name="name" fieldName="EmployeeID" value="" hidden />
+                            <input type="text" name="name" fieldName="DocumentTypeID" value="" hidden />
+                            <input type="number" name="name" fieldName="CheckType" value="" hidden />
+                            <input type="number" name="name" fieldName="IsPaid" value="" hidden />
+                        </div>
+                        <div class="formDetail_general-info_left-item left-float">
+                            <div class="formDetail_general-info_left-item_intro">Thông tin chung</div>
+                            <!--List Label-->
+                            <div class="formDetail_general-info_left-item_list-info left-float" style="width: 115px;">
+                                <div class="left-item-info">Nhà cung cấp</div>
+                                <div class="left-item-info">Người nhận</div>
+                                <div class="left-item-info">Địa chỉ</div>
+                                <div class="left-item-info">Lý do chi</div>
+                                <div class="left-item-info">Nhân viên chi</div>
+                            </div>
+
+                            <!--Danh sách input-->
+                            <div class="formDetail_general-info_left-item_list-input left-float">
+                                <div class="left-item-input flex" style="position:relative">
+                                    <div class="left-item-input-with-icon left-float flex">
+                                        <input type="text" value="" class="left-float supplier-code-paydebt paydebt-disable remove-val" disabled fieldName="PersonCode" />
+                                        <span class="input-dropdown-icon dropdown-supplier left-float"></span>
+                                        <span class="input-search-icon  search-icon-supplier left-float"></span>
+                                    </div>
+                                    <div class="left-item-input-with-icon-disabled"></div>
+                                    <input type="text" value="" class="left-float supplier-name-paydebt paydebt-disable remove-val" disabled fieldName="PersonName" />
+                                </div>
+                                <div class="left-item-input left-item-without-icon flex">
+                                    <input type="text" value="" class="receiver-name-paydebt left-float remove-val" disabled inputType="Name" autofocus tabindex="0" id="focusguard-4" fieldName="ReceiverName" />
+                                    <div class="exclamation left-float"></div>
+                                </div>
+                                <div class="left-item-input left-item-without-icon flex">
+                                    <input type="text" value="" tabindex="0" inputType="Name" class="remove-val" disabled fieldName="DocumentAddress" />
+                                    <div class="exclamation left-float"></div>
+                                </div>
+                                <div class="left-item-input left-item-without-icon flex">
+                                    <input type="text" value="" class="reason-paydebt remove-val" disabled inputType="Reason" tabindex="0" fieldName="Reason" />
+                                    <div class="exclamation left-float"></div>
+                                </div>
+                                <div class="left-item-input flex" style="margin-top: 3px;">
+                                    <div class="left-item-input-with-icon left-float flex">
+                                        <input type="text" value="" class="left-float employee-code remove-val" disabled tabindex="0" fieldName="EmployeeCode" />
+                                        <span class="input-dropdown-icon dropdown-employee left-float"></span>
+                                        <span class="input-search-icon search-icon-employee left-float choose-object-paydebt"></span>
+                                        <div class="recipeFormDetail_formStaff">
+                                            <div class="formDetail_detail-content flex" style="border: none">
+                                                <div class="formDetail_detail-info_first-column detail-info-column left-float" style="width: 40%;">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Mã NV</span>
+                                                    </div>
+                                                </div>
+                                                <div class="formDetail_detail-info_second-column detail-info-column left-float" style="width: 60%;">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Tên nhân viên</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="detail-table-data_list-data">
+                                            </div>
+                                            <div class="employee-table-row-clone" style="display: none">
+                                                <div class="table-row flex">
+                                                    <div class="detail-data-item_first-column detail-data-item left-float" style="width: 40%;" fieldName="EmployeeCode">
+                                                        <span></span>
+                                                    </div>
+                                                    <div class="detail-data-item_second-column detail-data-item left-float" style="width: 60%;" fieldName="EmployeeName">
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="exclamation left-float"></div>
+                                    <input type="text" value="" class="left-float employee-name remove-val paydebt-disable" tabindex="0" disabled fieldName="EmployeeName" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Chứng từ-->
+                        <!-- Tạo bởi: NBDUONG(4/5/2019) -->
+                        <div class="formDetail_general-info_right-item flex left-float">
+                            <div class="formDetail_general-info_right-item">
+                                <div class="formDetail_general-info_right-item_intro">Chứng từ</div>
+                                <div class="formDetail_general-info_right-item_list-info left-float">
+                                    <div class="right-item-info">Số phiếu chi</div>
+                                    <div class="right-item-info">Ngày chi</div>
+                                </div>
+                                <div class="formDetail_general-info_right-item_list-input left-float">
+                                    <div class="right-item-input flex">
+                                        <input type="text" value="" tabindex="0" fieldName="DocumentCode" />
+                                    </div>
+                                    <div class="right-item-input right-item-input-with-icon flex">
+                                        <input type="text" value="" class="select-date-pay left-float" data-previous="" tabindex="0" dataType="date" fieldName="DocumentDate" style="text-align:left" />
+                                        <span class="icon input-calendar-icon left-float"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Chi tiết -->
+                    <!-- Tạo bởi: NBDUONG(4/5/2019) -->
+                    <div class="formDetail_detail-info">
+                        <div class="formDetail_detail-info_intro">Chi tiết</div>
+                        <!--Tabs-->
+                        <div class="formDetail_detail-tabs">
+                            <div class="formDetail_tab_blank-space"></div>
+                            <div class="formDetail_intro">
+                                <span class="formDetail_intro-detail">Chi tiết</span>
+                                <span class="formDetail_intro-document">Chứng từ</span>
+                            </div>
+                        </div>
+                        <!--Khi lựa chọn tab Chi Tiết-->
+                        <!-- Tạo bởi: NBDUONG(4/5/2019) -->
+                        <div class="formDetail_table-detail-data">
+                            <div class="formDetail_detail-content flex">
+                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Diễn giải</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_second-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Số tiền</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_third-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Mục thu/chi</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-content_detail-table-data">
+                                <div class="detail-table-data_list-data">
+                                    <div class="table-row flex">
+                                        <div class="detail-data-item_first-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="remove-val" tabindex="0" fieldName="Reason" />
+                                            <div class="focusguard" id="focusguard-3" tabindex="0"></div>
+                                        </div>
+                                        <div class="detail-data-item_second-column detail-data-item left-float">
+                                            <input type="text" name="name" value="0" class="remove-val" style="padding-right: 10px; width: 89%;" tabindex="0" dataType="number" fieldName="TotalMoney" data-thousands="." />
+                                        </div>
+                                        <div class="detail-data-item_first-column detail-data-item left-float" style="position: relative">
+                                            <div class="left-item-input-with-icon left-float flex document-type-input">
+                                                <input type="text" name="name" value="" class="left-float remove-val" tabindex="0" fieldName="DocumentTypeName" />
+                                                <div class="icon icon-arrow-down left-float document-type-arrow"></div>
+                                            </div>
+                                            <div class="document-type-dropdown">
+                                                <div class="detail-table-data_list-data">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Footer Table-->
+                            <div class="footer-table_detail-total-money-row flex">
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_second-column total-money-column left-float" dataType="number"><span>42.800.000</span></div>
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                            </div>
+                        </div>
+
+                        <!--Nếu chọn tab Chứng từ -->
+                        <!-- Tạo bởi: NBDUONG(4/5/2019) -->
+                        <div class="formDetail_table-document-data" style="display: none;">
+                            <div class="formDetail_detail-content flex">
+                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Ngày chứng từ</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_second-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Số chứng từ</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label" dataType="number">
+                                        <span class="column-text">Số phải trả</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label" dataType="number">
+                                        <span class="column-text">Số chưa trả</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label" dataType="number">
+                                        <span class="column-text">Số trả</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-content_detail-table-data">
+                                <div class="detail-table-data_list-data">
+                                    <div class="table-row flex">
+                                        <div class="document-data-item_first-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="paydebt-disable remove-val" disabled tabindex="0" fieldName="DocumentDate" style="width: 86%; padding-right: 10px" />
+                                        </div>
+                                        <div class="document-data-item_second-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="paydebt-disable remove-val" disabled tabindex="0" fieldName="DocumentCode" />
+                                        </div>
+                                        <div class="document-data-item_first-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="paydebt-disable remove-val" disabled tabindex="0" fieldName="MoneyHasToPay" data-thousands="." dataType="number" style="width: 86%; padding-right: 10px" />
+                                        </div>
+                                        <div class="document-data-item_first-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="paydebt-disable remove-val" disabled tabindex="0" fieldName="MoneyHasNotPaid" data-thousands="." dataType="number" style="width: 86%; padding-right: 10px" />
+                                        </div>
+                                        <div class="document-data-item_first-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="paydebt-disable remove-val" disabled tabindex="0" fieldName="AmountPaid" data-thousands="." dataType="number" style="width: 86%; padding-right: 10px" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="document-data_row-clone" style="display: none;">
+
+                                </div>
+                            </div>
+
+                            <div class="footer-table_detail-total-money-row flex">
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_second-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Nếu chọn Khác trong thanh điều hướng của form-->
+                <!-- Tạo bởi: NBDUONG(6/5/2019) -->
+                <div class="formDetail-info formDetail-info-other" style="display: none;">
+                    <div class="formDetail_general-info">
+                        <div class="field-data-hidden" style="display:none">
+                            <input type="text" name="name" fieldName="PersonID" value="" hidden />
+                            <input type="text" name="name" fieldName="EmployeeID" value="" hidden />
+                            <input type="number" name="name" fieldName="CheckType" value="" hidden />
+                            <input type="text" name="name" fieldName="DocumentTypeID" value="" hidden />
+                            <input type="number" name="name" fieldName="IsPaid" value="" hidden />
+                        </div>
+                        <div class="formDetail_general-info_left-item left-float">
+                            <div class="formDetail_general-info_left-item_intro">Thông tin chung</div>
+                            <!--Danh sách nhãn-->
+                            <div class="formDetail_general-info_left-item_list-info left-float" style="width: 115px;">
+                                <div class="left-item-info">Đối tượng</div>
+                                <div class="left-item-info">Người nhận</div>
+                                <div class="left-item-info">Địa chỉ</div>
+                                <div class="left-item-info">Lý do chi</div>
+                                <div class="left-item-info">Nhân viên chi</div>
+                            </div>
+
+                            <!--Danh sách Input-->
+                            <div class="formDetail_general-info_left-item_list-input left-float">
+                                <div class="left-item-input flex" style="position:relative">
+                                    <div class="left-item-input-with-icon left-float flex" inputType="Choose">
+                                        <input type="text" value="" class="left-float supplier-code remove-val" tabindex="0" autofocus fieldName="PersonCode" />
+                                        <span class="input-dropdown-icon left-float"></span>
+                                        <span class="input-search-icon left-float" id="choose-object"></span>
+                                        <div class="recipeFormDetail_formSupplier" style="width: 500px">
+                                            <div class="formDetail_detail-content flex" style="border: none">
+                                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Mã NCC</span>
+                                                    </div>
+                                                </div>
+                                                <div class="formDetail_detail-info_second-column detail-info-column left-float">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Tên nhà cung cấp</span>
+                                                    </div>
+                                                </div>
+                                                <div class="formDetail_detail-info_third-column detail-info-column left-float">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Loại</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="detail-table-data_list-data"></div>
+                                            <div class="supplier-table-row-clone" style="display:none">
+                                                <div class="table-row flex">
+                                                    <div class="detail-data-item_first-column detail-data-item left-float" fieldName="PersonCode">
+                                                        <span></span>
+                                                    </div>
+                                                    <div class="detail-data-item_second-column detail-data-item left-float" fieldName="PersonName">
+                                                        <span></span>
+                                                    </div>
+                                                    <div class="detail-data-item_third-column detail-data-item left-float" fieldName="PersonType">
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="exclamation left-float"></div>
+                                    <input type="text" value="" class="left-float supplier-name remove-val" tabindex="0" inputType="Name" fieldName="PersonName" />
+                                </div>
+                                <div class="left-item-input left-item-without-icon flex ">
+                                    <input type="text" value="" tabindex="0" class="receiver-name remove-val" inputType="Name" fieldName="ReceiverName" />
+                                    <div class="exclamation left-float"></div>
+                                </div>
+                                <div class="left-item-input left-item-without-icon flex">
+                                    <input type="text" value="" tabindex="0" inputType="Name" class="remove-val" fieldName="DocumentAddress" />
+                                    <div class="exclamation left-float"></div>
+                                </div>
+                                <div class="left-item-input left-item-without-icon flex">
+                                    <input type="text" value="" tabindex="0" inputType="Reason" class="reason-paydebt remove-val" fieldName="Reason" />
+                                    <div class="exclamation left-float"></div>
+                                </div>
+                                <div class="left-item-input flex" style="margin-top: 3px;">
+                                    <div class="left-item-input-with-icon left-float flex" inputType="Choose">
+                                        <input type="text" value="" class="left-float employee-code remove-val" tabindex="0" fieldName="EmployeeCode" />
+                                        <span class="input-dropdown-icon left-float"></span>
+                                        <span class="input-search-icon left-float choose-object-paydebt"></span>
+                                        <div class="recipeFormDetail_formStaff">
+                                            <div class="formDetail_detail-content flex" style="border: none">
+                                                <div class="formDetail_detail-info_first-column detail-info-column left-float" style="width: 40%;">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Mã NV</span>
+                                                    </div>
+                                                </div>
+                                                <div class="formDetail_detail-info_second-column detail-info-column left-float" style="width: 60%;">
+                                                    <div class="detail-info_first-column_label">
+                                                        <span class="column-text">Tên nhân viên</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="detail-table-data_list-data"></div>
+                                        </div>
+                                    </div>
+                                    <div class="exclamation left-float"></div>
+                                    <input type="text" value="" class="left-float employee-name remove-val" disabled tabindex="0" fieldName="EmployeeName" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formDetail_general-info_right-item flex left-float">
+                            <div class="formDetail_general-info_right-item">
+                                <div class="formDetail_general-info_right-item_intro">Chứng từ</div>
+                                <div class="formDetail_general-info_right-item_list-info left-float">
+                                    <div class="right-item-info">Số phiếu chi</div>
+                                    <div class="right-item-info">Ngày chi</div>
+                                    <div class="right-item-info flex" style="line-height: 20px;">
+                                        <div class="choose-selectPaidType background-checked" style="width:20px; height: 20px"></div>
+                                        <div class="left-float">Tính vào</div>
+                                    </div>
+                                </div>
+                                <div class="formDetail_general-info_right-item_list-input left-float">
+                                    <div class="right-item-input flex">
+                                        <input type="text" value="" tabindex="0" fieldName="DocumentCode" />
+                                    </div>
+                                    <div class="right-item-input right-item-input-with-icon flex" style="margin-top:12px;">
+                                        <input type="text" value="" class="select-date-pay left-float" data-previous="" dataType="date" tabindex="0" fieldName="DocumentDate" style="text-align:left" />
+                                        <span class="icon input-calendar-icon left-float"></span>
+                                    </div>
+                                    <div class="right-item-input right-item-input-with-icon flex choosePaidType">
+                                        <input type="text" class="checkPaidType" value="Chi phí" tabindex="0" />
+                                        <span class="input-dropdown-icon show-checkPaidType"></span>
+                                        <div class="input-dropdown-icon_disable" style="display:none;"></div>
+                                        <div class="checkPaidType-dropdown-menu">
+                                            <div class="option-row flex">
+                                                Công nợ
+                                            </div>
+                                            <div class="option-row flex">
+                                                Chi phí
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formDetail_detail-info">
+                        <div class="formDetail_detail-info_intro">Chi tiết</div>
+                        <div class="formDetail_table-detail-data">
+                            <div class="formDetail_detail-content flex">
+                                <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Diễn giải</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_second-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Số tiền</span>
+                                    </div>
+                                </div>
+                                <div class="formDetail_detail-info_third-column detail-info-column left-float">
+                                    <div class="detail-info_first-column_label">
+                                        <span class="column-text">Mục thu/chi</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-content_detail-table-data">
+                                <div class="detail-table-data_list-data">
+                                    <div class="table-row flex">
+                                        <div class="detail-data-item_first-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="remove-val" tabindex="0" id="focusguard-1" fieldName="Reason" />
+                                        </div>
+                                        <div class="detail-data-item_second-column detail-data-item left-float">
+                                            <input type="text" name="name" value="" class="remove-val" style="padding-right: 10px; width: 89%;" tabindex="0" dataType="number" fieldName="TotalMoney" data-thousands="." />
+                                        </div>
+                                        <div class="detail-data-item_first-column detail-data-item left-float" style="position: relative">
+                                            <div class="left-item-input-with-icon left-float flex document-type-input">
+                                                <input type="text" name="name" value="" class="left-float remove-val" tabindex="0" fieldName="DocumentTypeName" />
+                                                <div class="focusguard" id="focusguard-2" tabindex="0"></div>
+                                                <div class="icon icon-arrow-down left-float document-type-arrow"></div>
+                                            </div>
+                                            <div class="document-type-dropdown">
+                                                <div class="detail-table-data_list-data">
+
+                                                </div>
+                                                <div class="document-type-row-clone" style="display:none">
+                                                    <div class="table-row flex">
+                                                        <div class="detail-data-item_first-column detail-data-item left-float" fieldName="DocumentTypeName" style="width: 100%">
+                                                            <span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="footer-table_detail-total-money-row flex">
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                                <div class="detail-total-money-row_second-column total-money-column left-float" dataType="number"><span>42.800.000</span></div>
+                                <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Form Chọn hóa đơn trả nợ-->
+        <!-- Tạo bởi: NBDUONG(6/5/2019) -->
+        <div id="recipeFormDetail">
+            <div class="formDetail_general-info_left-item left-float">
+                <div class="formDetail_general-info_left-item_list-info left-float" style="width: 115px;">
+                    <div class="left-item-info">Nhà cung cấp</div>
+                    <div class="left-item-info">Số trả</div>
+                </div>
+
+                <div class="formDetail_general-info_left-item_list-input left-float">
+                    <div class="field-data-hidden" style="display:none">
+                        <input type="text" name="name" fieldName="PersonID" value="" hidden />
+                        <input type="text" name="name" fieldName="DocumentTypeID" value="" hidden />
+                        <input type="number" name="name" fieldName="IsPaid" value="" hidden />
+                    </div>
+                    <div class="left-item-input flex" style="position:relative">
+                        <div class="left-item-input-with-icon left-float flex" style="position: relative">
+                            <input type="text" value="" class="left-float supplier-name-paydebt" tabindex="1" />
+                            <span class="input-dropdown-icon left-float"></span>
+                            <div class="left-item-input-with-icon-disabled recipeForm_disableMoneyPaid"></div>
+
+                            <!-- Bảng lựa chọn danh sách nhà cung cấp -->
+                            <!-- Tạo bởi: NBDUONG(7/5/2019) -->
+                            <div class="recipeFormDetail_formSupplier">
+                                <div class="formDetail_detail-content flex" style="border: none">
+                                    <div class="formDetail_detail-info_first-column detail-info-column left-float">
+                                        <div class="detail-info_first-column_label">
+                                            <span class="column-text">Mã NCC</span>
+                                        </div>
+                                    </div>
+                                    <div class="formDetail_detail-info_second-column detail-info-column left-float" style="width: 60%;">
+                                        <div class="detail-info_first-column_label">
+                                            <span class="column-text">Tên nhà cung cấp</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail-table-data_list-data"></div>
+                                <div class="recipeFormDetail_supplier-table-row-clone" style="display:none">
+                                    <div class="table-row flex">
+                                        <div class="detail-data-item_first-column detail-data-item left-float" fieldName="PersonCode" style="width:40%">
+                                            <span></span>
+                                        </div>
+                                        <div class="detail-data-item_second-column detail-data-item left-float" fieldName="PersonName" style="width:60%">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="left-item-input left-item-without-icon flex">
+                        <input type="text" value="0" dataType="number" data-thousands="." style="padding-right: 8px" class="input-paidMoney" tabindex="4" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phần lựa chọn ngày trả nợ -->
+            <!-- Tạo bởi: NBDUONG (6/4/2019) -->
+            <div class="formDetail_general-info_right-item flex left-float">
+                <div class="formDetail_general-info_right-item-info">
+                    <div class="formDetail_general-info_right-item_list-info left-float">
+                        <div class="right-item-info">Ngày trả nợ</div>
+                    </div>
+                    <div class="formDetail_general-info_right-item_list-input left-float" style="position:relative;">
+                        <div class="right-item-input right-item-input-with-icon flex">
+                            <input type="text" value="" class="select-date-pay left-float" data-previous="" tabindex="2" />
+                            <span class="icon input-calendar-icon left-float"></span>
+                        </div>
+                        <div class="left-item-input-with-icon-disabled recipeForm_disablePayDate"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="reciptFormDetail_getData left-float" tabindex="3">
+                <span class="getData-text" style="margin-left:25px;">Lấy dữ liệu</span>
+                <div class="left-item-input-with-icon-disabled recipeForm_disableGetData"></div>
+            </div>
+
+            <!-- Phần đầu bảng -->
+            <!-- Tạo bởi: NBDUONG (6/5/2019) -->
+            <div class="middle-content_header-table flex">
+                <div class="header-table_first-column header-table-column1" tabindex="5">
+                    <div class="background-uncheck choose-all-receiptForm"><img src="" /></div>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column2">
+                    <span class="column-text">Ngày chứng từ</span>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column3">
+                    <span class="column-text">Số chứng từ</span>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column4">
+                    <span class="column-text">Số phải trả</span>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column5">
+                    <span class="column-text">Số chưa trả</span>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column6">
+                    <span class="column-text">Số trả</span>
+                </div>
+            </div>
+
+            <!-- Bảng dữ liệu của form Chọn hóa đơn trả nợ -->
+            <!-- Tạo bởi: NBDUONG (6/4/2019) -->
+            <div class="reciptFormDetail_tableData">
+                <div class="detail-table-data_list-data">
+
+                </div>
+                <div class="document-by-person-row-clone" style="display: none;">
+                    <div class="table-row flex">
+                        <div class="detail-data-item_first-column detail-data-item left-float" fieldName="DocumentRadio">
+                            <div class="background-uncheck choose-row-receiptForm"><img src="" /></div>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float" dataType="date" fieldName="DocumentDate">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float" fieldName="DocumentCode">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float hasToPay" dataType="number" fieldName="MoneyHasToPay">
+                            <span fieldName="moneyHasToPay"></span>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float hasNotPaid" dataType="number">
+                            <span fieldName="MoneyHasNotPaid"></span>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float amountPaid" style="border-right: none" dataType="number">
+                            <span fieldName="AmountPaid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-table_detail-total-money-row flex">
+                    <div class="detail-total-money-row_first-column total-money-column left-float"></div>
+                    <div class="detail-total-money-row_second-column total-money-column left-float"></div>
+                    <div class="detail-total-money-row_second-column total-money-column left-float"></div>
+                    <div class="detail-total-money-row_second-column total-money-column left-float totalMoneyHasToPay" dataType="number"><span></span></div>
+                    <div class="detail-total-money-row_second-column total-money-column left-float totalMoneyHasNotPaid" dataType="number"><span></span></div>
+                    <div class="detail-total-money-row_second-column total-money-column left-float totalAmountPaid" dataType="number" fieldName="TotalAmountPaid"><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form chọn đối tượng -->
+    <!-- Tạo bởi: NBDUONG (9/5/2019) -->
+    <div id="formChooseObject">
+        <div class="formChooseObject_navigation" style="position:relative">
+            <div class="navigation-label left-float">Loại đối tượng</div>
+            <div class="nav_objectComboBox left-float">
+                <input type="text" name="name" value="" class="left-float" />
+                <div class="icon icon-arrow-down left-float"></div>
+                <div class="objectComboBox_dropdown-menu">
+                    <div class="option-row flex">
+                        Nhà cung cấp
+                    </div>
+                    <div class="option-row flex">
+                        Khách hàng
+                    </div>
+                    <div class="option-row flex">
+                        Đối tác giao hàng
+                    </div>
+                    <div class="option-row flex">
+                        Nhân viên
+                    </div>
+                </div>
+            </div>
+            <input type="text" name="name" value="" placeholder="Nhập mã đối tượng, tên đối tượng" class="left-float formChooseObject_navigation-input" />
+            <div class="nav_searchBtn left-float">
+                <div class="searchBtn_icon-search icon left-float"></div>
+                <span class="searchBtn_text left-float">Tìm kiếm</span>
+            </div>
+        </div>
+        <div class="formChooseObject_main-content">
+            <div class="middle-content_header-table flex">
+                <div class="header-table_first-column header-table-column header-table-column1">
+
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column header-table-column2">
+                    <span class="column-text">Mã đối tượng</span>
+                </div>
+                <div class="header-table_third-column header-table-column header-table-column header-table-column3">
+                    <span class="column-text">Tên đối tượng</span>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column header-table-column4">
+                    <span class="column-text">Loại đối tượng</span>
+                </div>
+                <div class="header-table_fourth-column header-table-column header-table-column header-table-column5">
+                    <span class="column-text">Địa chỉ</span>
+                </div>
+            </div>
+            <div class="reciptFormDetail_tableData">
+                <div class="detail-table-data_list-data"></div>
+                <div class="formChooseObject_table-row-clone" style="display:none">
+                    <div class="table-row flex">
+                        <div class="detail-data-item_first-column detail-data-item left-float" style="border-left:none">
+                            <input type="radio" name="customer" value="" fieldName="PersonRadio" />
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float" fieldName="PersonCode">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_third-column detail-data-item left-float" fieldName="PersonName">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float" fieldName="PersonType">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_fourth-column detail-data-item left-float" style="border-right:none" fieldName="Address">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle-table_pagination-option">
+                    <div class="pagination-option_left flex left-float">
+                        <span class="back-to-first-page"></span>
+                        <span class="back-page"></span>
+                        <span class="page">Trang</span>
+                        <input type="text" name="name" value="1" class="page-index" />
+                        <span class="total-page">trên 1</span>
+                        <span class="next-page"></span>
+                        <span class="forward-to-last-page"></span>
+                        <span class="reload-page"></span>
+                        <select class="number-of-items left-float">
+                            <option class="option-number-of-items" selected>15</option>
+                            <option class="option-number-of-items">25</option>
+                            <option class="option-number-of-items">50</option>
+                            <option class="option-number-of-items">100</option>
+                        </select>
+                    </div>
+                    <div class="pagination-option_right flex left-float">
+                        <span class="display-pageNumber">
+                            Hiển thị 1-11 trên 11 kết quả
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="formChooseStaff">
+        <div class="formChooseObject_navigation" style="position:relative">
+            <div class="navigation-label left-float">Loại đối tượng</div>
+            <div class="nav_objectComboBox left-float">
+                <input type="text" name="name" value="Nhân viên" class="left-float" />
+                <div class="icon icon-arrow-down left-float"></div>
+            </div>
+            <div class="nav_objectComboBox_disable"></div>
+            <input type="text" name="name" value="" placeholder="Nhập mã đối tượng, tên đối tượng" class="left-float formChooseObject_navigation-input" autofocus />
+            <div class="nav_searchBtn left-float">
+                <div class="searchBtn_icon-search icon left-float"></div>
+                <span class="searchBtn_text left-float">Tìm kiếm</span>
+            </div>
+        </div>
+        <div class="formChooseObject_main-content">
+            <div class="middle-content_header-table flex">
+                <div class="header-table_first-column header-table-column header-table-column1">
+
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column header-table-column2">
+                    <span class="column-text">Mã nhân viên</span>
+                </div>
+                <div class="header-table_third-column header-table-column header-table-column header-table-column3">
+                    <span class="column-text">Tên nhân viên</span>
+                </div>
+                <div class="header-table_second-column header-table-column header-table-column header-table-column4">
+                    <span class="column-text">Loại đối tượng </span>
+                </div>
+                <div class="header-table_fourth-column header-table-column header-table-column header-table-column5">
+                    <span class="column-text">Địa chỉ</span>
+                </div>
+            </div>
+            <div class="reciptFormDetail_tableData">
+                <div class="detail-table-data_list-data"></div>
+
+                <div class="formChooseStaff_table-row-clone" style="display:none;">
+                    <div class="table-row flex">
+                        <div class="detail-data-item_first-column detail-data-item left-float" style="border-left:none">
+                            <input type="radio" name="customer" value="" fieldName="EmployeeRadio" />
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float" fieldName="EmployeeCode">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_third-column detail-data-item left-float" fieldName="EmployeeName">
+                            <span></span>
+                        </div>
+                        <div class="detail-data-item_second-column detail-data-item left-float">
+                            <span>Nhân viên</span>
+                        </div>
+                        <div class="detail-data-item_fourth-column detail-data-item left-float" style="border-right:none" fieldName="Address">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle-table_pagination-option">
+                    <div class="pagination-option_left flex left-float">
+                        <span class="back-to-first-page"></span>
+                        <span class="back-page"></span>
+                        <span class="page">Trang</span>
+                        <input type="text" name="name" value="1" class="page-index" />
+                        <span class="total-page">trên 1</span>
+                        <span class="next-page"></span>
+                        <span class="forward-to-last-page"></span>
+                        <span class="reload-page"></span>
+                        <select class="number-of-items left-float">
+                            <option class="option-number-of-items" selected>15</option>
+                            <option class="option-number-of-items">25</option>
+                            <option class="option-number-of-items">50</option>
+                            <option class="option-number-of-items">100</option>
+                        </select>
+                    </div>
+                    <div class="pagination-option_right flex left-float">
+                        <span class="display-pageNumber">
+                            Hiển thị 1-11 trên 11 kết quả
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form thông báo khi bấm Lưu -->
+    <!-- Tạo bởi: NBDUONG(20/5/2019) -->
+    <div id="alertDialog">
+        <div class="alertDialog-icon left-float"></div>
+        <div class="alertDialog-text left-float">Phải có ít nhất 1 dòng chi tiết. Vui lòng kiểm tra lại</div>
+    </div>
+
+    <!-- Context menu -->
+    <!-- Tạo bởi: NBDUONG(24/6/2019) -->
+    <div class="right-click-popup">
+        <div class="popup-item btn-add">
+            <span class="add-icon popup-item-icon"></span>
+            <div class="popup-item-text">Thêm mới</div>
+        </div>
+        <div class="popup-item btn-dublicate">
+            <span class="duplicate-icon popup-item-icon"></span>
+            <div class="popup-item-text">Nhân bản</div>
+        </div>
+        <div class="popup-item btn-view">
+            <span class="icon-view popup-item-icon"></span>
+            <div class="popup-item-text">Xem</div>
+        </div>
+        <div class="popup-item btn-edit">
+            <span class="edit-icon popup-item-icon"></span>
+            <div class="popup-item-text">Sửa</div>
+        </div>
+        <div class="popup-item btn-delete">
+            <span class="delete-icon popup-item-icon"></span>
+            <div class="popup-item-text">Xóa</div>
+        </div>
+        <div class="popup-item btn-reload">
+            <span class="reload-icon popup-item-icon"></span>
+            <div class="popup-item-text">Nạp</div>
+        </div>
+    </div>
+
+    <script src="/Contents/plugins/jquery-3.3.1.min.js"></script>
+    <script src="/Contents/plugins/jquery-ui.min.js"></script>
+    <script src="/Contents/plugins/jquery.masknumber.min.js"></script>
+    <script src="/Contents/js/Common/Common.js"></script>
+    <script src="/Contents/js/fund/dialogFund.js"></script>
+    <script src="/Contents/js/fund/formfund.js"></script>
+    <script src="/Contents/js/fund/fund.js"></script>
+</body>
+</html>
