@@ -132,27 +132,29 @@ class Purchase  {
     // Người tạo: ntxuan (23/5/2019)
     sortInvoiceByImportDate() {
      
-        $(".content-right .header-column1 input").change(function () {
-            let textSearch = $(this).val();
-           // $(".list-header-table input").val("");
-            if (textSearch !== "") {
-                $(this).val(textSearch);
-                let dateChange = common.convertStringJSToStringCsharp(this);
-                let invoiceDto = {
-                    FromDate: dateChange,
-                    ToDate: dateChange
-                };
-                // Thực hiện load các hóa đơn có ngày tháng được chọn
-                common.callAjaxToServer("Post", "/purchase/Invoices", invoiceDto, function (result) {
-                    if (result.Success) {
-                        purchase.renderListInvoice(result.Data);
-                        thisPurchase.setDisableButtonPagingOnFilter(result.Data.length);
-                    } else {
-                        thisPurchase.showDialogError(result.Messenger);
-                    }
-                });
-            } else {
-                purchase.getDataFromServer();
+        $(".content-right .header-column1 input").keydown(function () {
+            if (event.which == 13) {
+                let textSearch = $(this).val();
+                // $(".list-header-table input").val("");
+                if (textSearch !== "") {
+                    $(this).val(textSearch);
+                    let dateChange = common.convertStringJSToStringCsharp(this);
+                    let invoiceDto = {
+                        FromDate: dateChange,
+                        ToDate: dateChange
+                    };
+                    // Thực hiện load các hóa đơn có ngày tháng được chọn
+                    common.callAjaxToServer("Post", "/purchase/Invoices", invoiceDto, function (result) {
+                        if (result.Success) {
+                            purchase.renderListInvoice(result.Data);
+                            thisPurchase.setDisableButtonPagingOnFilter(result.Data.length);
+                        } else {
+                            thisPurchase.showDialogError(result.Messenger);
+                        }
+                    });
+                } else {
+                    purchase.getDataFromServer();
+                }
             }
         });
 

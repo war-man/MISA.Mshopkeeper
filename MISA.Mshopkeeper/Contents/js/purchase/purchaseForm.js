@@ -320,126 +320,129 @@ class PurchaseFormDialog {
         // Khi nhập một từ nếu tồn tại từ đó trong tên hoặc mã thì hiển thị thì hiển thị
         $('input[fieldname="SupplierCode"]').keydown(function () {
             // Bấm enter thì chọn nhà cung cấp
-            if (event.keyCode === 13) {
-                let supplierCode = $(".row-hover").find(".supplier-table_body-row-left").text().trim();
-                let nameSupplier = $(".row-hover").find(".supplier-table_body-row-right").text().trim();
-                $('.purchaseForm input[fieldName="SupplierID"]').val($(".row-hover").data("SupplierID"));
-                purchaseFormDialog.asyncSupplierInfor(supplierCode, nameSupplier);
-                $(".supplier-table.table1").hide();
-                $(".row-hover").removeClass("row-hover");
-            } else if (event.keyCode === 40) {
-                if ($(".supplier-table.table1:visible").length > 0) {
-                    if ($(".row-hover").nextAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
-                        $(".row-hover").removeClass("row-hover").nextAll(".supplier-table_body-row:visible").first().addClass("row-hover");
-                    }
-                } else {
-                    $(".supplier-table.table1").show();
-                    $(".supplier-table.table1 .supplier-table_body-row").show();
-                    $(".row-hover").removeClass("row-hover");
-                    $(".supplier-table.table1 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
-                    $(".table1 .supplier-table_body").scrollTop(0);
-                }
-            } else if (event.keyCode === 38) {
-                if ($(".supplier-table.table1:visible").length > 0) {
-                    if ($(".row-hover").prevAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
-                        $(".row-hover").removeClass("row-hover").prevAll(".supplier-table_body-row:visible").first().addClass("row-hover");
-                    }
-                }
-            }
-            else {
-                $(".table1 .supplier-table_body").scrollTop(0);
-                let value = $(this).val().toLowerCase();
-                $(".row-hover").removeClass("row-hover");
-                let checkHasValue = false;
-                $(".supplier-table.table1 .supplier-table_body-row").hide();
-                $(".supplier-table.table1 .supplier-table_body-row").each(function () {
-                    let supplierCode = $(this).find('[fieldname="SupplierCode"]').text().trim().toLowerCase();
-                    let supplierName = $(this).find('[fieldname="SupplierName"]').text().trim().toLowerCase();
-                    if (supplierCode.includes(value) || supplierName.includes(value)) {
-                        $(this).show();
-                        checkHasValue = true;
-                    } else {
-                        $(this).hide();
-                    }
-                });
-                if (checkHasValue) {
-                    $(".supplier-table.table1").show();
-                    $(".supplier-table.table1 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
-                } else {
+            if (event.keyCode !== 9) {
+                if (event.keyCode === 13) {
+                    let supplierCode = $(".row-hover").find(".supplier-table_body-row-left").text().trim();
+                    let nameSupplier = $(".row-hover").find(".supplier-table_body-row-right").text().trim();
+                    $('.purchaseForm input[fieldName="SupplierID"]').val($(".row-hover").data("SupplierID"));
+                    purchaseFormDialog.asyncSupplierInfor(supplierCode, nameSupplier);
                     $(".supplier-table.table1").hide();
+                    $(".row-hover").removeClass("row-hover");
+                } else if (event.keyCode === 40) {
+                    if ($(".supplier-table.table1:visible").length > 0) {
+                        if ($(".row-hover").nextAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
+                            $(".row-hover").removeClass("row-hover").nextAll(".supplier-table_body-row:visible").first().addClass("row-hover");
+                        }
+                    } else {
+                        $(".supplier-table.table1").show();
+                        $(".supplier-table.table1 .supplier-table_body-row").show();
+                        $(".row-hover").removeClass("row-hover");
+                        $(".supplier-table.table1 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
+                        $(".table1 .supplier-table_body").scrollTop(0);
+                    }
+                } else if (event.keyCode === 38) {
+                    if ($(".supplier-table.table1:visible").length > 0) {
+                        if ($(".row-hover").prevAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
+                            $(".row-hover").removeClass("row-hover").prevAll(".supplier-table_body-row:visible").first().addClass("row-hover");
+                        }
+                    }
+                }
+                else {
+                    $(".table1 .supplier-table_body").scrollTop(0);
+                    let value = $(this).val().toLowerCase();
+                    $(".row-hover").removeClass("row-hover");
+                    let checkHasValue = false;
+                    $(".supplier-table.table1 .supplier-table_body-row").hide();
+                    $(".supplier-table.table1 .supplier-table_body-row").each(function () {
+                        let supplierCode = $(this).find('[fieldname="SupplierCode"]').text().trim().toLowerCase();
+                        let supplierName = $(this).find('[fieldname="SupplierName"]').text().trim().toLowerCase();
+                        if (supplierCode.includes(value) || supplierName.includes(value)) {
+                            $(this).show();
+                            checkHasValue = true;
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    if (checkHasValue) {
+                        $(".supplier-table.table1").show();
+                        $(".supplier-table.table1 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
+                    } else {
+                        $(".supplier-table.table1").hide();
+                    }
+                }
+                let scrollTop = $(".table1 .supplier-table_body .row-hover").offset().top - 322;
+                let heightTableData = $(".table1 .supplier-table_body").height();
+                if (scrollTop > heightTableData) {
+                    $(".table1 .supplier-table_body").scrollTop($(".table1 .supplier-table_body").scrollTop() + heightTableData);
+                } else if (scrollTop < 0) {
+                    $(".table1 .supplier-table_body").scrollTop($(".table1 .supplier-table_body").scrollTop() - heightTableData + 32);
                 }
             }
-            let scrollTop = $(".table1 .supplier-table_body .row-hover").offset().top - 322;
-            let heightTableData = $(".table1 .supplier-table_body").height();
-            if (scrollTop > heightTableData) {
-                $(".table1 .supplier-table_body").scrollTop($(".table1 .supplier-table_body").scrollTop() + heightTableData);
-            } else if (scrollTop < 0) {
-                $(".table1 .supplier-table_body").scrollTop($(".table1 .supplier-table_body").scrollTop() - heightTableData + 32);
-            }
-
         });
 
 
         // Khi nhập một từ nếu tồn tại từ đó trong tên hoặc mã thì hiển thị thì hiển thị
-        $('input[fieldname="EmployeeCode"]').keyup(function () {
-            // Bấm enter thì chọn nhà cung cấp
-            if (event.keyCode === 13) {
-                let employeeCode = $(".row-hover").find(".supplier-table_body-row-left").text().trim();
-                let employeeName = $(".row-hover").find(".supplier-table_body-row-right").text().trim();
-                $('.purchaseForm input[fieldName="EmployeeID"]').val($(".row-hover").data("EmployeeID"));
-                $(".invoicePress .multiItem.flex input").eq(1).val(employeeCode);
-                $(".invoicePress .name-company").eq(1).val(employeeName);
-                $(".supplier-table.table2").hide();
-                $(".row-hover").removeClass("row-hover");
-            } else if (event.keyCode === 40) {
-                if ($(".supplier-table.table2:visible").length > 0) {
-                    if ($(".row-hover").nextAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
-                        $(".row-hover").removeClass("row-hover").nextAll(".supplier-table_body-row:visible").first().addClass("row-hover");
-                    }
-                } else {
-                    $(".supplier-table.table2").show();
-                    $(".supplier-table.table2 .supplier-table_body-row").show();
-                    $(".supplier-table.table2 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
-                    $(".table2 .supplier-table_body").scrollTop(0);
-                }
-            }
-            else if (event.keyCode === 38) {
-                if ($(".supplier-table.table2:visible").length > 0) {
-                    if ($(".row-hover").prevAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
-                        $(".row-hover").removeClass("row-hover").prevAll(".supplier-table_body-row:visible").first().addClass("row-hover");
-                    }
-                }
-            }
-            else {
-                $(".table1 .supplier-table_body").scrollTop(0);
-                let value = $(this).val().toLowerCase();
-                $(".row-hover").removeClass("row-hover");
-                let checkHasValue = false;
-                $(".supplier-table.table2 .supplier-table_body-row").hide();
-                $(".supplier-table.table2 .supplier-table_body-row").each(function () {
-                    let employeeCode = $(this).find('[fieldname="EmployeeCode"]').text().trim().toLowerCase();
-                    let employeeName = $(this).find('[fieldname="EmployeeName"]').text().trim().toLowerCase();
-                    if (employeeCode.includes(value) || employeeName.includes(value)) {
-                        $(this).show();
-                        checkHasValue = true;
-                    } else {
-                        $(this).hide();
-                    }
-                });
-                if (checkHasValue) {
-                    $(".supplier-table.table2").show();
-                    $(".supplier-table.table2 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
-                } else {
+        $('input[fieldname="EmployeeCode"]').keydown(function () {
+            if (event.keyCode !== 9) {
+                // Bấm enter thì chọn nhà cung cấp
+                if (event.keyCode === 13) {
+                    let employeeCode = $(".row-hover").find(".supplier-table_body-row-left").text().trim();
+                    let employeeName = $(".row-hover").find(".supplier-table_body-row-right").text().trim();
+                    $('.purchaseForm input[fieldName="EmployeeID"]').val($(".row-hover").data("EmployeeID"));
+                    $(".invoicePress .multiItem.flex input").eq(1).val(employeeCode);
+                    $(".invoicePress .name-company").eq(1).val(employeeName);
                     $(".supplier-table.table2").hide();
+                    $(".row-hover").removeClass("row-hover");
+                } else if (event.keyCode === 40) {
+                    if ($(".supplier-table.table2:visible").length > 0) {
+                        if ($(".row-hover").nextAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
+                            $(".row-hover").removeClass("row-hover").nextAll(".supplier-table_body-row:visible").first().addClass("row-hover");
+                        }
+                    } else {
+                        $(".supplier-table.table2").show();
+                        $(".supplier-table.table2 .supplier-table_body-row").show();
+                        $(".supplier-table.table2 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
+                        $(".table2 .supplier-table_body").scrollTop(0);
+                    }
                 }
-            }
+                else if (event.keyCode === 38) {
+                    if ($(".supplier-table.table2:visible").length > 0) {
+                        if ($(".row-hover").prevAll(".supplier-table_body-row:visible").first().hasClass("supplier-table_body-row")) {
+                            $(".row-hover").removeClass("row-hover").prevAll(".supplier-table_body-row:visible").first().addClass("row-hover");
+                        }
+                    }
+                }
+                else {
+                    $(".table1 .supplier-table_body").scrollTop(0);
+                    let value = $(this).val().toLowerCase();
+                    $(".row-hover").removeClass("row-hover");
+                    let checkHasValue = false;
+                    $(".supplier-table.table2 .supplier-table_body-row").hide();
+                    $(".supplier-table.table2 .supplier-table_body-row").each(function () {
+                        let employeeCode = $(this).find('[fieldname="EmployeeCode"]').text().trim().toLowerCase();
+                        let employeeName = $(this).find('[fieldname="EmployeeName"]').text().trim().toLowerCase();
+                        if (employeeCode.includes(value) || employeeName.includes(value)) {
+                            $(this).show();
+                            checkHasValue = true;
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    if (checkHasValue) {
+                        $(".supplier-table.table2").show();
+                        $(".supplier-table.table2 .supplier-table_body-row:visible").eq(0).addClass("row-hover");
+                    } else {
+                        $(".supplier-table.table2").hide();
+                    }
+                }
 
-            let scrollTop = $(".table2 .supplier-table_body .row-hover").offset().top - 150;
-            let heightTableData = $(".table2 .supplier-table_body").height();
-            if (scrollTop > heightTableData) {
-                $(".table2 .supplier-table_body").scrollTop($(".table2 .supplier-table_body").scrollTop() + heightTableData);
-            } else if (scrollTop < 0) {
-                $(".table2 .supplier-table_body").scrollTop($(".table2 .supplier-table_body").scrollTop() - heightTableData + 32);
+                let scrollTop = $(".table2 .supplier-table_body .row-hover").offset().top - 150;
+                let heightTableData = $(".table2 .supplier-table_body").height();
+                if (scrollTop > heightTableData) {
+                    $(".table2 .supplier-table_body").scrollTop($(".table2 .supplier-table_body").scrollTop() + heightTableData);
+                } else if (scrollTop < 0) {
+                    $(".table2 .supplier-table_body").scrollTop($(".table2 .supplier-table_body").scrollTop() - heightTableData + 32);
+                }
             }
         });
 
@@ -1016,6 +1019,16 @@ class PurchaseFormDialog {
                 purchaseFormDialog.setDefaultClickRadio2();
             }
         });
+        // Khi chọn select option
+        $(".form-menuPayment select").change(function () {
+            let value = $(this).val();
+            console.log(value);
+            if (value == 0) {
+                $('.purchaseForm input[fieldName="TypeInvoice"]').val(2);
+            } else {
+                $('.purchaseForm input[fieldName="TypeInvoice"]').val(3);
+            }
+        });
     }
 
     // Các hiệu ứng khi click vào radio ghi nợ nhà cung cấp trong form thêm mới
@@ -1049,6 +1062,135 @@ class PurchaseFormDialog {
         }
         $('.form-menuPayment select').val("0");
         $('.purchaseForm input[fieldName="TypeInvoice"]').val(2);
+    }
+
+    showFormAddNew() {
+        $(".form-menuPayment label").eq(0).click();
+        $('.purchaseForm input[fieldName="TypeInvoice"]').val(1);
+
+        $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
+
+        $(".navigate-invoice div").removeClass("tab-focus");
+        $(".navigate-invoice div").hide();
+        $(".invoice-in").show().addClass("tab-focus");
+
+        $(".infor-common").hide();
+        $(".invoicePress").show();
+
+        if ($(".form-menuPayment .check").hasClass("checked-img")) {
+            $(".bill").show();
+        }
+        $('.form-menuPayment select').val("0");
+    }
+
+    showFormEditByInvoiceType(invoiceType) {
+        if (invoiceType === 1) {
+            $(".form-menuPayment label").eq(0).click();
+            $('.purchaseForm input[fieldName="TypeInvoice"]').val(1);
+
+            $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
+
+            $(".navigate-invoice div").removeClass("tab-focus");
+            $(".navigate-invoice div").hide();
+            $(".invoice-in").show().addClass("tab-focus");
+
+            $(".infor-common").hide();
+            $(".invoicePress").show();
+
+            if ($(".form-menuPayment .check").hasClass("checked-img")) {
+                $(".bill").show();
+            }
+            $('.form-menuPayment select').val("0");
+        } else if (invoiceType === 2) {
+            $(".form-menuPayment label").eq(1).click();
+
+            $('.form-menuPayment .left select').prop('disabled', false).removeClass("div-disabled");
+            $('.form-menuPayment select').val("0");
+
+            $(".navigate-invoice div").hide();
+            $(".navigate-invoice div").removeClass("tab-focus");
+            $(".invoice-out").show();
+            $(".invoice-in").show().addClass("tab-focus");
+
+            $(".infor-common").hide();
+            $(".invoicePress").show();
+
+            if ($(".form-menuPayment .check").hasClass("checked-img")) {
+                $(".bill").show();
+            }
+            $('.purchaseForm input[fieldName="TypeInvoice"]').val(2);
+        } else if (invoiceType === 3) {
+            $(".form-menuPayment label").eq(1).click();
+
+            $('.form-menuPayment .left select').prop('disabled', false).removeClass("div-disabled");
+            $('.form-menuPayment select').val("1");
+
+            $(".navigate-invoice div").hide();
+            $(".navigate-invoice div").removeClass("tab-focus");
+            $(".invoice-in").show().addClass("tab-focus");
+            $(".delegate").show();
+
+            $(".infor-common").hide();
+            $(".invoicePress").show();
+            if ($(".form-menuPayment .check").hasClass("checked-img")) {
+                $(".bill").show();
+            }
+
+            $('.purchaseForm input[fieldName="TypeInvoice"]').val(3);
+        }
+    }
+
+    // Hiển thị form theo loại hóa đơn
+    // Người tạo: ntxuan (24/6/2019)
+    showFormViewByInvoiceType(invoiceType) {
+        if (invoiceType === 1) {
+            $(".form-menuPayment label").eq(0).trigger("click");
+            $('.purchaseForm input[fieldName="TypeInvoice"]').val(1);
+            $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
+            $(".navigate-invoice div").removeClass("tab-focus");
+            $(".navigate-invoice div").hide();
+            $(".infor-common").hide();
+            $(".invoice-in").show().addClass("tab-focus");
+            $(".invoicePress").show();
+            if ($(".form-menuPayment .check").hasClass("checked-img")) {
+                $(".bill").show();
+            }
+            $('.form-menuPayment select').val("0");
+        } else if (invoiceType === 2) {
+            $(".form-menuPayment label").eq(1).trigger("click");
+            $(".navigate-invoice div").hide();
+            $(".navigate-invoice div").removeClass("tab-focus");
+            $(".invoice-out").show();
+            $(".invoice-in").show().addClass("tab-focus");
+
+            $(".infor-common").hide();
+            $(".invoicePress").show();
+
+            if ($(".form-menuPayment .check").hasClass("checked-img")) {
+                $(".bill").show();
+            }
+            $('.form-menuPayment select').val("0");
+            $('.purchaseForm input[fieldName="TypeInvoice"]').val(2);
+            $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
+        } else if (invoiceType === 3) {
+            $(".form-menuPayment label").eq(1).trigger("click");
+            $('.form-menuPayment select').val("1");
+
+            $(".navigate-invoice div").hide();
+            $(".navigate-invoice div").removeClass("tab-focus");
+            $(".invoice-in").show().addClass("tab-focus");
+            $(".delegate").show();
+
+            $(".infor-common").hide();
+            $(".invoicePress").show();
+            if ($(".form-menuPayment .check").hasClass("checked-img")) {
+                $(".bill").show();
+            }
+            $('.purchaseForm input[fieldName="TypeInvoice"]').val(3);
+            $('.form-menuPayment .left select').prop('disabled', 'disabled').addClass("div-disabled");
+        }
+        $(".purchaseForm").addClass("purchaseViewForm");
+        $(".purchaseForm input").prop('disabled', true);
     }
 
     // Thiết lập hiển thị checked cho các ô checkox
@@ -1220,14 +1362,8 @@ class PurchaseFormDialog {
         dataStorage.allowHotKeyForm = true;
         dataStorage.allowHotKeyGrid = false;
         $(".purchaseForm,.wrapper-background-gray").show();
-        $(".infor-common").hide();
-        $(".invoicePress").show();
-        $(".navigate-invoice div").removeClass("tab-focus");
-        $(".invoice-in").addClass("tab-focus");
-        $("#radio1").prop('checked', true);
         $(".form-menuPayment .right .check").attr("class", "check unchecked-img");
         $(".purchaseForm .Invoice input").val("");
-        $(".purchaseForm .Invoice input[fieldName='TypeInvoice']").val(1);
         $(".purchaseForm .Invoice input").eq(3).focus().select();
         var now = new Date();
         $('.timepicker').val(now.getDateFormat());
@@ -1236,7 +1372,6 @@ class PurchaseFormDialog {
         purchase.removeResizeAble();
         purchaseFormDialog.loadSuppliersFromServer();
         purchaseFormDialog.loadEmployeesFromServer();
-        purchaseFormDialog.initValueToForm();
         $(".form-addNew .list-data-bottom .other-row").remove();
         $(".btn-prev-view").removeClass("enable-button");
         $(".btn-next-view").removeClass("enable-button");
@@ -1259,7 +1394,7 @@ class PurchaseFormDialog {
 
     // Đổ dữ liệu vào form xem hóa đơn
     // Người tạo: ntxuan (20/5/2019)
-    loadDataToPurchaseForm(checkDuplicate) {
+    loadDataToPurchaseForm(checkDuplicate, checkView) {
         let invoiceId = $(".content-right .wrapp-dataTable .row-clicked").data("InvoiceID");
         let url = "/purchase/Invoice/" + invoiceId;
         // Thực hiện load các sản phẩm từ server theo id của hóa đơn truyền vào
@@ -1280,6 +1415,12 @@ class PurchaseFormDialog {
                     purchaseFormDialog.initValueToForm();
                     purchaseFormDialog.setValueDefault();
                 }
+                if (checkView) {
+                    purchaseFormDialog.showFormViewByInvoiceType(result.Data["TypeInvoice"]);
+                  
+                } else {
+                    purchaseFormDialog.showFormEditByInvoiceType(result.Data["TypeInvoice"]);
+                }
             } else {
                 purchase.showDialogError(result.Messenger);
             }
@@ -1290,10 +1431,9 @@ class PurchaseFormDialog {
     // Người tạo: ntxuan (19/5/2019)
     openPurchaseViewForm() {
         purchaseFormDialog.openPurchaseForm();
-        $(".purchaseForm").addClass("purchaseViewForm");
         $(".purchaseFormTitle").text("Xem Phiếu nhập hàng");
-        $(".purchaseForm input").prop('disabled', true);
-        purchaseFormDialog.loadDataToPurchaseForm(false);
+        
+        purchaseFormDialog.loadDataToPurchaseForm(false,true);
         dataStorage.checkViewForm = true;
         dataStorage.checkEditForm = true;
         purchase.loadProductToPurchaseForm();
@@ -1322,6 +1462,8 @@ class PurchaseFormDialog {
         $(".purchaseForm").addClass("purchaseAddNewForm");
         $(".purchaseFormTitle").text("Thêm mới Phiếu nhập hàng");
         $(".purchaseForm input").prop('disabled', false);
+        purchaseFormDialog.showFormAddNew();
+        purchaseFormDialog.initValueToForm();
     }
 
     // Hàm mở form nhân bản phiếu nhập hàng
@@ -1331,9 +1473,8 @@ class PurchaseFormDialog {
         $(".purchaseForm").addClass("purchaseDuplicateForm");
         $(".purchaseFormTitle").text("Nhân bản Phiếu nhập hàng");
         $(".purchaseForm input").prop('disabled', false);
-        purchaseFormDialog.loadDataToPurchaseForm(true);
+        purchaseFormDialog.loadDataToPurchaseForm(true, false);
         purchase.loadProductToPurchaseForm();
-        
     }
 
     // Hàm mở form sửa phiếu nhập hàng
@@ -1343,7 +1484,7 @@ class PurchaseFormDialog {
         $(".purchaseForm").addClass("purchaseEditForm");
         $(".purchaseFormTitle").text("Sửa Phiếu nhập hàng");
         $(".purchaseForm input").prop('disabled', false);
-        purchaseFormDialog.loadDataToPurchaseForm(false);
+        purchaseFormDialog.loadDataToPurchaseForm(false, false);
         dataStorage.checkEditForm = true;
         purchase.loadProductToPurchaseForm();
     }

@@ -3,4 +3,3 @@ C:\Users\tienx\source\repos\MISA.Mshopkeeper\MISA.Commons\bin\Debug\MISA.Commons
 C:\Users\tienx\source\repos\MISA.Mshopkeeper\MISA.Commons\obj\Debug\MISA.Commons.csproj.CoreCompileInputs.cache
 C:\Users\tienx\source\repos\MISA.Mshopkeeper\MISA.Commons\obj\Debug\MISA.Commons.dll
 C:\Users\tienx\source\repos\MISA.Mshopkeeper\MISA.Commons\obj\Debug\MISA.Commons.pdb
-C:\Users\tienx\source\repos\MISA.Mshopkeeper\MISA.Commons\obj\Debug\MISA.Commons.csprojAssemblyReference.cache

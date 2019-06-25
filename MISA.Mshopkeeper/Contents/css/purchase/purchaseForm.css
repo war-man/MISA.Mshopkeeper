@@ -522,7 +522,7 @@ input.tabindex-row {
 }
 
 .form-addNew_listMenu .delete {
-    margin-top: 9px;
+    padding-top: 9px;
     margin-left: -1px;
 }
 
@@ -533,11 +533,11 @@ input.tabindex-row {
 }
 
 .form-addNew_listMenu .edit {
-    margin-top: 9px;
+    padding-top: 9px;
 }
 
 .form-addNew_listMenu .add {
-    margin-top: 9px;
+    padding-top: 9px;
     margin-right: 8px;
 }
 
