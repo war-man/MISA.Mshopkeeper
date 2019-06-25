@@ -398,6 +398,11 @@ class Purchase  {
         } else {
             $(".list-header-table").width($(".wrapp-dataTable").width());
         }
+        if ($('.content-right .list-data-bottom').hasScrollBar()) {
+            $(".content-right .detail-header").width($(".content-right .footer-content-top").width() - 16);
+        } else {
+            $(".content-right .detail-header").width($(".content-right .footer-content-top").width());
+        }
     }
 
     // Tự động sinh thanh cuộn khi chiều cao dài quá
@@ -514,6 +519,7 @@ class Purchase  {
                 });
                 // Đồng bộ hóa lại dòng tổng tiền thanh toán cuối trang
                 purchase.asyncRowTotalMoney(".content-right");
+                thisPurchase.autoRenderWidthHasScroll();
             } else {
                 alert("Lỗi server lấy dữ liệu các sản phẩm");
             }

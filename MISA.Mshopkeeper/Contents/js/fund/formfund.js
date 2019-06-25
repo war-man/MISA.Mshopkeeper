@@ -1488,6 +1488,15 @@ class Fund {
             $('#formDetail input[fieldName="EmployeeID"]').val($(this).data("EmployeeID"));
         });
 
+        $('body').on('mousedown', '#formChooseStaff .reciptFormDetail_tableData .detail-table-data_list-data .table-row', function () {
+            let employeeCode = $(this).find('.detail-data-item_first-column').text().trim();
+            let employeeName = $(this).find('.detail-data-item_second-column').text().trim();   
+            $('.employee-code').val(employeeCode);
+            $('.employee-name').val(employeeName);
+            $(this).parents('.recipeFormDetail_formStaff').hide();
+            $('#formDetail input[fieldName="EmployeeID"]').val($(this).data("EmployeeID"));
+        });
+
         $('body').on('mousedown', '.document-type-dropdown .table-row', function () {
             let documentType = $(this).find('span').text().trim();
             $('.document-type-input input[fieldName="DocumentTypeName"]').val(documentType);

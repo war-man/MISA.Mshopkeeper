@@ -167,7 +167,7 @@ class PurchaseFormDialog {
     // Người tạo: ntxuan (20/5/2019)
     setEventTabIndex() {
         // Khi bấm shift tab vào ô mã nhà cung cấp
-        $('input[fieldname="SupplierCode"]').keydown(function (event) {
+        $('input[fieldname="SupplierCode"]').keyup(function (event) {
             if (event.shiftKey && event.which === 9) {
                 $('.row-empty [fieldname="TaxPercentage"]').focus();
                 event.preventDefault();
@@ -178,7 +178,7 @@ class PurchaseFormDialog {
             $('.row-empty [fieldname="TaxPercentage"]').focus();
         });
 
-        $('.invoicePress input[fieldname="ImportTime"]').keydown(function (event) {
+        $('.invoicePress input[fieldname="ImportTime"]').keyup(function (event) {
             if (!event.shiftKey && event.which === 9) {
                 $(".tabindex-row:first").focus();
                 event.preventDefault();
@@ -876,7 +876,7 @@ class PurchaseFormDialog {
             purchase.asyncRowTotalMoney(".form-addNew .footer-content-right");
         });
 
-        $(".detailData13").keydown(function () {
+        $(".detailData13").keyup(function () {
             if (event.which == 13 && $(this).closest(".detail-data").hasClass("other-row")) {
                 $(this).closest(".detail-data").remove();
                 $(".row-empty input:last").focus();
@@ -939,17 +939,7 @@ class PurchaseFormDialog {
     // Thiết lập giá trị đồng bộ hóa giữa các ngày tháng của phiếu nhập, chi, và ủy nhiệm chi
     // Người tạo: NTXUAN (04/05/2019)
     setAsyncValueDate() {
-        // Khi thay đổi ngày tháng ở phiếu nhập, phiếu chi, ủy nhiệm chi thì tất cả thay đổi theo
-        $('.Invoice input[fieldName="ImportDate"]').blur(function () {
-            // Nếu giá trị là rỗng thì mặc định là giá trị trước đó
-            if ($(this).val() === "") {
-                $(this).val($(this).attr("data-previous"));
-            } else {
-                $(this).attr("data-previous", $(this).val());
-            }
-            $('.Invoice input[fieldName="ImportDate"]').val($(this).val());
-        });
-
+      
         //Khi thay đổi giờ là khoảng trắng thì về giờ lần gần nhất
         $(".DateOutput").change(function () {
             if ($(this).val() === "") {
@@ -959,14 +949,6 @@ class PurchaseFormDialog {
             }
         });
 
-        // Thay đổi thông tin ngày tháng bên hóa đơn, nếu giá trị rỗng thì lấy ngày trước đó
-        $(".bill-pupop .DateInput").change(function () {
-            if ($(this).val() === "") {
-                $(this).val($(this).attr("data-previous"));
-            } else {
-                $(this).attr("data-previous", $(this).val());
-            }
-        });
     }
 
     // Thiết lập phương thức thanh toán trên form thêm mới
@@ -1069,15 +1051,58 @@ class PurchaseFormDialog {
     // Kiểm tra value có hợp lệ không và gán giá trị mặc định
     // Người tạo: NTXUAN (28/04/2019)
     checkValidateValue() {
+        // validate ngày tháng
+        $('.DateInput').keyup(function () {
+            $('span.error-keyup-2').remove();
+            var inputVal = $(this).val();
+            var dateReg = /^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/;
+            if (!dateReg.test(inputVal)) {
+                $(this).after('<span class="error error-keyup-2">Gõ dạng dd/MM/yyyy</span>');
+            } else {
+                $('span.error-keyup-2').remove();
+                $(this).attr("data-previous", $(this).val());
+            }
+        });
+        // validate ngày tháng của phiếu nhập
+        $('[fieldname="ImportDate"]').blur(function () {
+            $('span.error-keyup-2').remove();
+            var inputVal = $(this).val();
+            var dateReg = /^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/;
+            if (!dateReg.test(inputVal)) {
+                $(this).val($(this).attr("data-previous"));
+            } else {
+                $(this).attr("data-previous", $(this).val());
+            }
+            $('.Invoice input[fieldName="ImportDate"]').val($(this).val());
+        });
+        // validate ngày tháng của hóa đơn
+        $('[fieldname="InvoiceDate"]').blur(function () {
+            $('span.error-keyup-2').remove();
+            var inputVal = $(this).val();
+            var dateReg = /^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/;
+            if (!dateReg.test(inputVal)) {
+                $(this).val($(this).attr("data-previous"));
+            } else {
+                $(this).attr("data-previous", $(this).val());
+            }
+            $('.Invoice input[fieldName="InvoiceDate"]').val($(this).val());
+        });
+
+        // Validate người giao
+        $('input[fieldname="Deliver"]').keyup(function () {
+            if (event.which !== 32) {
+                $(this).val(common.formatName($(this).val()));
+            }
+        });
         // Validate phiếu nhập
         $('input[fieldname="ImportNumber"]').keyup(function () {
-            $('span.error-keyup-1').hide();
+            $('span.error-keyup-1').remove();
             var inputVal = $(this).val();
             var importNumber = /^PS[0-9]{1,10}$/;
             if (!importNumber.test(inputVal)) {
                 $(this).after('<span class="error error-keyup-1">Số phiếu nhập có dạng PS000001 </span>');
             } else {
-                $('span.error-keyup-1').hide();
+                $('span.error-keyup-1').remove();
             }
         });
         // Khi blur phiếu nhập
@@ -1575,11 +1600,11 @@ class PurchaseFormDialog {
     // Hàm dùng để kiểm tra đầu vào hợp lệ của các ô input
     // Người tạo: ntxuan (19/5/2019)
     validateInput(element, leng) {
-        $(element).keydown(function () {
+        $(element).keyup(function () {
             if ($(this).val().length > leng) {
-                $(this).css("color", "red").attr("title", "Trường này không được quá " + leng + " kí tự");
+                $(this).css("border-color", "red").attr("title", "Trường này không được quá " + leng + " kí tự");
             } else {
-                $(this).css("color", "black").attr("title", "");
+                $(this).css("border-color", "c5c3c3").attr("title", "");
             }
         });
         $(element).blur(function () {

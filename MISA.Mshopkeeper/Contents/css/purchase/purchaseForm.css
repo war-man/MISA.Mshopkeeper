@@ -101,7 +101,6 @@
 
 .supplier-table_header.flex {
     color: #171616;
-    /* padding: 5px; */
     background: #ded8d8;
     text-align: center;
 }
@@ -350,7 +349,6 @@ input.tabindex-row {
     padding: 7px 0;
     width: 63%;
     padding-left: 27px;
-    /* overflow-x: hidden !important; */
     border-bottom: 1px solid #adaaaa;
 }
 
@@ -395,10 +393,6 @@ input.tabindex-row {
         background: #006189;
         color: white;
     }
-
-input.DateOutput {
-    /* padding-right: 24px; */
-}
 
 .infor-common_right_wrapp {
     margin-top: 19px;
@@ -587,7 +581,6 @@ input.DateOutput {
     }
 
 input.personG, input.personD {
-    /* padding-left: 0; */
     width: calc(100% - 12px);
 }
 
@@ -599,10 +592,6 @@ input.file-upload-name {
 
 .form-addNew .row-add .detail-data-Item.detailData6 input {
     background: #f0f0f0;
-}
-
-input.DateInput {
-    /* padding-right: 24px; */
 }
 
 .form-addNew .exspand {
@@ -1147,7 +1136,6 @@ input.DateInput {
 
 .wrapper, html, body {
     height: 100%;
-    /* width: 100%; */
 }
 
 
@@ -1231,7 +1219,6 @@ button.dialog-cancel.ui-button.ui-corner-all.ui-widget {
     background: white;
     color: #026b97;
     font-weight: bold;
-    /* border: none; */
 }
 
 button.dialog-cancel.dialog-btnError.ui-button.ui-corner-all.ui-widget i {
@@ -1779,4 +1766,16 @@ span.error.error-keyup-1 {
     padding: 7px;
     width: 125px;
     box-shadow: -1px 1px 7px 2px #e20c0c;
+}
+span.error.error-keyup-2 {
+    BACKGROUND: #ef0808;
+    position: absolute;
+    top: 2px;
+    right: 9px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 8px;
+    width: 115px;
+    box-shadow: -1px 1px 4px 2px #e20c0c;
 }

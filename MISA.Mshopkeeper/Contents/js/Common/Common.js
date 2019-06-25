@@ -188,5 +188,20 @@ class Common {
         return fullDateString;
     }
 
+    // Hàm định dạng họ tên
+    // Người tạo: ntxuan (24/6/2019)
+    formatName(name) {
+     let   dname = name;
+     let nameArrray = dname.split(' ');
+     dname = "";
+        for (let i = 0; i < nameArrray.length; i++)
+            if (nameArrray[i].length > 0) {
+            if (dname.length > 0) dname = dname + " ";
+            dname = dname + nameArrray[i].substring(0, 1).toUpperCase();
+            dname = dname + nameArrray[i].substring(1).toLowerCase();
+        }
+    return dname;
+}
+
 }
 
