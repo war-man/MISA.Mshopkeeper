@@ -438,13 +438,11 @@ class Purchase  {
         } else {
             $(".list-header-table").width($(".wrapp-dataTable").width());
         }
-        if ($(".content-right .footer-content-top").width() > 1900) {
             if ($('.content-right .list-data-bottom').hasScrollBar()) {
                 $(".content-right .detail-header").width($(".content-right .footer-content-top").width() - 16);
             } else {
                 $(".content-right .detail-header").width($(".content-right .footer-content-top").width());
             }
-        }
     }
 
     // Tự động sinh thanh cuộn khi chiều cao dài quá

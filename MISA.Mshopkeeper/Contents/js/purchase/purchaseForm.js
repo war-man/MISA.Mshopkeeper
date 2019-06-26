@@ -370,7 +370,7 @@ class PurchaseFormDialog {
                         $(".supplier-table.table1").hide();
                     }
                 }
-                let scrollTop = $(".table1 .supplier-table_body .row-hover").offset().top - 322;
+                let scrollTop = $(".table1 .supplier-table_body .row-hover").offset().top - 352;
                 let heightTableData = $(".table1 .supplier-table_body").height();
                 if (scrollTop > heightTableData) {
                     $(".table1 .supplier-table_body").scrollTop($(".table1 .supplier-table_body").scrollTop() + heightTableData);
@@ -436,7 +436,7 @@ class PurchaseFormDialog {
                     }
                 }
 
-                let scrollTop = $(".table2 .supplier-table_body .row-hover").offset().top - 150;
+                let scrollTop = $(".table2 .supplier-table_body .row-hover").offset().top - 182;
                 let heightTableData = $(".table2 .supplier-table_body").height();
                 if (scrollTop > heightTableData) {
                     $(".table2 .supplier-table_body").scrollTop($(".table2 .supplier-table_body").scrollTop() + heightTableData);
@@ -516,8 +516,7 @@ class PurchaseFormDialog {
                         $(".table-sku").hide();
                     }
                 }
-
-                let scrollTop = $(".table-sku_body .row-hover").offset().top - 385;
+                let scrollTop = $(".table-sku_body .row-hover").offset().top - 420;
                 let heightTableData = $(".table-sku_body").height();
                 if (scrollTop > heightTableData) {
                     $(".table-sku_body").scrollTop($(".table-sku_body").scrollTop() + heightTableData);
